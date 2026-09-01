@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.local
+*.log
+.DS_Store
+runs/
+!evidence/
+artifacts/*.local.json
+scratch/
+runs-public/

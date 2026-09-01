@@ -1,0 +1,33 @@
+{
+  "name": "pantograph",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Computer-use automation: LLM discovers a flow once, emits a typed capability artifact, replays it deterministically without the model.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "app": "node src/cli.ts app",
+    "discover": "node src/cli.ts discover",
+    "replay": "node src/cli.ts replay",
+    "catalog": "node src/cli.ts catalog",
+    "demo": "node scripts/demo.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"tests/*.test.ts\"",
+    "postinstall": "playwright install chromium --no-shell || true",
+    "stability": "node src/cli.ts stability",
+    "ask": "node src/cli.ts ask",
+    "demo:public": "node scripts/demo-public.ts",
+    "check:diagrams": "node scripts/check-diagrams.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "playwright": "^1.56.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.0",
+    "typescript": "^5.9.2"
+  }
+}
