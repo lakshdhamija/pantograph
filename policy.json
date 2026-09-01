@@ -1,0 +1,41 @@
+{
+  "version": "1",
+  "origins": [
+    {
+      "origin": "http://127.0.0.1:8731",
+      "allow": [
+        "^/(login|logout|desk|nav|content)",
+        "^/t/[a-z-]+/(login|logout|desk|nav|content)"
+      ],
+      "deny": [
+        "^/_chaos",
+        "^/_requests"
+      ]
+    },
+    {
+      "origin": "https://www.saucedemo.com",
+      "allow": [
+        "^/($|index\\.html|inventory|inventory-item|cart|checkout)"
+      ],
+      "_comment": "Sauce Labs' own demo application, published for automation practice. Used as a second, non-self-built surface. Low volume, no real credentials (standard_user/secret_sauce are printed on its login page), no real PII."
+    }
+  ],
+  "allowedActions": [
+    "navigate",
+    "click",
+    "fill",
+    "select",
+    "check",
+    "press",
+    "scroll",
+    "answer_dialog",
+    "wait"
+  ],
+  "onIrreversible": "require_approval",
+  "onElevated": "allow",
+  "limits": {
+    "maxStepsPerRun": 40,
+    "maxRunDurationMs": 180000,
+    "maxActionsPerStep": 6
+  }
+}
