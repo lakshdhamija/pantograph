@@ -1,0 +1,122 @@
+{
+  "status": "escalated",
+  "capability": "member.open-sub-account@1.0.0",
+  "intervention": {
+    "id": "iv_e15c6719",
+    "reason": "approval_required",
+    "decision": "abort",
+    "note": "operator mode is \"abort\": no human is available for this run",
+    "humanActions": 0,
+    "by": "system:unattended"
+  },
+  "steps": [
+    {
+      "stepId": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 848,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "Enter operator password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 849,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-sign-on",
+      "intent": "click Sign On button",
+      "index": 2,
+      "status": "ok",
+      "durationMs": 908,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member-inquiry",
+      "intent": "Open Member Inquiry screen",
+      "index": 3,
+      "status": "ok",
+      "durationMs": 938,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-member-number",
+      "intent": "Enter member number",
+      "index": 4,
+      "status": "ok",
+      "durationMs": 854,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-go",
+      "intent": "Submit member number to retrieve member record",
+      "index": 5,
+      "status": "ok",
+      "durationMs": 827,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member",
+      "intent": "Open member details",
+      "index": 6,
+      "status": "ok",
+      "durationMs": 855,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-open-sub-account",
+      "intent": "Open sub-account screen",
+      "index": 7,
+      "status": "ok",
+      "durationMs": 840,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "select-product-code",
+      "intent": "Select Vacation Club product",
+      "index": 8,
+      "status": "ok",
+      "durationMs": 825,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-opening-deposit",
+      "intent": "Enter opening deposit amount",
+      "index": 9,
+      "status": "ok",
+      "durationMs": 852,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    }
+  ],
+  "durationMs": 9537,
+  "evidence": {
+    "runId": "13-replay-write-unattended-blocked",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs/13-replay-write-unattended-blocked",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/13-replay-write-unattended-blocked/events.jsonl",
+    "blobs": []
+  },
+  "plannerCalls": 0
+}

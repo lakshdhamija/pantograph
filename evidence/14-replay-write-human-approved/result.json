@@ -1,0 +1,135 @@
+{
+  "status": "success",
+  "capability": "member.open-sub-account@1.0.0",
+  "outputs": {
+    "confirmationReference": "CT-1A6C0305"
+  },
+  "steps": [
+    {
+      "stepId": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 862,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "Enter operator password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 866,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-sign-on",
+      "intent": "click Sign On button",
+      "index": 2,
+      "status": "ok",
+      "durationMs": 937,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member-inquiry",
+      "intent": "Open Member Inquiry screen",
+      "index": 3,
+      "status": "ok",
+      "durationMs": 918,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-member-number",
+      "intent": "Enter member number",
+      "index": 4,
+      "status": "ok",
+      "durationMs": 841,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-go",
+      "intent": "Submit member number to retrieve member record",
+      "index": 5,
+      "status": "ok",
+      "durationMs": 807,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member",
+      "intent": "Open member details",
+      "index": 6,
+      "status": "ok",
+      "durationMs": 844,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-open-sub-account",
+      "intent": "Open sub-account screen",
+      "index": 7,
+      "status": "ok",
+      "durationMs": 835,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "select-product-code",
+      "intent": "Select Vacation Club product",
+      "index": 8,
+      "status": "ok",
+      "durationMs": 828,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-opening-deposit",
+      "intent": "Enter opening deposit amount",
+      "index": 9,
+      "status": "ok",
+      "durationMs": 840,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-submit-request",
+      "intent": "Submit sub-account request",
+      "index": 10,
+      "status": "ok",
+      "durationMs": 1178,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "confirm",
+      "intent": "Confirm creation of new vacation club sub-account",
+      "index": 11,
+      "status": "ok",
+      "durationMs": 526
+    }
+  ],
+  "durationMs": 10872,
+  "evidence": {
+    "runId": "14-replay-write-human-approved",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs/14-replay-write-human-approved",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/14-replay-write-human-approved/events.jsonl",
+    "blobs": []
+  },
+  "degradedResolutions": 0,
+  "plannerCalls": 0
+}

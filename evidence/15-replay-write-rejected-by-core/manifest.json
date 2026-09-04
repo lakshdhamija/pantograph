@@ -1,0 +1,13 @@
+{
+  "runId": "15-replay-write-rejected-by-core",
+  "status": "business_outcome",
+  "startedAt": "2026-09-05T00:59:25.092Z",
+  "finishedAt": "2026-09-05T00:59:36.157Z",
+  "durationMs": 11065,
+  "events": 76,
+  "blobs": 2,
+  "redactions": {
+    "literal": 2,
+    "ssn": 1
+  }
+}

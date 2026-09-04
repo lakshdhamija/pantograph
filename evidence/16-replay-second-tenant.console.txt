@@ -1,0 +1,65 @@
+$ node src/cli.ts replay granite.member.read-savings-balance --input operatorId=teller01 --input-env operatorPassword=CORETELLER_PASSWORD --input memberId=100234
+
+replaying granite.member.read-savings-balance@1.0.0 (approved, risk=elevated)
+run evidence: /Users/lakshdhamija/Documents/interface ai/runs/16-replay-second-tenant
+
+  [001] automation run_started
+  [002] automation policy allow (default)
+  [003] automation act navigate
+  [004] automation   -> ok 306ms
+  [005] automation step 1/7 fill-operator-id: Enter operator ID
+  [006] automation policy allow (default)
+  [007] automation act fill textbox
+  [008] automation   -> ok 553ms
+  [009] automation assert fill-operator-id.expect: pass (textbox equals("Password") present via role_name)
+  [010] automation step 2/7 fill-password: Enter operator password
+  [011] automation policy allow (default)
+  [012] automation act fill textbox
+  [013] automation   -> ok 557ms
+  [014] automation assert fill-password.expect: pass (button equals("Sign On") present via role_name)
+  [015] automation step 3/7 click-sign-on: sign on
+  [016] automation policy allow (default)
+  [017] automation act click button
+  [018] automation   -> ok 640ms
+  [019] automation assert click-sign-on.expect: pass (location "http://127.0.0.1:8731/t/granite/desk" matches //desk$/)
+  [020] automation step 4/7 click-member-inquiry: Open Member Inquiry
+  [021] automation policy allow (default)
+  [022] automation act click link
+  [023] automation   -> ok 657ms
+  [024] automation assert click-member-inquiry.expect: pass (text contains("Account Holder ID") found)
+  [025] automation step 5/7 fill-member-number: Enter member number to look up
+  [026] automation policy allow (default)
+  [027] automation act fill textbox
+  [028] automation   -> ok 565ms
+  [029] automation assert fill-member-number.expect: pass ([content] button equals("Search") present via role_name)
+  [030] automation step 6/7 click-go: Submit member lookup
+  [031] automation policy allow (default)
+  [032] automation act click button
+  [033] automation   -> ok 549ms
+  [034] automation assert click-go.expect: pass (text contains("Inquiry Results") found)
+  [035] automation step 7/7 click-member: Open member details
+  [036] automation policy allow (default)
+  [037] automation act click link
+  [038] automation   -> ok 588ms
+  [039] automation assert click-member.expect: pass (text contains("Member Detail") found)
+  [040] automation assert successCondition: pass (all 2 held)
+  [041] automation extract regularShareBalance = 18234.55
+  [042] automation run_finished
+
+------------------------------------------------------------------------
+SUCCESS  granite.member.read-savings-balance@1.0.0  (6677ms)
+
+outputs:
+  regularShareBalance = 18234.55  [number]
+------------------------------------------------------------------------
+
+step trace:
+   1. ok        fill-operator-id via role_name  
+   2. ok        fill-password via role_name  
+   3. ok        click-sign-on via role_name  
+   4. ok        click-member-inquiry via role_name  
+   5. ok        fill-member-number via relative  
+   6. ok        click-go via role_name  
+   7. ok        click-member via relative  
+
+evidence: /Users/lakshdhamija/Documents/interface ai/runs/16-replay-second-tenant

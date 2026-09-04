@@ -1,0 +1,67 @@
+<!-- location: http://127.0.0.1:8731/desk -->
+
+<!-- ===== frame: (main) url: http://127.0.0.1:8731/desk ===== -->
+<html><head><title>CORETELLER Desktop</title></head>
+<frameset cols="172,*" border="1" frameborder="1">
+  <frame src="/nav" name="nav" scrolling="no">
+  <frame src="/content?screen=home" name="content">
+</frameset></html>
+
+<!-- ===== frame: nav url: http://127.0.0.1:8731/nav ===== -->
+<html><head><title>Navigation</title>
+<style>
+body{font-family:Verdana,Geneva,sans-serif;font-size:11px;margin:0;background:#e8e8e8;color:#111}
+table{border-collapse:collapse}
+td{padding:3px 6px;font-size:11px;vertical-align:top}
+.hdr{background:#1a3a5c;color:#fff;padding:6px 8px;font-weight:bold;font-size:12px}
+.panel{background:#fff;border:1px solid #999;margin:8px}
+.sect{background:#c9d4de;font-weight:bold;padding:3px 6px;border-bottom:1px solid #999}
+.err{background:#ffe8e8;border:1px solid #b00;color:#900;padding:6px;margin:8px;font-weight:bold}
+.note{background:#fffbe6;border:1px solid #c9a900;padding:6px;margin:8px}
+input,select{font-family:Verdana;font-size:11px;border:1px solid #666}
+input[type=submit]{background:#d4d0c8;padding:1px 10px;cursor:pointer}
+a{color:#0033aa}
+.r{text-align:right}
+</style></head><body>
+<div class="hdr" data-pantograph-ref="n1">FIRST RIVERSIDE CREDIT UNION &nbsp;·&nbsp; CORETELLER 7.2.114</div>
+<table width="100%" data-pantograph-ref="n2">
+<tbody><tr data-pantograph-ref="n3"><td class="sect" data-pantograph-ref="n4">Menu</td></tr>
+<tr data-pantograph-ref="n5"><td data-pantograph-ref="n6">» <a href="/content?screen=home" target="content" data-pantograph-ref="n7">Home</a></td></tr>
+<tr data-pantograph-ref="n8"><td data-pantograph-ref="n9">» <a href="/content?screen=mbrsearch" target="content" data-pantograph-ref="n10">Member Inquiry</a></td></tr>
+<tr data-pantograph-ref="n11"><td data-pantograph-ref="n12">» <a href="/content?screen=reports" target="content" data-pantograph-ref="n13">Reports</a></td></tr>
+<tr data-pantograph-ref="n14"><td data-pantograph-ref="n15">» <a href="/logout" target="_top" data-pantograph-ref="n16">Sign Off</a></td></tr>
+</tbody></table>
+</body></html>
+
+<!-- ===== frame: content url: http://127.0.0.1:8731/content?screen=subacct&id=100234 ===== -->
+<html><head><title>Open Sub-Account</title>
+<style>
+body{font-family:Verdana,Geneva,sans-serif;font-size:11px;margin:0;background:#e8e8e8;color:#111}
+table{border-collapse:collapse}
+td{padding:3px 6px;font-size:11px;vertical-align:top}
+.hdr{background:#1a3a5c;color:#fff;padding:6px 8px;font-weight:bold;font-size:12px}
+.panel{background:#fff;border:1px solid #999;margin:8px}
+.sect{background:#c9d4de;font-weight:bold;padding:3px 6px;border-bottom:1px solid #999}
+.err{background:#ffe8e8;border:1px solid #b00;color:#900;padding:6px;margin:8px;font-weight:bold}
+.note{background:#fffbe6;border:1px solid #c9a900;padding:6px;margin:8px}
+input,select{font-family:Verdana;font-size:11px;border:1px solid #666}
+input[type=submit]{background:#d4d0c8;padding:1px 10px;cursor:pointer}
+a{color:#0033aa}
+.r{text-align:right}
+</style></head><body>
+<div class="hdr" data-pantograph-ref="n1">FIRST RIVERSIDE CREDIT UNION &nbsp;·&nbsp; CORETELLER 7.2.114</div>
+
+<div class="panel"><div class="sect" data-pantograph-ref="n2">Open Sub-Account — Member 100234</div>
+<form method="POST" action="/content?screen=subacct&amp;id=100234" onsubmit="return confirm('This will create a new sub-account for member 100234. Continue?');" data-pantograph-ref="n3">
+<table data-pantograph-ref="n4">
+<tbody><tr data-pantograph-ref="n5"><td width="130" data-pantograph-ref="n6">Member</td><td data-pantograph-ref="n7">100234 — DELACROIX, RENE M</td></tr>
+<tr data-pantograph-ref="n8"><td data-pantograph-ref="n9">Tax ID</td><td data-pantograph-ref="n10">[REDACTED:****0234]</td></tr>
+<tr data-pantograph-ref="n11"><td data-pantograph-ref="n12"><label for="prod" data-pantograph-ref="n13">Product Code</label></td><td data-pantograph-ref="n14"><select id="prod" name="f_prod" data-pantograph-ref="n15"><option value="" data-pantograph-ref="n16">-- select --</option><option value="S02" data-pantograph-ref="n17">S02 REGULAR SHARE (SAVINGS)</option><option value="S06" data-pantograph-ref="n18">S06 VACATION CLUB</option><option value="S09" data-pantograph-ref="n19">S09 HOLIDAY CLUB</option><option value="C51" data-pantograph-ref="n20">C51 CERTIFICATE 12MO</option></select></td></tr>
+<tr data-pantograph-ref="n21"><td data-pantograph-ref="n22">Nickname</td><td data-pantograph-ref="n23"><input name="f_nick" size="24" maxlength="20" value="" data-pantograph-ref="n24" style=""></td></tr>
+<tr data-pantograph-ref="n25"><td data-pantograph-ref="n26">Opening Deposit</td><td data-pantograph-ref="n27"><input name="f_amt" size="12" value="" data-pantograph-ref="n28" style=""> USD</td></tr>
+
+<tr data-pantograph-ref="n29"><td colspan="2" data-pantograph-ref="n30"><input type="submit" value="Submit Request" data-pantograph-ref="n31" style="">&nbsp;
+<a href="/content?screen=mbrdetail&amp;id=100234" data-pantograph-ref="n32">Cancel</a></td></tr>
+</tbody></table>
+</form></div>
+</body></html>

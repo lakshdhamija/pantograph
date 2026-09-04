@@ -1,0 +1,13 @@
+{
+  "runId": "13-replay-write-unattended-blocked",
+  "status": "escalated",
+  "startedAt": "2026-09-05T00:59:03.282Z",
+  "finishedAt": "2026-09-05T00:59:13.233Z",
+  "durationMs": 9951,
+  "events": 64,
+  "blobs": 2,
+  "redactions": {
+    "literal": 2,
+    "ssn": 1
+  }
+}
