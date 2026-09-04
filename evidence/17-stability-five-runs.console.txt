@@ -1,0 +1,27 @@
+$ node src/cli.ts stability member.read-savings-balance --input operatorId=teller01 --input-env operatorPassword=CORETELLER_PASSWORD --input memberId=100234 --runs 5
+
+measuring member.read-savings-balance@1.0.0 over 5 runs, one fresh browser session each
+
+  run 1/5 ... done
+  run 2/5 ... done
+  run 3/5 ... done
+  run 4/5 ... done
+  run 5/5 ... done
+
+------------------------------------------------------------------------
+STABILITY  member.read-savings-balance@1.0.0  5 runs  -> STABLE
+------------------------------------------------------------------------
+
+  statuses:      success=5
+  success rate:  100%
+  duration:      6661-6798ms (median 6714ms)
+
+  per run:
+     1. success             6798ms  rungs [0,0,0,0,0,0,0]
+     2. success             6770ms  rungs [0,0,0,0,0,0,0]
+     3. success             6714ms  rungs [0,0,0,0,0,0,0]
+     4. success             6661ms  rungs [0,0,0,0,0,0,0]
+     5. success             6700ms  rungs [0,0,0,0,0,0,0]
+
+  Every locator resolved on its preferred strategy in every run. No drift signal.
+------------------------------------------------------------------------

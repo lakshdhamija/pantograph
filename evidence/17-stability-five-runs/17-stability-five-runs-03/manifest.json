@@ -1,0 +1,12 @@
+{
+  "runId": "17-stability-five-runs-03",
+  "status": "success",
+  "startedAt": "2026-09-05T00:59:58.798Z",
+  "finishedAt": "2026-09-05T01:00:05.827Z",
+  "durationMs": 7029,
+  "events": 42,
+  "blobs": 0,
+  "redactions": {
+    "literal": 2
+  }
+}
