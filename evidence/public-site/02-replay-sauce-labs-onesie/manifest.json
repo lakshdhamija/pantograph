@@ -1,0 +1,12 @@
+{
+  "runId": "02-replay-sauce-labs-onesie",
+  "status": "success",
+  "startedAt": "2026-09-05T00:56:47.170Z",
+  "finishedAt": "2026-09-05T00:56:56.696Z",
+  "durationMs": 9526,
+  "events": 57,
+  "blobs": 0,
+  "redactions": {
+    "literal": 2
+  }
+}

@@ -1,0 +1,153 @@
+[
+  {
+    "turn": 1,
+    "screenDigest": "https://www.saucedemo.com/",
+    "reasoning": "rule \"sign-in\"",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "enter the storefront username",
+          "kind": "fill",
+          "ref": "#n3",
+          "value": "standard_user",
+          "parameter": "username"
+        }
+      },
+      {
+        "name": "act",
+        "input": {
+          "intent": "enter the storefront password",
+          "kind": "fill",
+          "ref": "#n4",
+          "value": "",
+          "parameter": "password"
+        }
+      },
+      {
+        "name": "act",
+        "input": {
+          "intent": "sign in to the storefront",
+          "kind": "click",
+          "ref": "#n5"
+        }
+      }
+    ]
+  },
+  {
+    "turn": 2,
+    "screenDigest": "https://www.saucedemo.com/inventory.html",
+    "reasoning": "rule \"add-the-requested-product\"",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "add Sauce Labs Backpack to the cart",
+          "kind": "click",
+          "ref": "#n21",
+          "parameter": "productName"
+        }
+      }
+    ]
+  },
+  {
+    "turn": 3,
+    "screenDigest": "https://www.saucedemo.com/inventory.html",
+    "reasoning": "rule \"open-the-cart\"",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "open the shopping cart",
+          "kind": "click",
+          "ref": "#n8"
+        }
+      }
+    ]
+  },
+  {
+    "turn": 4,
+    "screenDigest": "https://www.saucedemo.com/cart.html",
+    "reasoning": "rule \"start-checkout\"",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "begin checkout",
+          "kind": "click",
+          "ref": "#n20"
+        }
+      }
+    ]
+  },
+  {
+    "turn": 5,
+    "screenDigest": "https://www.saucedemo.com/checkout-step-one.html",
+    "reasoning": "rule \"fill-checkout-details\"",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "enter the first name",
+          "kind": "fill",
+          "ref": "#n12",
+          "value": "Ada",
+          "parameter": "firstName"
+        }
+      },
+      {
+        "name": "act",
+        "input": {
+          "intent": "enter the last name",
+          "kind": "fill",
+          "ref": "#n13",
+          "value": "Lovelace",
+          "parameter": "lastName"
+        }
+      },
+      {
+        "name": "act",
+        "input": {
+          "intent": "enter the postal code",
+          "kind": "fill",
+          "ref": "#n14",
+          "value": "02115",
+          "parameter": "postalCode"
+        }
+      },
+      {
+        "name": "act",
+        "input": {
+          "intent": "continue to the order review",
+          "kind": "click",
+          "ref": "#n16"
+        }
+      }
+    ]
+  },
+  {
+    "turn": 6,
+    "screenDigest": "https://www.saucedemo.com/checkout-step-two.html",
+    "reasoning": "rule \"read-the-review-total\"",
+    "calls": [
+      {
+        "name": "declare_output",
+        "input": {
+          "name": "orderTotal",
+          "type": "money",
+          "description": "Order total including tax, as shown on the review page.",
+          "ref": "#n25",
+          "property": "text",
+          "sensitivity": "public"
+        }
+      },
+      {
+        "name": "finish",
+        "input": {
+          "summary": "Added the product and reached the checkout review page.",
+          "successText": "Payment Information"
+        }
+      }
+    ]
+  }
+]

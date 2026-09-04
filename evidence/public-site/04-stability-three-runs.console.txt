@@ -1,0 +1,26 @@
+$ node src/cli.ts stability store.add-to-cart-and-review --base-url https://www.saucedemo.com --input username=standard_user --input productName=Sauce Labs Backpack --input firstName=Ada --input lastName=Lovelace --input postalCode=02115 --input-env password=SAUCE_PASSWORD --runs 3
+
+measuring store.add-to-cart-and-review@1.0.0 over 3 runs, one fresh browser session each
+
+  run 1/3 ... done
+  run 2/3 ... done
+  run 3/3 ... done
+
+------------------------------------------------------------------------
+STABILITY  store.add-to-cart-and-review@1.0.0  3 runs  -> DEGRADING
+------------------------------------------------------------------------
+
+  statuses:      success=3
+  success rate:  100%
+  duration:      9160-9371ms (median 9289ms)
+
+  per run:
+     1. success             9371ms  rungs [0,0,0,1,0,0,0,0,0,0]
+     2. success             9289ms  rungs [0,0,0,1,0,0,0,0,0,0]
+     3. success             9160ms  rungs [0,0,0,1,0,0,0,0,0,0]
+
+  LOCATOR DEGRADATION
+  These steps did not resolve on their preferred strategy in every run.
+  Nothing has failed yet; this is the early warning.
+    step-4: rungs 1 across runs, degraded in 3
+------------------------------------------------------------------------

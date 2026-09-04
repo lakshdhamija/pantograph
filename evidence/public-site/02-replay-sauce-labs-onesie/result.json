@@ -1,0 +1,118 @@
+{
+  "status": "success",
+  "capability": "store.add-to-cart-and-review@1.0.0",
+  "outputs": {
+    "orderTotal": 8.63
+  },
+  "steps": [
+    {
+      "stepId": "fill-username",
+      "intent": "enter the storefront username",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 845,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "enter the storefront password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 845,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-login",
+      "intent": "sign in to the storefront",
+      "index": 2,
+      "status": "ok",
+      "durationMs": 866,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-add-to-cart",
+      "intent": "add Sauce Labs Backpack to the cart",
+      "index": 3,
+      "status": "ok",
+      "durationMs": 827,
+      "strategyIndex": 1,
+      "strategyKind": "relative",
+      "degraded": true
+    },
+    {
+      "stepId": "click-link",
+      "intent": "open the shopping cart",
+      "index": 4,
+      "status": "ok",
+      "durationMs": 866,
+      "strategyIndex": 0,
+      "strategyKind": "test_id",
+      "degraded": false
+    },
+    {
+      "stepId": "click-checkout",
+      "intent": "begin checkout",
+      "index": 5,
+      "status": "ok",
+      "durationMs": 871,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-first-name",
+      "intent": "enter the first name",
+      "index": 6,
+      "status": "ok",
+      "durationMs": 832,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-last-name",
+      "intent": "enter the last name",
+      "index": 7,
+      "status": "ok",
+      "durationMs": 837,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-zip-postal-code",
+      "intent": "enter the postal code",
+      "index": 8,
+      "status": "ok",
+      "durationMs": 837,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-continue",
+      "intent": "continue to the order review",
+      "index": 9,
+      "status": "ok",
+      "durationMs": 894,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    }
+  ],
+  "durationMs": 9202,
+  "evidence": {
+    "runId": "02-replay-sauce-labs-onesie",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs-public/02-replay-sauce-labs-onesie",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs-public/02-replay-sauce-labs-onesie/events.jsonl",
+    "blobs": []
+  },
+  "degradedResolutions": 1,
+  "plannerCalls": 0
+}

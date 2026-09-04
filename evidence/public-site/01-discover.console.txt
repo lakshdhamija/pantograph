@@ -1,0 +1,77 @@
+$ node src/cli.ts discover --goal Add the Sauce Labs Backpack to the cart and reach the checkout review page --key store.add-to-cart-and-review --title Add a product and reach checkout review --description Sign in to the Swag Labs storefront, add a named product to the cart, and drive checkout to the order review page, returning the order total. --profile saucedemo --tenant sauce-labs-demo --entrypoint https://www.saucedemo.com/ --base-url https://www.saucedemo.com --param username=standard_user --param productName=Sauce Labs Backpack --param firstName=Ada --param lastName=Lovelace --param postalCode=02115 --secret-env password=SAUCE_PASSWORD --mock-llm --rules saucedemo-checkout
+
+planner: SCRIPTED (saucedemo-checkout) -- no model is being called. See src/agent/llm/mock.ts.
+run evidence:  /Users/lakshdhamija/Documents/interface ai/runs-public/01-discover
+
+  [001] automation run_started
+  [002] automation policy allow (default)
+  [003] automation act navigate
+  [004] automation   -> ok 404ms
+  [005] automation see Swag Labs [7 nodes] 66364a97
+  [006] automation planner_request
+  [007] automation planner_response
+  [008] automation policy allow (default)
+  [009] automation act fill textbox
+  [010] automation   -> ok 581ms
+  [011] automation policy allow (default)
+  [012] automation act fill textbox
+  [013] automation   -> ok 595ms
+  [014] automation policy allow (default)
+  [015] automation act click button
+  [016] automation   -> ok 633ms
+  [017] automation see Swag Labs [58 nodes] 35a49590
+  [018] automation planner_request
+  [019] automation planner_response
+  [020] automation policy allow (default)
+  [021] automation act click button
+  [022] automation   -> ok 556ms (degraded locator)
+  [023] automation see Swag Labs [59 nodes] 617eb411
+  [024] automation planner_request
+  [025] automation planner_response
+  [026] automation policy allow (default)
+  [027] automation act click link
+  [028] automation   -> ok 616ms
+  [029] automation see Swag Labs [27 nodes] ae0c3c2f
+  [030] automation planner_request
+  [031] automation planner_response
+  [032] automation policy allow (default)
+  [033] automation act click button
+  [034] automation   -> ok 598ms
+  [035] automation see Swag Labs [23 nodes] a73101af
+  [036] automation planner_request
+  [037] automation planner_response
+  [038] automation policy allow (default)
+  [039] automation act fill textbox
+  [040] automation   -> ok 539ms
+  [041] automation policy allow (default)
+  [042] automation act fill textbox
+  [043] automation   -> ok 540ms
+  [044] automation policy allow (default)
+  [045] automation act fill textbox
+  [046] automation   -> ok 536ms
+  [047] automation policy allow (default)
+  [048] automation act click button
+  [049] automation   -> ok 598ms
+  [050] automation see Swag Labs [34 nodes] 0dc84b36
+  [051] automation planner_request
+  [052] automation planner_response
+  [053] automation note
+  [054] automation note
+
+discovery: succeeded in 10.9s over 10 step(s)
+  warning step "click-link": no portable locator identified the target, so the artifact pins a DOM path and will not survive a surface change (name "1" is data-shaped; refusing to key the locator on record data; control has no accessible name; relational targeting is required; identified by test id)
+  warning output "orderTotal" fell back to a non-portable locator: name "Total: $32.39" is data-shaped; refusing to key the locator on record data; control has no accessible name; relational targeting is required; identified by test id
+  [055] automation blob
+  [056] automation run_finished
+
+wrote /Users/lakshdhamija/Documents/interface ai/artifacts/store.add-to-cart-and-review@1.0.0.json
+
+  store.add-to-cart-and-review@1.0.0  "Add a product and reach checkout review"
+  inputs:   username: string, productName: string, firstName: string, lastName: string, postalCode: string, password: string [secret]
+  outputs:  orderTotal: money
+  steps:    10 (risk tier elevated, portability floor any_web)
+  outcomes: USER_LOCKED_OUT, CREDENTIALS_REJECTED
+  recoveries: (none)
+
+evidence: /Users/lakshdhamija/Documents/interface ai/runs-public/01-discover
+replay it:  node src/cli.ts replay store.add-to-cart-and-review --input username=standard_user --input productName=Sauce Labs Backpack --input firstName=Ada --input lastName=Lovelace --input postalCode=02115 --input password=<value>

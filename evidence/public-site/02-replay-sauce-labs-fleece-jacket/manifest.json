@@ -1,0 +1,12 @@
+{
+  "runId": "02-replay-sauce-labs-fleece-jacket",
+  "status": "success",
+  "startedAt": "2026-09-05T00:56:36.820Z",
+  "finishedAt": "2026-09-05T00:56:46.283Z",
+  "durationMs": 9463,
+  "events": 57,
+  "blobs": 0,
+  "redactions": {
+    "literal": 2
+  }
+}

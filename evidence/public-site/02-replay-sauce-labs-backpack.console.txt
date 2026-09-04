@@ -1,0 +1,86 @@
+$ node src/cli.ts replay store.add-to-cart-and-review --base-url https://www.saucedemo.com --input username=standard_user --input productName=Sauce Labs Backpack --input firstName=Ada --input lastName=Lovelace --input postalCode=02115 --input-env password=SAUCE_PASSWORD
+
+replaying store.add-to-cart-and-review@1.0.0 (approved, risk=elevated)
+run evidence: /Users/lakshdhamija/Documents/interface ai/runs-public/02-replay-sauce-labs-backpack
+
+  [001] automation run_started
+  [002] automation policy allow (default)
+  [003] automation act navigate
+  [004] automation   -> ok 375ms
+  [005] automation step 1/10 fill-username: enter the storefront username
+  [006] automation policy allow (default)
+  [007] automation act fill textbox
+  [008] automation   -> ok 551ms
+  [009] automation assert fill-username.expect: pass (textbox equals("Password") present via role_name)
+  [010] automation step 2/10 fill-password: enter the storefront password
+  [011] automation policy allow (default)
+  [012] automation act fill textbox
+  [013] automation   -> ok 569ms
+  [014] automation assert fill-password.expect: pass (button equals("Login") present via role_name)
+  [015] automation step 3/10 click-login: sign in to the storefront
+  [016] automation policy allow (default)
+  [017] automation act click button
+  [018] automation   -> ok 599ms
+  [019] automation assert click-login.expect: pass (location "https://www.saucedemo.com/inventory.html" matches //inventory\.html$/)
+  [020] automation step 4/10 click-add-to-cart: add Sauce Labs Backpack to the cart
+  [021] automation policy allow (default)
+  [022] automation act click button
+  [023] automation   -> ok 547ms (degraded locator)
+  [024] automation assert click-add-to-cart.expect: pass (text contains("Remove") found)
+  [025] automation step 5/10 click-link: open the shopping cart
+  [026] automation policy allow (default)
+  [027] automation act click link
+  [028] automation   -> ok 612ms
+  [029] automation assert click-link.expect: pass (location "https://www.saucedemo.com/cart.html" matches //cart\.html$/)
+  [030] automation step 6/10 click-checkout: begin checkout
+  [031] automation policy allow (default)
+  [032] automation act click button
+  [033] automation   -> ok 611ms
+  [034] automation assert click-checkout.expect: pass (location "https://www.saucedemo.com/checkout-step-one.html" matches //checkout-step-one\.html$/)
+  [035] automation step 7/10 fill-first-name: enter the first name
+  [036] automation policy allow (default)
+  [037] automation act fill textbox
+  [038] automation   -> ok 532ms
+  [039] automation assert fill-first-name.expect: pass (textbox equals("Last Name") present via role_name)
+  [040] automation step 8/10 fill-last-name: enter the last name
+  [041] automation policy allow (default)
+  [042] automation act fill textbox
+  [043] automation   -> ok 531ms
+  [044] automation assert fill-last-name.expect: pass (textbox equals("Zip/Postal Code") present via role_name)
+  [045] automation step 9/10 fill-zip-postal-code: enter the postal code
+  [046] automation policy allow (default)
+  [047] automation act fill textbox
+  [048] automation   -> ok 539ms
+  [049] automation assert fill-zip-postal-code.expect: pass (button equals("Continue") present via role_name)
+  [050] automation step 10/10 click-continue: continue to the order review
+  [051] automation policy allow (default)
+  [052] automation act click button
+  [053] automation   -> ok 585ms
+  [054] automation assert click-continue.expect: pass (location "https://www.saucedemo.com/checkout-step-two.html" matches //checkout-step-two\.html$/)
+  [055] automation assert successCondition: pass (all 1 held)
+  [056] automation extract orderTotal = 32.39
+  [057] automation run_finished
+
+------------------------------------------------------------------------
+SUCCESS  store.add-to-cart-and-review@1.0.0  (9052ms)
+
+outputs:
+  orderTotal = 32.39  [number]
+
+  1 locator(s) resolved on a fallback strategy. Not a failure, but the
+  earliest signal that this screen has drifted. Worth reviewing.
+------------------------------------------------------------------------
+
+step trace:
+   1. ok        fill-username via role_name  
+   2. ok        fill-password via role_name  
+   3. ok        click-login via role_name  
+   4. ok        click-add-to-cart via relative (DEGRADED)  
+   5. ok        click-link via test_id  
+   6. ok        click-checkout via role_name  
+   7. ok        fill-first-name via role_name  
+   8. ok        fill-last-name via role_name  
+   9. ok        fill-zip-postal-code via role_name  
+  10. ok        click-continue via role_name  
+
+evidence: /Users/lakshdhamija/Documents/interface ai/runs-public/02-replay-sauce-labs-backpack

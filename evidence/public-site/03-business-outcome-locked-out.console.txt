@@ -1,0 +1,42 @@
+$ node src/cli.ts replay store.add-to-cart-and-review --base-url https://www.saucedemo.com --input username=locked_out_user --input productName=Sauce Labs Backpack --input firstName=Ada --input lastName=Lovelace --input postalCode=02115 --input-env password=SAUCE_PASSWORD
+
+replaying store.add-to-cart-and-review@1.0.0 (approved, risk=elevated)
+run evidence: /Users/lakshdhamija/Documents/interface ai/runs-public/03-business-outcome-locked-out
+
+  [001] automation run_started
+  [002] automation policy allow (default)
+  [003] automation act navigate
+  [004] automation   -> ok 428ms
+  [005] automation step 1/10 fill-username: enter the storefront username
+  [006] automation policy allow (default)
+  [007] automation act fill textbox
+  [008] automation   -> ok 565ms
+  [009] automation assert fill-username.expect: pass (textbox equals("Password") present via role_name)
+  [010] automation step 2/10 fill-password: enter the storefront password
+  [011] automation policy allow (default)
+  [012] automation act fill textbox
+  [013] automation   -> ok 577ms
+  [014] automation assert fill-password.expect: pass (button equals("Login") present via role_name)
+  [015] automation step 3/10 click-login: sign in to the storefront
+  [016] automation policy allow (default)
+  [017] automation act click button
+  [018] automation   -> ok 544ms
+  [019] automation assert click-login.expect: FAIL (location "https://www.saucedemo.com/" does not match //inventory\.html$/; stopped waiting: the screen matches business outcome USER_LOCKED_OUT)
+  [020] automation detector business_outcome USER_LOCKED_OUT
+  [021] automation run_finished
+
+------------------------------------------------------------------------
+BUSINESS OUTCOME  store.add-to-cart-and-review@1.0.0  (2939ms)
+
+  USER_LOCKED_OUT [warning]  The account is locked and cannot sign in
+  detected at step: click-login
+
+  This is a legitimate answer from the application, not an error. The caller
+  should act on the code; retrying will not change it.
+------------------------------------------------------------------------
+
+step trace:
+   1. ok        fill-username via role_name  
+   2. ok        fill-password via role_name  
+
+evidence: /Users/lakshdhamija/Documents/interface ai/runs-public/03-business-outcome-locked-out

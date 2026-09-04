@@ -1,0 +1,41 @@
+{
+  "status": "business_outcome",
+  "capability": "store.add-to-cart-and-review@1.0.0",
+  "outcome": {
+    "code": "USER_LOCKED_OUT",
+    "title": "The account is locked and cannot sign in",
+    "severity": "warning",
+    "data": {}
+  },
+  "atStep": "click-login",
+  "steps": [
+    {
+      "stepId": "fill-username",
+      "intent": "enter the storefront username",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 849,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "enter the storefront password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 843,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    }
+  ],
+  "durationMs": 2939,
+  "evidence": {
+    "runId": "03-business-outcome-locked-out",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs-public/03-business-outcome-locked-out",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs-public/03-business-outcome-locked-out/events.jsonl",
+    "blobs": []
+  },
+  "plannerCalls": 0
+}
