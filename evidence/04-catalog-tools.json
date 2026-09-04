@@ -1,0 +1,220 @@
+[
+  {
+    "name": "coreteller_sign_on",
+    "description": "Establish an authenticated CORETELLER session. Invoked on its own, or by the reauthenticate recovery when a longer flow loses its session.\nReturns status=\"success\" with typed outputs (none).\nMay instead return status=\"business_outcome\" with one of these codes. These are legitimate answers, not errors, and retrying will not change them:\n  - MEMBER_NOT_FOUND: No member exists for the supplied member number\n  - REQUEST_REJECTED: The core rejected the request on validation grounds\n  - MEMBER_RESTRICTED: The signed-on operator is not authorised to view this member",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "operatorId": {
+          "type": "string",
+          "description": "Operator sign-on id for the core banking session.",
+          "pattern": "^[A-Za-z0-9]{2,12}$",
+          "examples": [
+            "teller01"
+          ]
+        },
+        "operatorPassword": {
+          "type": "string",
+          "description": "Operator sign-on password. Never persisted or logged.",
+          "x-sensitivity": "secret",
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "operatorId",
+        "operatorPassword"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "granite_member_read_savings_balance",
+    "description": "Granite State's build of CORETELLER 7.2. Same vendor product, same flow, three cosmetic differences. This artifact is NOT a re-recording: it extends the base capability and patches only what this institution changed, so a fix to the base flow reaches Granite automatically unless it touches one of the points listed below.\nReturns status=\"success\" with typed outputs (regularShareBalance: money).\nMay instead return status=\"business_outcome\" with one of these codes. These are legitimate answers, not errors, and retrying will not change them:\n  - MEMBER_NOT_FOUND: No member exists for the supplied member number\n  - REQUEST_REJECTED: The core rejected the request on validation grounds\n  - MEMBER_RESTRICTED: The signed-on operator is not authorised to view this member",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "memberId": {
+          "type": "string",
+          "description": "The member number to look up, as printed on the member record.",
+          "pattern": "^\\d{4,8}$",
+          "examples": [
+            "100234"
+          ]
+        },
+        "operatorId": {
+          "type": "string",
+          "description": "Operator sign-on id for the core banking session.",
+          "pattern": "^[A-Za-z0-9]{2,12}$",
+          "examples": [
+            "teller01"
+          ]
+        },
+        "operatorPassword": {
+          "type": "string",
+          "description": "Operator sign-on password. Never persisted or logged.",
+          "x-sensitivity": "secret",
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "memberId",
+        "operatorId",
+        "operatorPassword"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "member_open_sub_account",
+    "description": "Submit a new share sub-account request for an existing member and return the confirmation reference the core issues. Writes to the core: the submit step requires a human decision.\nReturns status=\"success\" with typed outputs (confirmationReference: string).\nMay instead return status=\"business_outcome\" with one of these codes. These are legitimate answers, not errors, and retrying will not change them:\n  - MEMBER_NOT_FOUND: No member exists for the supplied member number\n  - REQUEST_REJECTED: The core rejected the request on validation grounds\n  - MEMBER_RESTRICTED: The signed-on operator is not authorised to view this member\nThis capability writes to a system of record and will pause for a human operator to approve before it completes.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "memberId": {
+          "type": "string",
+          "description": "The member number to look up, as printed on the member record.",
+          "pattern": "^\\d{4,8}$",
+          "examples": [
+            "100234"
+          ]
+        },
+        "operatorId": {
+          "type": "string",
+          "description": "Operator sign-on id for the core banking session.",
+          "pattern": "^[A-Za-z0-9]{2,12}$",
+          "examples": [
+            "teller01"
+          ]
+        },
+        "productCode": {
+          "type": "string",
+          "description": "Share product code for the new sub-account, e.g. S06.",
+          "pattern": "^[A-Za-z0-9]{2,12}$",
+          "examples": [
+            "S06"
+          ]
+        },
+        "openingDeposit": {
+          "type": "string",
+          "description": "Opening deposit amount in USD.",
+          "examples": [
+            "250.00"
+          ]
+        },
+        "operatorPassword": {
+          "type": "string",
+          "description": "Operator sign-on password. Never persisted or logged.",
+          "x-sensitivity": "secret",
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "memberId",
+        "operatorId",
+        "productCode",
+        "openingDeposit",
+        "operatorPassword"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "member_read_savings_balance",
+    "description": "Look up a member by number and return the current balance of their regular share (savings) account.\nReturns status=\"success\" with typed outputs (regularShareBalance: money).\nMay instead return status=\"business_outcome\" with one of these codes. These are legitimate answers, not errors, and retrying will not change them:\n  - MEMBER_NOT_FOUND: No member exists for the supplied member number\n  - REQUEST_REJECTED: The core rejected the request on validation grounds\n  - MEMBER_RESTRICTED: The signed-on operator is not authorised to view this member",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "memberId": {
+          "type": "string",
+          "description": "The member number to look up, as printed on the member record.",
+          "pattern": "^\\d{4,8}$",
+          "examples": [
+            "100234"
+          ]
+        },
+        "operatorId": {
+          "type": "string",
+          "description": "Operator sign-on id for the core banking session.",
+          "pattern": "^[A-Za-z0-9]{2,12}$",
+          "examples": [
+            "teller01"
+          ]
+        },
+        "operatorPassword": {
+          "type": "string",
+          "description": "Operator sign-on password. Never persisted or logged.",
+          "x-sensitivity": "secret",
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "memberId",
+        "operatorId",
+        "operatorPassword"
+      ],
+      "additionalProperties": false
+    }
+  },
+  {
+    "name": "store_add_to_cart_and_review",
+    "description": "Sign in to the Swag Labs storefront, add a named product to the cart, and drive checkout to the order review page, returning the order total.\nReturns status=\"success\" with typed outputs (orderTotal: money).\nMay instead return status=\"business_outcome\" with one of these codes. These are legitimate answers, not errors, and retrying will not change them:\n  - USER_LOCKED_OUT: The account is locked and cannot sign in\n  - CREDENTIALS_REJECTED: The storefront rejected the supplied credentials",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Run parameter \"username\".",
+          "examples": [
+            "standard_user"
+          ]
+        },
+        "productName": {
+          "type": "string",
+          "description": "Run parameter \"productName\".",
+          "examples": [
+            "Sauce Labs Backpack"
+          ]
+        },
+        "firstName": {
+          "type": "string",
+          "description": "Run parameter \"firstName\".",
+          "pattern": "^[A-Za-z0-9]{2,12}$",
+          "examples": [
+            "Ada"
+          ]
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Run parameter \"lastName\".",
+          "pattern": "^[A-Za-z0-9]{2,12}$",
+          "examples": [
+            "Lovelace"
+          ]
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Run parameter \"postalCode\".",
+          "pattern": "^\\d{3,7}$",
+          "examples": [
+            "02115"
+          ]
+        },
+        "password": {
+          "type": "string",
+          "description": "Run parameter \"password\".",
+          "x-sensitivity": "secret",
+          "writeOnly": true
+        }
+      },
+      "required": [
+        "username",
+        "productName",
+        "firstName",
+        "lastName",
+        "postalCode",
+        "password"
+      ],
+      "additionalProperties": false
+    }
+  }
+]

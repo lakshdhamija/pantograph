@@ -1,0 +1,41 @@
+
+coreteller.sign-on@1.0.0   [approved]  risk=safe
+  Sign on to CORETELLER
+  tenant first-riverside-cu / product coreteller
+  inputs:   operatorId: string, operatorPassword: string [secret]
+  outputs:  (none)
+  outcomes: MEMBER_NOT_FOUND, REQUEST_REJECTED, MEMBER_RESTRICTED
+  steps:    3, recoveries: 2, failure signatures: 1
+
+granite.member.read-savings-balance@1.0.0   [approved]  risk=elevated
+  Read a member's savings balance (Granite State Savings Bank)
+  tenant granite-state-bank / product coreteller (extends member.read-savings-balance@1.0.0 with 5 override(s))
+  inputs:   memberId: string, operatorId: string, operatorPassword: string [secret]
+  outputs:  regularShareBalance: money
+  outcomes: MEMBER_NOT_FOUND, REQUEST_REJECTED, MEMBER_RESTRICTED
+  steps:    7, recoveries: 3, failure signatures: 1
+
+member.open-sub-account@1.0.0   [approved]  risk=irreversible (needs human approval)
+  Open a sub-account for a member
+  tenant first-riverside-cu / product coreteller
+  inputs:   memberId: string, operatorId: string, productCode: string, openingDeposit: string, operatorPassword: string [secret]
+  outputs:  confirmationReference: string
+  outcomes: MEMBER_NOT_FOUND, REQUEST_REJECTED, MEMBER_RESTRICTED
+  steps:    12, recoveries: 3, failure signatures: 1
+
+member.read-savings-balance@1.0.0   [approved]  risk=elevated
+  Read a member's savings balance
+  tenant first-riverside-cu / product coreteller
+  inputs:   memberId: string, operatorId: string, operatorPassword: string [secret]
+  outputs:  regularShareBalance: money
+  outcomes: MEMBER_NOT_FOUND, REQUEST_REJECTED, MEMBER_RESTRICTED
+  steps:    7, recoveries: 3, failure signatures: 1
+  stability: 2/3 successful, 0 degraded resolution(s)
+
+store.add-to-cart-and-review@1.0.0   [approved]  risk=elevated
+  Add a product and reach checkout review
+  tenant sauce-labs-demo / product saucedemo
+  inputs:   username: string, productName: string, firstName: string, lastName: string, postalCode: string, password: string [secret]
+  outputs:  orderTotal: money
+  outcomes: USER_LOCKED_OUT, CREDENTIALS_REJECTED
+  steps:    10, recoveries: 0, failure signatures: 1
