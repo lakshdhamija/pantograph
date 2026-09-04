@@ -1,0 +1,63 @@
+$ node src/cli.ts replay member.read-savings-balance --input operatorId=teller01 --input-env operatorPassword=CORETELLER_PASSWORD --input memberId=100234 --arm app_error:2
+
+armed fault "app_error" on the fixture after 2 screen(s): ok
+replaying member.read-savings-balance@1.0.0 (approved, risk=elevated)
+run evidence: /Users/lakshdhamija/Documents/interface ai/runs/10-replay-app-error
+
+  [001] automation run_started
+  [002] automation policy allow (default)
+  [003] automation act navigate
+  [004] automation   -> ok 302ms
+  [005] automation step 1/7 fill-operator-id: Enter operator ID
+  [006] automation policy allow (default)
+  [007] automation act fill textbox
+  [008] automation   -> ok 576ms
+  [009] automation assert fill-operator-id.expect: pass (textbox equals("Password") present via role_name)
+  [010] automation step 2/7 fill-password: Enter operator password
+  [011] automation policy allow (default)
+  [012] automation act fill textbox
+  [013] automation   -> ok 588ms
+  [014] automation assert fill-password.expect: pass (button equals("Sign On") present via role_name)
+  [015] automation step 3/7 click-sign-on: sign on
+  [016] automation policy allow (default)
+  [017] automation act click button
+  [018] automation   -> ok 652ms
+  [019] automation assert click-sign-on.expect: pass (location "http://127.0.0.1:8731/desk" matches //desk$/)
+  [020] automation step 4/7 click-member-inquiry: Open Member Inquiry
+  [021] automation policy allow (default)
+  [022] automation act click link
+  [023] automation   -> ok 665ms
+  [024] automation assert click-member-inquiry.expect: pass (text contains("Member Number Surname") found)
+  [025] automation step 5/7 fill-member-number: Enter member number to look up
+  [026] automation policy allow (default)
+  [027] automation act fill textbox
+  [028] automation   -> ok 545ms
+  [029] automation assert fill-member-number.expect: pass ([content] button equals("Go") present via role_name)
+  [030] automation step 6/7 click-go: Submit member lookup
+  [031] automation policy allow (default)
+  [032] automation act click button
+  [033] automation   -> ok 540ms
+  [034] automation assert click-go.expect: FAIL (text contains("Inquiry Results") not found; stopped waiting: the screen matches failure signature CORE_SYSTEM_ERROR)
+  [035] automation detector recovery CORE_SYSTEM_ERROR
+  [036] automation blob
+  [037] automation blob
+  [038] automation run_finished
+
+------------------------------------------------------------------------
+FAILED  member.read-savings-balance@1.0.0  (5843ms)
+
+  class:     app_error (retryable)
+  step:      click-go  "Submit member lookup"
+  expected:  text present contains("Inquiry Results")
+  observed:  The core returned an unexpected system error (CORE_SYSTEM_ERROR) coreErrorDetail="ORA-01722: invalid number"
+  detail:    matched declared failure signature "CORE_SYSTEM_ERROR"
+------------------------------------------------------------------------
+
+step trace:
+   1. ok        fill-operator-id via role_name  
+   2. ok        fill-password via role_name  
+   3. ok        click-sign-on via role_name  
+   4. ok        click-member-inquiry via role_name  
+   5. ok        fill-member-number via relative  
+
+evidence: /Users/lakshdhamija/Documents/interface ai/runs/10-replay-app-error

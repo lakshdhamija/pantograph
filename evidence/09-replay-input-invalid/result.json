@@ -1,0 +1,20 @@
+{
+  "status": "failed",
+  "capability": "member.read-savings-balance@1.0.0",
+  "failure": {
+    "class": "input_invalid",
+    "retryable": false,
+    "expected": "inputs matching the declared contract (memberId: string, operatorId: string, operatorPassword: string)",
+    "observed": "memberId: does not match required pattern /^\\d{4,8}$/",
+    "recoveriesTried": []
+  },
+  "steps": [],
+  "durationMs": 1,
+  "evidence": {
+    "runId": "09-replay-input-invalid",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs/09-replay-input-invalid",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/09-replay-input-invalid/events.jsonl",
+    "blobs": []
+  },
+  "plannerCalls": 0
+}

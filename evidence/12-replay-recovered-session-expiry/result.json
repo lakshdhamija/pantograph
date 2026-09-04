@@ -1,0 +1,149 @@
+{
+  "status": "success",
+  "capability": "member.read-savings-balance@1.0.0",
+  "outputs": {
+    "regularShareBalance": 18234.55
+  },
+  "steps": [
+    {
+      "stepId": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 838,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "Enter operator password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 845,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-sign-on",
+      "intent": "sign on",
+      "index": 2,
+      "status": "ok",
+      "durationMs": 933,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member-inquiry",
+      "intent": "Open Member Inquiry",
+      "index": 3,
+      "status": "ok",
+      "durationMs": 925,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-member-number",
+      "intent": "Enter member number to look up",
+      "index": 4,
+      "status": "ok",
+      "durationMs": 848,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-go",
+      "intent": "Submit member lookup",
+      "index": 5,
+      "status": "recovered",
+      "durationMs": 18620,
+      "recoveriesApplied": [
+        "reauthenticate"
+      ],
+      "detail": "ran coreteller.sign-on: success; restarting from the entry point"
+    },
+    {
+      "stepId": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 841,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "Enter operator password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 803,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-sign-on",
+      "intent": "sign on",
+      "index": 2,
+      "status": "ok",
+      "durationMs": 891,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member-inquiry",
+      "intent": "Open Member Inquiry",
+      "index": 3,
+      "status": "ok",
+      "durationMs": 889,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-member-number",
+      "intent": "Enter member number to look up",
+      "index": 4,
+      "status": "ok",
+      "durationMs": 836,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-go",
+      "intent": "Submit member lookup",
+      "index": 5,
+      "status": "ok",
+      "durationMs": 830,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member",
+      "intent": "Open member details",
+      "index": 6,
+      "status": "ok",
+      "durationMs": 911,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    }
+  ],
+  "durationMs": 29895,
+  "evidence": {
+    "runId": "12-replay-recovered-session-expiry",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs/12-replay-recovered-session-expiry",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/12-replay-recovered-session-expiry/events.jsonl",
+    "blobs": []
+  },
+  "degradedResolutions": 0,
+  "plannerCalls": 0
+}

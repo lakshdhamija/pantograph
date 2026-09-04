@@ -1,0 +1,88 @@
+{
+  "status": "success",
+  "capability": "member.read-savings-balance@1.0.0",
+  "outputs": {
+    "regularShareBalance": 18234.55
+  },
+  "steps": [
+    {
+      "stepId": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 847,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "Enter operator password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 849,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-sign-on",
+      "intent": "sign on",
+      "index": 2,
+      "status": "ok",
+      "durationMs": 909,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member-inquiry",
+      "intent": "Open Member Inquiry",
+      "index": 3,
+      "status": "ok",
+      "durationMs": 938,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-member-number",
+      "intent": "Enter member number to look up",
+      "index": 4,
+      "status": "ok",
+      "durationMs": 847,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-go",
+      "intent": "Submit member lookup",
+      "index": 5,
+      "status": "ok",
+      "durationMs": 831,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member",
+      "intent": "Open member details",
+      "index": 6,
+      "status": "ok",
+      "durationMs": 888,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    }
+  ],
+  "durationMs": 6708,
+  "evidence": {
+    "runId": "05-replay-success",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs/05-replay-success",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/05-replay-success/events.jsonl",
+    "blobs": []
+  },
+  "degradedResolutions": 0,
+  "plannerCalls": 0
+}

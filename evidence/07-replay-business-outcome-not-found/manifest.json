@@ -1,0 +1,12 @@
+{
+  "runId": "07-replay-business-outcome-not-found",
+  "status": "business_outcome",
+  "startedAt": "2026-09-05T00:57:49.241Z",
+  "finishedAt": "2026-09-05T00:57:55.726Z",
+  "durationMs": 6485,
+  "events": 40,
+  "blobs": 0,
+  "redactions": {
+    "literal": 2
+  }
+}

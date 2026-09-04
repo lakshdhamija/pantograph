@@ -1,0 +1,12 @@
+{
+  "runId": "12-replay-recovered-session-expiry",
+  "status": "success",
+  "startedAt": "2026-09-05T00:58:32.125Z",
+  "finishedAt": "2026-09-05T00:59:02.394Z",
+  "durationMs": 30269,
+  "events": 99,
+  "blobs": 0,
+  "redactions": {
+    "literal": 6
+  }
+}

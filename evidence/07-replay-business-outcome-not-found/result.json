@@ -1,0 +1,81 @@
+{
+  "status": "business_outcome",
+  "capability": "member.read-savings-balance@1.0.0",
+  "outcome": {
+    "code": "MEMBER_NOT_FOUND",
+    "title": "No member exists for the supplied member number",
+    "severity": "info",
+    "data": {}
+  },
+  "atStep": "click-member",
+  "steps": [
+    {
+      "stepId": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 874,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "Enter operator password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 874,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-sign-on",
+      "intent": "sign on",
+      "index": 2,
+      "status": "ok",
+      "durationMs": 942,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member-inquiry",
+      "intent": "Open Member Inquiry",
+      "index": 3,
+      "status": "ok",
+      "durationMs": 942,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-member-number",
+      "intent": "Enter member number to look up",
+      "index": 4,
+      "status": "ok",
+      "durationMs": 853,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-go",
+      "intent": "Submit member lookup",
+      "index": 5,
+      "status": "ok",
+      "durationMs": 827,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    }
+  ],
+  "durationMs": 6171,
+  "evidence": {
+    "runId": "07-replay-business-outcome-not-found",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs/07-replay-business-outcome-not-found",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/07-replay-business-outcome-not-found/events.jsonl",
+    "blobs": []
+  },
+  "plannerCalls": 0
+}

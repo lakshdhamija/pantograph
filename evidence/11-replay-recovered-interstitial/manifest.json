@@ -1,0 +1,12 @@
+{
+  "runId": "11-replay-recovered-interstitial",
+  "status": "success",
+  "startedAt": "2026-09-05T00:58:11.263Z",
+  "finishedAt": "2026-09-05T00:58:31.431Z",
+  "durationMs": 20168,
+  "events": 48,
+  "blobs": 0,
+  "redactions": {
+    "literal": 2
+  }
+}

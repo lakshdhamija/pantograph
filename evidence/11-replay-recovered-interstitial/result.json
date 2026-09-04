@@ -1,0 +1,89 @@
+{
+  "status": "success",
+  "capability": "member.read-savings-balance@1.0.0",
+  "outputs": {
+    "regularShareBalance": 18234.55
+  },
+  "steps": [
+    {
+      "stepId": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "index": 0,
+      "status": "ok",
+      "durationMs": 842,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-password",
+      "intent": "Enter operator password",
+      "index": 1,
+      "status": "ok",
+      "durationMs": 844,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-sign-on",
+      "intent": "sign on",
+      "index": 2,
+      "status": "ok",
+      "durationMs": 909,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member-inquiry",
+      "intent": "Open Member Inquiry",
+      "index": 3,
+      "status": "ok",
+      "durationMs": 925,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "fill-member-number",
+      "intent": "Enter member number to look up",
+      "index": 4,
+      "status": "ok",
+      "durationMs": 852,
+      "strategyIndex": 0,
+      "strategyKind": "relative",
+      "degraded": false
+    },
+    {
+      "stepId": "click-go",
+      "intent": "Submit member lookup",
+      "index": 5,
+      "status": "ok",
+      "durationMs": 821,
+      "strategyIndex": 0,
+      "strategyKind": "role_name",
+      "degraded": false
+    },
+    {
+      "stepId": "click-member",
+      "intent": "Open member details",
+      "index": 6,
+      "status": "ok",
+      "durationMs": 14058,
+      "recoveriesApplied": [
+        "dismiss-maintenance-notice"
+      ],
+      "detail": "applied 1 remedy step(s); the step's checkpoint held afterwards, so it did not need re-running"
+    }
+  ],
+  "durationMs": 19836,
+  "evidence": {
+    "runId": "11-replay-recovered-interstitial",
+    "dir": "/Users/lakshdhamija/Documents/interface ai/runs/11-replay-recovered-interstitial",
+    "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/11-replay-recovered-interstitial/events.jsonl",
+    "blobs": []
+  },
+  "degradedResolutions": 0,
+  "plannerCalls": 0
+}

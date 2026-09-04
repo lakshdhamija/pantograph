@@ -1,0 +1,10 @@
+{
+  "runId": "09-replay-input-invalid",
+  "status": "failed",
+  "startedAt": "2026-09-05T00:58:03.581Z",
+  "finishedAt": "2026-09-05T00:58:03.890Z",
+  "durationMs": 309,
+  "events": 2,
+  "blobs": 0,
+  "redactions": {}
+}

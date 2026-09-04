@@ -1,0 +1,12 @@
+{
+  "runId": "06-replay-different-member",
+  "status": "success",
+  "startedAt": "2026-09-05T00:57:41.343Z",
+  "finishedAt": "2026-09-05T00:57:48.352Z",
+  "durationMs": 7009,
+  "events": 42,
+  "blobs": 0,
+  "redactions": {
+    "literal": 2
+  }
+}

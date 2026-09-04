@@ -1,0 +1,19 @@
+$ node src/cli.ts replay member.read-savings-balance --input operatorId=teller01 --input-env operatorPassword=CORETELLER_PASSWORD --input memberId=not-a-number
+
+replaying member.read-savings-balance@1.0.0 (approved, risk=elevated)
+run evidence: /Users/lakshdhamija/Documents/interface ai/runs/09-replay-input-invalid
+
+  [001] automation note
+  [002] automation run_finished
+
+------------------------------------------------------------------------
+FAILED  member.read-savings-balance@1.0.0  (1ms)
+
+  class:     input_invalid (not retryable)
+  expected:  inputs matching the declared contract (memberId: string, operatorId: string, operatorPassword: string)
+  observed:  memberId: does not match required pattern /^\d{4,8}$/
+------------------------------------------------------------------------
+
+step trace:
+
+evidence: /Users/lakshdhamija/Documents/interface ai/runs/09-replay-input-invalid
