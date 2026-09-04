@@ -1,0 +1,14 @@
+{
+  "runId": "02-discover-read-balance",
+  "status": "success",
+  "startedAt": "2026-09-04T23:50:02.575Z",
+  "finishedAt": "2026-09-04T23:51:52.890Z",
+  "durationMs": 110315,
+  "events": 60,
+  "blobs": 1,
+  "redactions": {
+    "email": 7,
+    "literal": 1,
+    "ssn": 3
+  }
+}

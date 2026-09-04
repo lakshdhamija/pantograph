@@ -1,0 +1,47 @@
+$ node src/cli.ts discover --goal Sign on to the teller desktop as the supplied operator --key coreteller.sign-on --title Sign on to CORETELLER --description Establish an authenticated CORETELLER session. Invoked on its own, or by the reauthenticate recovery when a longer flow loses its session. --param operatorId=teller01 --secret-env operatorPassword=CORETELLER_PASSWORD --rules sign-on --planner groq
+
+planner: groq openai/gpt-oss-120b
+run evidence:  /Users/lakshdhamija/Documents/interface ai/runs/01-discover-sign-on
+
+  [001] automation run_started
+  [002] automation policy allow (default)
+  [003] automation act navigate
+  [004] automation   -> ok 305ms
+  [005] automation see CORETELLER Sign On [20 nodes] 07c931c8
+  [006] automation planner_request
+  [007] automation planner_response
+  [008] automation policy allow (default)
+  [009] automation act fill textbox
+  [010] automation   -> ok 561ms
+  [011] automation see CORETELLER Sign On [20 nodes] 07c931c8
+  [012] automation planner_request
+  [013] automation planner_response
+  [014] automation policy allow (default)
+  [015] automation act fill textbox
+  [016] automation   -> ok 568ms
+  [017] automation see CORETELLER Sign On [20 nodes] 07c931c8
+  [018] automation planner_request
+  [019] automation planner_response
+  [020] automation policy allow (default)
+  [021] automation act click button
+  [022] automation   -> ok 649ms
+  [023] automation see CORETELLER Desktop [23 nodes] c2e9fdcb
+  [024] automation planner_request
+  [025] automation planner_response
+  [026] automation note
+
+discovery: succeeded in 37.8s over 3 step(s)
+  [027] automation blob
+  [028] automation run_finished
+
+wrote /Users/lakshdhamija/Documents/interface ai/artifacts/coreteller.sign-on@1.0.0.json
+
+  coreteller.sign-on@1.0.0  "Sign on to CORETELLER"
+  inputs:   operatorId: string, operatorPassword: string [secret]
+  outputs:  (none)
+  steps:    3 (risk tier safe, portability floor any_surface)
+  outcomes: MEMBER_NOT_FOUND, REQUEST_REJECTED, MEMBER_RESTRICTED
+  recoveries: dismiss-maintenance-notice, wait-out-blank-screen
+
+evidence: /Users/lakshdhamija/Documents/interface ai/runs/01-discover-sign-on
+replay it:  node src/cli.ts replay coreteller.sign-on --input operatorId=teller01 --input operatorPassword=<value>

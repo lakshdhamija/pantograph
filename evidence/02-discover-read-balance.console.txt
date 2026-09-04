@@ -1,0 +1,79 @@
+$ node src/cli.ts discover --goal Look up member 100234 and read their current regular share (savings) balance --key member.read-savings-balance --title Read a member's savings balance --description Look up a member by number and return the current balance of their regular share (savings) account. --param memberId=100234 --param operatorId=teller01 --secret-env operatorPassword=CORETELLER_PASSWORD --rules read-savings-balance --planner groq
+
+planner: groq openai/gpt-oss-120b
+run evidence:  /Users/lakshdhamija/Documents/interface ai/runs/02-discover-read-balance
+
+  [001] automation run_started
+  [002] automation policy allow (default)
+  [003] automation act navigate
+  [004] automation   -> ok 319ms
+  [005] automation see CORETELLER Sign On [20 nodes] 07c931c8
+  [006] automation planner_request
+  [007] automation planner_response
+  [008] automation policy allow (default)
+  [009] automation act fill textbox
+  [010] automation   -> ok 563ms
+  [011] automation see CORETELLER Sign On [20 nodes] 07c931c8
+  [012] automation planner_request
+  [013] automation planner_response
+  [014] automation policy allow (default)
+  [015] automation act fill textbox
+  [016] automation   -> ok 578ms
+  [017] automation see CORETELLER Sign On [20 nodes] 07c931c8
+  [018] automation planner_request
+  [019] automation planner_response
+  [020] automation policy allow (default)
+  [021] automation act click button
+  [022] automation   -> ok 634ms
+  [023] automation see CORETELLER Desktop [23 nodes] c2e9fdcb
+  [024] automation planner_request
+  [025] automation planner_response
+  [026] automation policy allow (default)
+  [027] automation act click link
+  [028] automation   -> ok 666ms
+  [029] automation see CORETELLER Desktop [32 nodes] cf89b999
+  [030] automation planner_request
+  [031] automation planner_response
+  [032] automation policy allow (default)
+  [033] automation act fill textbox
+  [034] automation   -> ok 556ms
+  [035] automation see CORETELLER Desktop [32 nodes] cf89b999
+  [036] automation planner_request
+  [037] automation planner_response
+  [038] automation policy allow (default)
+  [039] automation act click button
+  [040] automation   -> ok 539ms
+  [041] automation see CORETELLER Desktop [30 nodes] e040b70c
+  [042] automation planner_request
+  [043] automation planner_response
+  [044] automation policy allow (default)
+  [045] automation act click link
+  [046] automation   -> ok 617ms
+  [047] automation see CORETELLER Desktop [63 nodes] efd43cbc
+  [048] automation planner_request
+  [049] automation planner_response
+  [050] automation note
+  [051] automation see CORETELLER Desktop [63 nodes] efd43cbc
+  [052] automation planner_request
+  [053] automation planner_response
+  [054] automation note
+  [055] automation see CORETELLER Desktop [63 nodes] efd43cbc
+  [056] automation planner_request
+  [057] automation planner_response
+  [058] automation note
+
+discovery: succeeded in 109.9s over 7 step(s)
+  [059] automation blob
+  [060] automation run_finished
+
+wrote /Users/lakshdhamija/Documents/interface ai/artifacts/member.read-savings-balance@1.0.0.json
+
+  member.read-savings-balance@1.0.0  "Read a member's savings balance"
+  inputs:   memberId: string, operatorId: string, operatorPassword: string [secret]
+  outputs:  regularShareBalance: money
+  steps:    7 (risk tier elevated, portability floor any_surface)
+  outcomes: MEMBER_NOT_FOUND, REQUEST_REJECTED, MEMBER_RESTRICTED
+  recoveries: reauthenticate, dismiss-maintenance-notice, wait-out-blank-screen
+
+evidence: /Users/lakshdhamija/Documents/interface ai/runs/02-discover-read-balance
+replay it:  node src/cli.ts replay member.read-savings-balance --input memberId=100234 --input operatorId=teller01 --input operatorPassword=<value>

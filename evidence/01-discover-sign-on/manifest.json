@@ -1,0 +1,13 @@
+{
+  "runId": "01-discover-sign-on",
+  "status": "success",
+  "startedAt": "2026-09-04T23:49:24.025Z",
+  "finishedAt": "2026-09-04T23:50:02.291Z",
+  "durationMs": 38266,
+  "events": 28,
+  "blobs": 1,
+  "redactions": {
+    "email": 1,
+    "literal": 1
+  }
+}

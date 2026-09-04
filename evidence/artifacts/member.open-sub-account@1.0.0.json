@@ -1,0 +1,1106 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "cap_0f678382-1ffb-4e8e-b936-255708097a99",
+  "key": "member.open-sub-account",
+  "version": "1.0.0",
+  "title": "Open a sub-account for a member",
+  "description": "Submit a new share sub-account request for an existing member and return the confirmation reference the core issues. Writes to the core: the submit step requires a human decision.",
+  "app": {
+    "profile": "coreteller",
+    "surface": "legacy_web",
+    "entrypointTemplate": "{{env.baseUrl}}/login"
+  },
+  "tenant": {
+    "id": "first-riverside-cu",
+    "overrides": []
+  },
+  "inputs": [
+    {
+      "name": "memberId",
+      "type": "string",
+      "description": "The member number to look up, as printed on the member record.",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^\\d{4,8}$",
+      "example": "100234"
+    },
+    {
+      "name": "operatorId",
+      "type": "string",
+      "description": "Operator sign-on id for the core banking session.",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^[A-Za-z0-9]{2,12}$",
+      "example": "teller01"
+    },
+    {
+      "name": "productCode",
+      "type": "string",
+      "description": "Share product code for the new sub-account, e.g. S06.",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^[A-Za-z0-9]{2,12}$",
+      "example": "S06"
+    },
+    {
+      "name": "openingDeposit",
+      "type": "string",
+      "description": "Opening deposit amount in USD.",
+      "required": true,
+      "sensitivity": "public",
+      "example": "250.00"
+    },
+    {
+      "name": "operatorPassword",
+      "type": "string",
+      "description": "Operator sign-on password. Never persisted or logged.",
+      "required": true,
+      "sensitivity": "secret"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "confirmationReference",
+      "type": "string",
+      "description": "Confirmation reference for the new sub-account creation",
+      "required": true,
+      "sensitivity": "public",
+      "extract": {
+        "target": {
+          "role": "cell",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "Confirmation Reference"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "right_of",
+              "maxDistancePx": 237
+            }
+          ],
+          "observedAt": {
+            "name": "CT-9222B943",
+            "tag": "td",
+            "nativePath": "html > body > div:nth-of-type(2) > table:nth-of-type(1) > tbody > tr:nth-of-type(1) > td:nth-of-type(2)",
+            "bbox": {
+              "x": 171,
+              "y": 56,
+              "width": 188.71875,
+              "height": 19
+            }
+          },
+          "rationale": "Confirmation reference for the new sub-account creation"
+        },
+        "property": "text",
+        "transforms": [
+          {
+            "op": "trim"
+          }
+        ]
+      }
+    }
+  ],
+  "preconditions": [],
+  "steps": [
+    {
+      "id": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Operator ID"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Operator ID",
+            "tag": "input",
+            "nativePath": "input#u",
+            "bbox": {
+              "x": 92.859375,
+              "y": 59,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator ID"
+        },
+        "valueTemplate": "{{inputs.operatorId}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Password"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Password",
+            "tag": "input",
+            "nativePath": "input#p",
+            "bbox": {
+              "x": 92.859375,
+              "y": 82,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator password"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-password",
+      "intent": "Enter operator password",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Password"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Password",
+            "tag": "input",
+            "nativePath": "input#p",
+            "bbox": {
+              "x": 92.859375,
+              "y": 82,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator password"
+        },
+        "valueTemplate": "{{inputs.operatorPassword}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Sign On"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Sign On",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 65.84375,
+              "height": 17
+            }
+          },
+          "rationale": "click Sign On button"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-sign-on",
+      "intent": "click Sign On button",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Sign On"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Sign On",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 65.84375,
+              "height": 17
+            }
+          },
+          "rationale": "click Sign On button"
+        }
+      },
+      "expect": {
+        "kind": "location_matches",
+        "pattern": "/desk$"
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-member-inquiry",
+      "intent": "Open Member Inquiry screen",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "link",
+          "name": {
+            "op": "equals",
+            "value": "Member Inquiry"
+          },
+          "container": [
+            "nav"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Member Inquiry",
+            "text": "Member Inquiry",
+            "tag": "a",
+            "nativePath": "html > body > table > tbody > tr:nth-of-type(3) > td > a",
+            "bbox": {
+              "x": 16.96875,
+              "y": 99,
+              "width": 88.125,
+              "height": 13
+            }
+          },
+          "rationale": "Open Member Inquiry screen"
+        }
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Member Number Surname"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-member-number",
+      "intent": "Enter member number",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "Member Number"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "right_of",
+              "maxDistancePx": 161
+            }
+          ],
+          "observedAt": {
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > input[name=\"f_mbr\"]",
+            "bbox": {
+              "x": 147,
+              "y": 59,
+              "width": 94,
+              "height": 17
+            }
+          },
+          "rationale": "Enter member number"
+        },
+        "valueTemplate": "{{inputs.memberId}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Go"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Go",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input:nth-of-type(1)",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 37.21875,
+              "height": 17
+            }
+          },
+          "rationale": "Submit member number to retrieve member record"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-go",
+      "intent": "Submit member number to retrieve member record",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Go"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Go",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input:nth-of-type(1)",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 37.21875,
+              "height": 17
+            }
+          },
+          "rationale": "Submit member number to retrieve member record"
+        }
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Inquiry Results"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "elevated",
+      "optional": false
+    },
+    {
+      "id": "click-member",
+      "intent": "Open member details",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "link",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "Member"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "below",
+              "maxDistancePx": 125
+            }
+          ],
+          "observedAt": {
+            "name": "100234",
+            "text": "100234",
+            "tag": "a",
+            "nativePath": "html > body > div:nth-of-type(2) > table > tbody > tr:nth-of-type(2) > td:nth-of-type(1) > a",
+            "bbox": {
+              "x": 16,
+              "y": 80,
+              "width": 41.96875,
+              "height": 13
+            }
+          },
+          "rationale": "Open member details"
+        }
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Member Detail"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-open-sub-account",
+      "intent": "Open sub-account screen",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "link",
+          "name": {
+            "op": "equals",
+            "value": "Open Sub-Account"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Open Sub-Account",
+            "text": "Open Sub-Account",
+            "tag": "a",
+            "nativePath": "html > body > div:nth-of-type(2) > table:nth-of-type(3) > tbody > tr > td > a:nth-of-type(1)",
+            "bbox": {
+              "x": 15,
+              "y": 217,
+              "width": 102.875,
+              "height": 13
+            }
+          },
+          "rationale": "Open sub-account screen"
+        }
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Product Code"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "elevated",
+      "optional": false
+    },
+    {
+      "id": "select-product-code",
+      "intent": "Select Vacation Club product",
+      "action": {
+        "kind": "select",
+        "target": {
+          "role": "combobox",
+          "name": {
+            "op": "equals",
+            "value": "Product Code"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Product Code",
+            "tag": "select",
+            "nativePath": "select#prod",
+            "bbox": {
+              "x": 157,
+              "y": 97,
+              "width": 207,
+              "height": 17
+            }
+          },
+          "rationale": "Select Vacation Club product"
+        },
+        "valueTemplate": "{{inputs.productCode}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "textbox",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "Opening Deposit"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "right_of",
+              "maxDistancePx": 168
+            }
+          ],
+          "observedAt": {
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > input[name=\"f_amt\"]",
+            "bbox": {
+              "x": 157,
+              "y": 143,
+              "width": 94,
+              "height": 17
+            }
+          },
+          "rationale": "Enter opening deposit amount"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-opening-deposit",
+      "intent": "Enter opening deposit amount",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "Opening Deposit"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "right_of",
+              "maxDistancePx": 168
+            }
+          ],
+          "observedAt": {
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > input[name=\"f_amt\"]",
+            "bbox": {
+              "x": 157,
+              "y": 143,
+              "width": 94,
+              "height": 17
+            }
+          },
+          "rationale": "Enter opening deposit amount"
+        },
+        "valueTemplate": "{{inputs.openingDeposit}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Submit Request"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Submit Request",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(6) > td > input",
+            "bbox": {
+              "x": 15,
+              "y": 166,
+              "width": 109.625,
+              "height": 17
+            }
+          },
+          "rationale": "Submit sub-account request"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-submit-request",
+      "intent": "Submit sub-account request",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Submit Request"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Submit Request",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(6) > td > input",
+            "bbox": {
+              "x": 15,
+              "y": 166,
+              "width": 109.625,
+              "height": 17
+            }
+          },
+          "rationale": "Submit sub-account request"
+        }
+      },
+      "expect": {
+        "kind": "dialog_present",
+        "message": {
+          "op": "contains",
+          "value": "This will create a new sub-account for member"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "irreversible",
+      "optional": false
+    },
+    {
+      "id": "confirm",
+      "intent": "Confirm creation of new vacation club sub-account",
+      "action": {
+        "kind": "answer_dialog",
+        "accept": true
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Request Confirmed"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "elevated",
+      "optional": false
+    }
+  ],
+  "successCondition": {
+    "kind": "all",
+    "of": [
+      {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Request Confirmed"
+        }
+      },
+      {
+        "kind": "text_absent",
+        "text": {
+          "op": "contains",
+          "value": "CT-500"
+        }
+      }
+    ]
+  },
+  "outcomes": [
+    {
+      "code": "MEMBER_NOT_FOUND",
+      "title": "No member exists for the supplied member number",
+      "description": "The inquiry completed and the core returned no matching record. This is a legitimate answer, not an error: the caller should tell the user the number is unknown rather than retry.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "NO MATCHING RECORDS FOUND"
+        }
+      },
+      "afterSteps": [],
+      "data": [],
+      "severity": "info"
+    },
+    {
+      "code": "REQUEST_REJECTED",
+      "title": "The core rejected the request on validation grounds",
+      "description": "Server-side validation refused the request. `validationMessages` carries the core's own wording, which the caller should surface rather than paraphrase.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "The request could not be completed"
+        }
+      },
+      "afterSteps": [],
+      "data": [
+        {
+          "name": "validationMessages",
+          "type": "string",
+          "description": "The validation messages exactly as the core worded them.",
+          "required": false,
+          "sensitivity": "public",
+          "extract": {
+            "target": {
+              "role": "text",
+              "container": [
+                "content"
+              ],
+              "strategies": [
+                {
+                  "kind": "text",
+                  "text": {
+                    "op": "regex",
+                    "value": "^VAL-",
+                    "flags": "i"
+                  }
+                }
+              ]
+            },
+            "property": "text",
+            "transforms": [
+              {
+                "op": "trim"
+              }
+            ]
+          }
+        }
+      ],
+      "severity": "warning"
+    },
+    {
+      "code": "MEMBER_RESTRICTED",
+      "title": "The signed-on operator is not authorised to view this member",
+      "description": "The record exists but is restricted to a higher permission level. Retrying will not help; the caller should route to a supervisor.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "SEC-4031"
+        }
+      },
+      "afterSteps": [],
+      "data": [],
+      "severity": "warning"
+    }
+  ],
+  "recoveries": [
+    {
+      "id": "reauthenticate",
+      "title": "Session expired; sign on again and retry the step",
+      "detect": {
+        "kind": "all",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": {
+              "op": "contains",
+              "value": "Your session has expired"
+            }
+          },
+          {
+            "kind": "element_present",
+            "target": {
+              "role": "button",
+              "name": {
+                "op": "equals",
+                "value": "Sign On"
+              },
+              "strategies": [
+                {
+                  "kind": "role_name"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "remedy": {
+        "kind": "run_capability",
+        "key": "coreteller.sign-on"
+      },
+      "maxAttempts": 1,
+      "atSteps": [],
+      "resume": "restart_capability"
+    },
+    {
+      "id": "dismiss-maintenance-notice",
+      "title": "Dismiss the scheduled-maintenance interstitial",
+      "detect": {
+        "kind": "all",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": {
+              "op": "contains",
+              "value": "Scheduled maintenance"
+            }
+          },
+          {
+            "kind": "element_present",
+            "target": {
+              "role": "button",
+              "name": {
+                "op": "equals",
+                "value": "Continue"
+              },
+              "strategies": [
+                {
+                  "kind": "role_name"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "remedy": {
+        "kind": "actions",
+        "steps": [
+          {
+            "id": "click-continue",
+            "intent": "dismiss the maintenance notice and return to the requested screen",
+            "action": {
+              "kind": "click",
+              "target": {
+                "role": "button",
+                "name": {
+                  "op": "equals",
+                  "value": "Continue"
+                },
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              }
+            },
+            "expect": {
+              "kind": "text_absent",
+              "text": {
+                "op": "contains",
+                "value": "Scheduled maintenance"
+              }
+            },
+            "timeoutMs": 8000,
+            "risk": "safe",
+            "optional": false
+          }
+        ]
+      },
+      "maxAttempts": 2,
+      "atSteps": [],
+      "resume": "retry_step"
+    },
+    {
+      "id": "wait-out-blank-screen",
+      "title": "The screen rendered nothing; give a slow core time to answer",
+      "detect": {
+        "kind": "not",
+        "of": {
+          "kind": "text_present",
+          "text": {
+            "op": "regex",
+            "value": ".",
+            "flags": "i"
+          }
+        }
+      },
+      "remedy": {
+        "kind": "wait",
+        "ms": 2000
+      },
+      "maxAttempts": 2,
+      "atSteps": [],
+      "resume": "retry_step"
+    }
+  ],
+  "failureSignatures": [
+    {
+      "code": "CORE_SYSTEM_ERROR",
+      "title": "The core returned an unexpected system error",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "CT-500"
+        }
+      },
+      "failureClass": "app_error",
+      "data": [
+        {
+          "name": "coreErrorDetail",
+          "type": "string",
+          "description": "The core's own error detail, needed to raise a vendor ticket.",
+          "required": false,
+          "sensitivity": "public",
+          "extract": {
+            "target": {
+              "role": "cell",
+              "container": [
+                "content"
+              ],
+              "strategies": [
+                {
+                  "kind": "relative",
+                  "anchor": {
+                    "role": "cell",
+                    "name": {
+                      "op": "equals",
+                      "value": "Detail"
+                    },
+                    "container": [
+                      "content"
+                    ],
+                    "strategies": [
+                      {
+                        "kind": "role_name"
+                      }
+                    ]
+                  },
+                  "direction": "right_of",
+                  "maxDistancePx": 600
+                }
+              ]
+            },
+            "property": "text",
+            "transforms": [
+              {
+                "op": "trim"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "policy": {
+    "allowedOrigins": [
+      "http://127.0.0.1:8731"
+    ],
+    "allowedActions": [
+      "answer_dialog",
+      "click",
+      "fill",
+      "navigate",
+      "select"
+    ],
+    "riskTier": "irreversible",
+    "requiresHumanApproval": true,
+    "maxDurationMs": 120000,
+    "portabilityFloor": "any_surface",
+    "idempotent": false
+  },
+  "provenance": {
+    "recordedAt": "2026-09-04T23:54:31.141Z",
+    "recordedBy": "lakshdhamija",
+    "discoveryRunId": "03-discover-open-sub-account",
+    "goal": "Open a new vacation club sub-account for member 100234 with a 250.00 opening deposit and reach the confirmation screen",
+    "planner": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    },
+    "transcriptDigest": "sha256:979b7635de8524f539a55fce1fa7a1ea",
+    "fixtureNote": "Recorded against the CORETELLER fixture in fixtures/legacy-bank. All data is synthetic."
+  },
+  "approval": {
+    "state": "approved",
+    "approvedBy": "demo-reviewer",
+    "approvedAt": "2026-09-05T00:57:32.467Z",
+    "note": "Reviewed the recorded flow and its locators against the fixture."
+  },
+  "stability": {
+    "replays": 0,
+    "successes": 0,
+    "businessOutcomes": 0,
+    "failures": 0,
+    "degradedResolutions": 0
+  }
+}

@@ -1,0 +1,265 @@
+[
+  {
+    "turn": 1,
+    "screenDigest": "http://127.0.0.1:8731/login",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Enter operator ID",
+          "kind": "fill",
+          "parameter": "operatorId",
+          "ref": "#n9",
+          "value": "teller01"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1600,
+      "outputTokens": 122
+    }
+  },
+  {
+    "turn": 2,
+    "screenDigest": "http://127.0.0.1:8731/login",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Enter operator password",
+          "kind": "fill",
+          "parameter": "operatorPassword",
+          "ref": "#n14"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1623,
+      "outputTokens": 201
+    }
+  },
+  {
+    "turn": 3,
+    "screenDigest": "http://127.0.0.1:8731/login",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "click Sign On button",
+          "kind": "click",
+          "ref": "#n17"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1642,
+      "outputTokens": 87
+    }
+  },
+  {
+    "turn": 4,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Open Member Inquiry screen",
+          "kind": "click",
+          "ref": "nav#n10"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1745,
+      "outputTokens": 175
+    }
+  },
+  {
+    "turn": 5,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Enter member number",
+          "kind": "fill",
+          "parameter": "memberId",
+          "ref": "content#n8",
+          "value": ""
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1804,
+      "outputTokens": 151
+    }
+  },
+  {
+    "turn": 6,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Submit member number to retrieve member record",
+          "kind": "click",
+          "ref": "content#n15"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1819,
+      "outputTokens": 140
+    }
+  },
+  {
+    "turn": 7,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Open member details",
+          "kind": "click",
+          "ref": "content#n11"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1885,
+      "outputTokens": 189
+    }
+  },
+  {
+    "turn": 8,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Open sub-account screen",
+          "kind": "click",
+          "ref": "content#n46"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2397,
+      "outputTokens": 139
+    }
+  },
+  {
+    "turn": 9,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Select Vacation Club product",
+          "kind": "select",
+          "parameter": "productCode",
+          "ref": "content#n15",
+          "value": "S06"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2058,
+      "outputTokens": 268
+    }
+  },
+  {
+    "turn": 10,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Enter opening deposit amount",
+          "kind": "fill",
+          "parameter": "openingDeposit",
+          "ref": "content#n28",
+          "value": "250.00"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2074,
+      "outputTokens": 247
+    }
+  },
+  {
+    "turn": 11,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Submit sub-account request",
+          "kind": "click",
+          "ref": "content#n31"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2091,
+      "outputTokens": 107
+    }
+  },
+  {
+    "turn": 12,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "accept": true,
+          "intent": "Confirm creation of new vacation club sub-account",
+          "kind": "answer_dialog"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1569,
+      "outputTokens": 147
+    }
+  },
+  {
+    "turn": 13,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "declare_output",
+        "input": {
+          "description": "Confirmation reference for the new sub-account creation",
+          "name": "confirmationReference",
+          "property": "text",
+          "ref": "content#n6",
+          "sensitivity": "public",
+          "type": "string"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2060,
+      "outputTokens": 287
+    }
+  },
+  {
+    "turn": 14,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "finish",
+        "input": {
+          "successText": "Request Confirmed",
+          "summary": "New vacation club sub-account created and confirmation displayed"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2061,
+      "outputTokens": 123
+    }
+  }
+]

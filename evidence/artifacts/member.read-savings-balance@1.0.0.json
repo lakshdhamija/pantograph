@@ -1,0 +1,828 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "cap_e949fc9d-e02d-475c-89c3-cf6421ee84dc",
+  "key": "member.read-savings-balance",
+  "version": "1.0.0",
+  "title": "Read a member's savings balance",
+  "description": "Look up a member by number and return the current balance of their regular share (savings) account.",
+  "app": {
+    "profile": "coreteller",
+    "surface": "legacy_web",
+    "entrypointTemplate": "{{env.baseUrl}}/login"
+  },
+  "tenant": {
+    "id": "first-riverside-cu",
+    "overrides": []
+  },
+  "inputs": [
+    {
+      "name": "memberId",
+      "type": "string",
+      "description": "The member number to look up, as printed on the member record.",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^\\d{4,8}$",
+      "example": "100234"
+    },
+    {
+      "name": "operatorId",
+      "type": "string",
+      "description": "Operator sign-on id for the core banking session.",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^[A-Za-z0-9]{2,12}$",
+      "example": "teller01"
+    },
+    {
+      "name": "operatorPassword",
+      "type": "string",
+      "description": "Operator sign-on password. Never persisted or logged.",
+      "required": true,
+      "sensitivity": "secret"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "regularShareBalance",
+      "type": "money",
+      "description": "Current regular share (savings) balance for the member",
+      "required": true,
+      "sensitivity": "public",
+      "extract": {
+        "target": {
+          "role": "cell",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "REGULAR SHARE (SAVINGS)"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "right_of",
+              "maxDistancePx": 478
+            }
+          ],
+          "observedAt": {
+            "name": "18,234.55",
+            "text": "18,234.55",
+            "tag": "td",
+            "nativePath": "html > body > div:nth-of-type(2) > table:nth-of-type(2) > tbody > tr:nth-of-type(3) > td:nth-of-type(3)",
+            "bbox": {
+              "x": 622.015625,
+              "y": 173.5,
+              "width": 278.984375,
+              "height": 20
+            }
+          },
+          "rationale": "Current regular share (savings) balance for the member"
+        },
+        "property": "text",
+        "transforms": [
+          {
+            "op": "trim"
+          },
+          {
+            "op": "strip_currency"
+          },
+          {
+            "op": "strip_grouping"
+          }
+        ]
+      }
+    }
+  ],
+  "preconditions": [],
+  "steps": [
+    {
+      "id": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Operator ID"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Operator ID",
+            "tag": "input",
+            "nativePath": "input#u",
+            "bbox": {
+              "x": 92.859375,
+              "y": 59,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator ID"
+        },
+        "valueTemplate": "{{inputs.operatorId}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Password"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Password",
+            "tag": "input",
+            "nativePath": "input#p",
+            "bbox": {
+              "x": 92.859375,
+              "y": 82,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator password"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-password",
+      "intent": "Enter operator password",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Password"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Password",
+            "tag": "input",
+            "nativePath": "input#p",
+            "bbox": {
+              "x": 92.859375,
+              "y": 82,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator password"
+        },
+        "valueTemplate": "{{inputs.operatorPassword}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Sign On"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Sign On",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 65.84375,
+              "height": 17
+            }
+          },
+          "rationale": "sign on"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-sign-on",
+      "intent": "sign on",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Sign On"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Sign On",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 65.84375,
+              "height": 17
+            }
+          },
+          "rationale": "sign on"
+        }
+      },
+      "expect": {
+        "kind": "location_matches",
+        "pattern": "/desk$"
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-member-inquiry",
+      "intent": "Open Member Inquiry",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "link",
+          "name": {
+            "op": "equals",
+            "value": "Member Inquiry"
+          },
+          "container": [
+            "nav"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Member Inquiry",
+            "text": "Member Inquiry",
+            "tag": "a",
+            "nativePath": "html > body > table > tbody > tr:nth-of-type(3) > td > a",
+            "bbox": {
+              "x": 16.96875,
+              "y": 99,
+              "width": 88.125,
+              "height": 13
+            }
+          },
+          "rationale": "Open Member Inquiry"
+        }
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Member Number Surname"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-member-number",
+      "intent": "Enter member number to look up",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "Member Number"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "right_of",
+              "maxDistancePx": 161
+            }
+          ],
+          "observedAt": {
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > input[name=\"f_mbr\"]",
+            "bbox": {
+              "x": 147,
+              "y": 59,
+              "width": 94,
+              "height": 17
+            }
+          },
+          "rationale": "Enter member number to look up"
+        },
+        "valueTemplate": "{{inputs.memberId}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Go"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Go",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input:nth-of-type(1)",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 37.21875,
+              "height": 17
+            }
+          },
+          "rationale": "Submit member lookup"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-go",
+      "intent": "Submit member lookup",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Go"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Go",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input:nth-of-type(1)",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 37.21875,
+              "height": 17
+            }
+          },
+          "rationale": "Submit member lookup"
+        }
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Inquiry Results"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "elevated",
+      "optional": false
+    },
+    {
+      "id": "click-member",
+      "intent": "Open member details",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "link",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "Member"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "below",
+              "maxDistancePx": 125
+            }
+          ],
+          "observedAt": {
+            "name": "100234",
+            "text": "100234",
+            "tag": "a",
+            "nativePath": "html > body > div:nth-of-type(2) > table > tbody > tr:nth-of-type(2) > td:nth-of-type(1) > a",
+            "bbox": {
+              "x": 16,
+              "y": 80,
+              "width": 41.96875,
+              "height": 13
+            }
+          },
+          "rationale": "Open member details"
+        }
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Member Detail"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    }
+  ],
+  "successCondition": {
+    "kind": "all",
+    "of": [
+      {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "REGULAR SHARE (SAVINGS)"
+        }
+      },
+      {
+        "kind": "text_absent",
+        "text": {
+          "op": "contains",
+          "value": "CT-500"
+        }
+      }
+    ]
+  },
+  "outcomes": [
+    {
+      "code": "MEMBER_NOT_FOUND",
+      "title": "No member exists for the supplied member number",
+      "description": "The inquiry completed and the core returned no matching record. This is a legitimate answer, not an error: the caller should tell the user the number is unknown rather than retry.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "NO MATCHING RECORDS FOUND"
+        }
+      },
+      "afterSteps": [],
+      "data": [],
+      "severity": "info"
+    },
+    {
+      "code": "REQUEST_REJECTED",
+      "title": "The core rejected the request on validation grounds",
+      "description": "Server-side validation refused the request. `validationMessages` carries the core's own wording, which the caller should surface rather than paraphrase.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "The request could not be completed"
+        }
+      },
+      "afterSteps": [],
+      "data": [
+        {
+          "name": "validationMessages",
+          "type": "string",
+          "description": "The validation messages exactly as the core worded them.",
+          "required": false,
+          "sensitivity": "public",
+          "extract": {
+            "target": {
+              "role": "text",
+              "container": [
+                "content"
+              ],
+              "strategies": [
+                {
+                  "kind": "text",
+                  "text": {
+                    "op": "regex",
+                    "value": "^VAL-",
+                    "flags": "i"
+                  }
+                }
+              ]
+            },
+            "property": "text",
+            "transforms": [
+              {
+                "op": "trim"
+              }
+            ]
+          }
+        }
+      ],
+      "severity": "warning"
+    },
+    {
+      "code": "MEMBER_RESTRICTED",
+      "title": "The signed-on operator is not authorised to view this member",
+      "description": "The record exists but is restricted to a higher permission level. Retrying will not help; the caller should route to a supervisor.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "SEC-4031"
+        }
+      },
+      "afterSteps": [],
+      "data": [],
+      "severity": "warning"
+    }
+  ],
+  "recoveries": [
+    {
+      "id": "reauthenticate",
+      "title": "Session expired; sign on again and retry the step",
+      "detect": {
+        "kind": "all",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": {
+              "op": "contains",
+              "value": "Your session has expired"
+            }
+          },
+          {
+            "kind": "element_present",
+            "target": {
+              "role": "button",
+              "name": {
+                "op": "equals",
+                "value": "Sign On"
+              },
+              "strategies": [
+                {
+                  "kind": "role_name"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "remedy": {
+        "kind": "run_capability",
+        "key": "coreteller.sign-on"
+      },
+      "maxAttempts": 1,
+      "atSteps": [],
+      "resume": "restart_capability"
+    },
+    {
+      "id": "dismiss-maintenance-notice",
+      "title": "Dismiss the scheduled-maintenance interstitial",
+      "detect": {
+        "kind": "all",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": {
+              "op": "contains",
+              "value": "Scheduled maintenance"
+            }
+          },
+          {
+            "kind": "element_present",
+            "target": {
+              "role": "button",
+              "name": {
+                "op": "equals",
+                "value": "Continue"
+              },
+              "strategies": [
+                {
+                  "kind": "role_name"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "remedy": {
+        "kind": "actions",
+        "steps": [
+          {
+            "id": "click-continue",
+            "intent": "dismiss the maintenance notice and return to the requested screen",
+            "action": {
+              "kind": "click",
+              "target": {
+                "role": "button",
+                "name": {
+                  "op": "equals",
+                  "value": "Continue"
+                },
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              }
+            },
+            "expect": {
+              "kind": "text_absent",
+              "text": {
+                "op": "contains",
+                "value": "Scheduled maintenance"
+              }
+            },
+            "timeoutMs": 8000,
+            "risk": "safe",
+            "optional": false
+          }
+        ]
+      },
+      "maxAttempts": 2,
+      "atSteps": [],
+      "resume": "retry_step"
+    },
+    {
+      "id": "wait-out-blank-screen",
+      "title": "The screen rendered nothing; give a slow core time to answer",
+      "detect": {
+        "kind": "not",
+        "of": {
+          "kind": "text_present",
+          "text": {
+            "op": "regex",
+            "value": ".",
+            "flags": "i"
+          }
+        }
+      },
+      "remedy": {
+        "kind": "wait",
+        "ms": 2000
+      },
+      "maxAttempts": 2,
+      "atSteps": [],
+      "resume": "retry_step"
+    }
+  ],
+  "failureSignatures": [
+    {
+      "code": "CORE_SYSTEM_ERROR",
+      "title": "The core returned an unexpected system error",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "CT-500"
+        }
+      },
+      "failureClass": "app_error",
+      "data": [
+        {
+          "name": "coreErrorDetail",
+          "type": "string",
+          "description": "The core's own error detail, needed to raise a vendor ticket.",
+          "required": false,
+          "sensitivity": "public",
+          "extract": {
+            "target": {
+              "role": "cell",
+              "container": [
+                "content"
+              ],
+              "strategies": [
+                {
+                  "kind": "relative",
+                  "anchor": {
+                    "role": "cell",
+                    "name": {
+                      "op": "equals",
+                      "value": "Detail"
+                    },
+                    "container": [
+                      "content"
+                    ],
+                    "strategies": [
+                      {
+                        "kind": "role_name"
+                      }
+                    ]
+                  },
+                  "direction": "right_of",
+                  "maxDistancePx": 600
+                }
+              ]
+            },
+            "property": "text",
+            "transforms": [
+              {
+                "op": "trim"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "policy": {
+    "allowedOrigins": [
+      "http://127.0.0.1:8731"
+    ],
+    "allowedActions": [
+      "click",
+      "fill",
+      "navigate"
+    ],
+    "riskTier": "elevated",
+    "requiresHumanApproval": false,
+    "maxDurationMs": 120000,
+    "portabilityFloor": "any_surface",
+    "idempotent": true
+  },
+  "provenance": {
+    "recordedAt": "2026-09-04T23:51:52.882Z",
+    "recordedBy": "lakshdhamija",
+    "discoveryRunId": "02-discover-read-balance",
+    "goal": "Look up member 100234 and read their current regular share (savings) balance",
+    "planner": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    },
+    "transcriptDigest": "sha256:eff9a1fafccc77c28a3d767849194300",
+    "fixtureNote": "Recorded against the CORETELLER fixture in fixtures/legacy-bank. All data is synthetic."
+  },
+  "approval": {
+    "state": "approved",
+    "approvedBy": "demo-reviewer",
+    "approvedAt": "2026-09-05T00:57:32.240Z",
+    "note": "Reviewed the recorded flow and its locators against the fixture."
+  },
+  "stability": {
+    "replays": 6,
+    "successes": 4,
+    "businessOutcomes": 2,
+    "failures": 0,
+    "lastReplayAt": "2026-09-05T00:57:55.726Z",
+    "degradedResolutions": 0
+  }
+}

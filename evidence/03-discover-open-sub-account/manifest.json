@@ -1,0 +1,14 @@
+{
+  "runId": "03-discover-open-sub-account",
+  "status": "success",
+  "startedAt": "2026-09-04T23:51:53.179Z",
+  "finishedAt": "2026-09-04T23:54:31.152Z",
+  "durationMs": 157973,
+  "events": 96,
+  "blobs": 3,
+  "redactions": {
+    "email": 3,
+    "literal": 1,
+    "ssn": 5
+  }
+}

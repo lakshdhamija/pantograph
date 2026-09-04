@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "cap_granite_read_savings_balance_1",
+  "key": "granite.member.read-savings-balance",
+  "version": "1.0.0",
+  "title": "Read a member's savings balance (Granite State Savings Bank)",
+  "description": "Granite State's build of CORETELLER 7.2. Same vendor product, same flow, three cosmetic differences. This artifact is NOT a re-recording: it extends the base capability and patches only what this institution changed, so a fix to the base flow reaches Granite automatically unless it touches one of the points listed below.",
+  "app": {
+    "profile": "coreteller",
+    "productVersion": "7.2.098",
+    "surface": "legacy_web",
+    "entrypointTemplate": "{{env.baseUrl}}/t/granite/login"
+  },
+  "tenant": {
+    "id": "granite-state-bank",
+    "extends": {
+      "key": "member.read-savings-balance",
+      "version": "1.0.0"
+    },
+    "overrides": [
+      {
+        "op": "set_entrypoint",
+        "urlTemplate": "{{env.baseUrl}}/t/granite/login"
+      },
+      {
+        "op": "replace_step_target",
+        "stepId": "fill-member-number",
+        "target": {
+          "role": "textbox",
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "cell",
+                "name": {
+                  "op": "equals",
+                  "value": "Account Holder ID"
+                },
+                "container": [
+                  "content"
+                ],
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "right_of",
+              "maxDistancePx": 220
+            }
+          ],
+          "rationale": "the account-holder id field on Granite's inquiry screen"
+        }
+      },
+      {
+        "op": "replace_step_target",
+        "stepId": "click-go",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Search"
+          },
+          "container": [
+            "content"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "rationale": "Granite's label for the inquiry submit button"
+        }
+      },
+      {
+        "op": "replace_step_expect",
+        "stepId": "click-member-inquiry",
+        "expect": {
+          "kind": "text_present",
+          "text": {
+            "op": "contains",
+            "value": "Account Holder ID"
+          }
+        }
+      },
+      {
+        "op": "replace_step_expect",
+        "stepId": "fill-member-number",
+        "expect": {
+          "kind": "element_present",
+          "target": {
+            "role": "button",
+            "name": {
+              "op": "equals",
+              "value": "Search"
+            },
+            "container": [
+              "content"
+            ],
+            "strategies": [
+              {
+                "kind": "role_name"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "inputs": [],
+  "outputs": [],
+  "preconditions": [],
+  "steps": [],
+  "successCondition": {
+    "kind": "text_present",
+    "text": {
+      "op": "contains",
+      "value": "Share / Deposit Accounts"
+    }
+  },
+  "outcomes": [],
+  "recoveries": [],
+  "failureSignatures": [],
+  "policy": {
+    "allowedOrigins": [
+      "http://127.0.0.1:8731"
+    ],
+    "allowedActions": [
+      "click",
+      "fill",
+      "navigate"
+    ],
+    "riskTier": "elevated",
+    "requiresHumanApproval": false,
+    "maxDurationMs": 120000,
+    "portabilityFloor": "any_surface",
+    "idempotent": true
+  },
+  "provenance": {
+    "recordedAt": "2026-09-01T00:00:00.000Z",
+    "recordedBy": "hand-authored",
+    "discoveryRunId": "n/a",
+    "goal": "Specialise member.read-savings-balance for Granite State Savings Bank",
+    "planner": {
+      "provider": "none",
+      "model": "hand-authored specialisation"
+    },
+    "transcriptDigest": "sha256:none",
+    "fixtureNote": "Written by hand rather than re-recorded, which is the point: at hundreds of tenants, specialising a base capability has to be a small reviewable diff, not another discovery run."
+  },
+  "approval": {
+    "state": "approved",
+    "approvedBy": "demo-reviewer",
+    "approvedAt": "2026-09-05T00:57:32.697Z",
+    "note": "Reviewed the recorded flow and its locators against the fixture."
+  },
+  "stability": {
+    "replays": 0,
+    "successes": 0,
+    "businessOutcomes": 0,
+    "failures": 0,
+    "degradedResolutions": 0
+  }
+}

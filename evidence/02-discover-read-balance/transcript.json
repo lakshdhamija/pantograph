@@ -1,0 +1,193 @@
+[
+  {
+    "turn": 1,
+    "screenDigest": "http://127.0.0.1:8731/login",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Enter operator ID",
+          "kind": "fill",
+          "parameter": "operatorId",
+          "ref": "#n9",
+          "value": "teller01"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1550,
+      "outputTokens": 127
+    }
+  },
+  {
+    "turn": 2,
+    "screenDigest": "http://127.0.0.1:8731/login",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Enter operator password",
+          "kind": "fill",
+          "parameter": "operatorPassword",
+          "ref": "#n14",
+          "value": ""
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1573,
+      "outputTokens": 186
+    }
+  },
+  {
+    "turn": 3,
+    "screenDigest": "http://127.0.0.1:8731/login",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "sign on",
+          "kind": "click",
+          "ref": "#n17"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1592,
+      "outputTokens": 84
+    }
+  },
+  {
+    "turn": 4,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Open Member Inquiry",
+          "kind": "click",
+          "ref": "nav#n10"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1693,
+      "outputTokens": 157
+    }
+  },
+  {
+    "turn": 5,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Enter member number to look up",
+          "kind": "fill",
+          "parameter": "memberId",
+          "ref": "content#n8",
+          "value": ""
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1751,
+      "outputTokens": 153
+    }
+  },
+  {
+    "turn": 6,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Submit member lookup",
+          "kind": "click",
+          "ref": "content#n15"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1769,
+      "outputTokens": 151
+    }
+  },
+  {
+    "turn": 7,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "act",
+        "input": {
+          "intent": "Open member details",
+          "kind": "click",
+          "ref": "content#n11"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 1831,
+      "outputTokens": 139
+    }
+  },
+  {
+    "turn": 8,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "declare_output",
+        "input": {
+          "description": "Current regular share (savings) balance for the member",
+          "name": "regularShareBalance",
+          "property": "text",
+          "ref": "content#n36",
+          "sensitivity": "public",
+          "type": "money"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2343,
+      "outputTokens": 243
+    }
+  },
+  {
+    "turn": 9,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "declare_output",
+        "input": {
+          "description": "Current regular share (savings) balance for the member",
+          "name": "regularShareBalance",
+          "property": "text",
+          "ref": "content#n36",
+          "sensitivity": "public",
+          "type": "money"
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2355,
+      "outputTokens": 262
+    }
+  },
+  {
+    "turn": 10,
+    "screenDigest": "http://127.0.0.1:8731/desk",
+    "calls": [
+      {
+        "name": "finish",
+        "input": {
+          "successText": "REGULAR SHARE (SAVINGS)",
+          "summary": "Retrieved the member's regular share (savings) balance."
+        }
+      }
+    ],
+    "usage": {
+      "inputTokens": 2408,
+      "outputTokens": 228
+    }
+  }
+]

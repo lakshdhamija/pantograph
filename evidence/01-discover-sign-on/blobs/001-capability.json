@@ -1,0 +1,487 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "cap_80e0c906-395d-4ecf-98bc-01ca6ab99e4f",
+  "key": "coreteller.sign-on",
+  "version": "1.0.0",
+  "title": "Sign on to CORETELLER",
+  "description": "Establish an authenticated CORETELLER session. Invoked on its own, or by the reauthenticate recovery when a longer flow loses its session.",
+  "app": {
+    "profile": "coreteller",
+    "surface": "legacy_web",
+    "entrypointTemplate": "{{env.baseUrl}}/login"
+  },
+  "tenant": {
+    "id": "first-riverside-cu",
+    "overrides": []
+  },
+  "inputs": [
+    {
+      "name": "operatorId",
+      "type": "string",
+      "description": "Operator sign-on id for the core banking session.",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^[A-Za-z0-9]{2,12}$",
+      "example": "teller01"
+    },
+    {
+      "name": "operatorPassword",
+      "type": "string",
+      "description": "Operator sign-on password. Never persisted or logged.",
+      "required": true,
+      "sensitivity": "secret"
+    }
+  ],
+  "outputs": [],
+  "preconditions": [],
+  "steps": [
+    {
+      "id": "fill-operator-id",
+      "intent": "Enter operator ID",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Operator ID"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Operator ID",
+            "tag": "input",
+            "nativePath": "input#u",
+            "bbox": {
+              "x": 92.859375,
+              "y": 59,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator ID"
+        },
+        "valueTemplate": "{{inputs.operatorId}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Password"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Password",
+            "tag": "input",
+            "nativePath": "input#p",
+            "bbox": {
+              "x": 92.859375,
+              "y": 82,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator password"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-password",
+      "intent": "Enter operator password",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Password"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Password",
+            "tag": "input",
+            "nativePath": "input#p",
+            "bbox": {
+              "x": 92.859375,
+              "y": 82,
+              "width": 136,
+              "height": 17
+            }
+          },
+          "rationale": "Enter operator password"
+        },
+        "valueTemplate": "{{inputs.operatorPassword}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Sign On"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Sign On",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 65.84375,
+              "height": 17
+            }
+          },
+          "rationale": "click Sign On button"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-sign-on",
+      "intent": "click Sign On button",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Sign On"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Sign On",
+            "tag": "input",
+            "nativePath": "html > body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td > input",
+            "bbox": {
+              "x": 15,
+              "y": 105,
+              "width": 65.84375,
+              "height": 17
+            }
+          },
+          "rationale": "click Sign On button"
+        }
+      },
+      "expect": {
+        "kind": "location_matches",
+        "pattern": "/desk$"
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    }
+  ],
+  "successCondition": {
+    "kind": "all",
+    "of": [
+      {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Teller Desktop"
+        }
+      },
+      {
+        "kind": "text_absent",
+        "text": {
+          "op": "contains",
+          "value": "CT-500"
+        }
+      }
+    ]
+  },
+  "outcomes": [
+    {
+      "code": "MEMBER_NOT_FOUND",
+      "title": "No member exists for the supplied member number",
+      "description": "The inquiry completed and the core returned no matching record. This is a legitimate answer, not an error: the caller should tell the user the number is unknown rather than retry.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "NO MATCHING RECORDS FOUND"
+        }
+      },
+      "afterSteps": [],
+      "data": [],
+      "severity": "info"
+    },
+    {
+      "code": "REQUEST_REJECTED",
+      "title": "The core rejected the request on validation grounds",
+      "description": "Server-side validation refused the request. `validationMessages` carries the core's own wording, which the caller should surface rather than paraphrase.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "The request could not be completed"
+        }
+      },
+      "afterSteps": [],
+      "data": [
+        {
+          "name": "validationMessages",
+          "type": "string",
+          "description": "The validation messages exactly as the core worded them.",
+          "required": false,
+          "sensitivity": "public",
+          "extract": {
+            "target": {
+              "role": "text",
+              "container": [
+                "content"
+              ],
+              "strategies": [
+                {
+                  "kind": "text",
+                  "text": {
+                    "op": "regex",
+                    "value": "^VAL-",
+                    "flags": "i"
+                  }
+                }
+              ]
+            },
+            "property": "text",
+            "transforms": [
+              {
+                "op": "trim"
+              }
+            ]
+          }
+        }
+      ],
+      "severity": "warning"
+    },
+    {
+      "code": "MEMBER_RESTRICTED",
+      "title": "The signed-on operator is not authorised to view this member",
+      "description": "The record exists but is restricted to a higher permission level. Retrying will not help; the caller should route to a supervisor.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "SEC-4031"
+        }
+      },
+      "afterSteps": [],
+      "data": [],
+      "severity": "warning"
+    }
+  ],
+  "recoveries": [
+    {
+      "id": "dismiss-maintenance-notice",
+      "title": "Dismiss the scheduled-maintenance interstitial",
+      "detect": {
+        "kind": "all",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": {
+              "op": "contains",
+              "value": "Scheduled maintenance"
+            }
+          },
+          {
+            "kind": "element_present",
+            "target": {
+              "role": "button",
+              "name": {
+                "op": "equals",
+                "value": "Continue"
+              },
+              "strategies": [
+                {
+                  "kind": "role_name"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "remedy": {
+        "kind": "actions",
+        "steps": [
+          {
+            "id": "click-continue",
+            "intent": "dismiss the maintenance notice and return to the requested screen",
+            "action": {
+              "kind": "click",
+              "target": {
+                "role": "button",
+                "name": {
+                  "op": "equals",
+                  "value": "Continue"
+                },
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              }
+            },
+            "expect": {
+              "kind": "text_absent",
+              "text": {
+                "op": "contains",
+                "value": "Scheduled maintenance"
+              }
+            },
+            "timeoutMs": 8000,
+            "risk": "safe",
+            "optional": false
+          }
+        ]
+      },
+      "maxAttempts": 2,
+      "atSteps": [],
+      "resume": "retry_step"
+    },
+    {
+      "id": "wait-out-blank-screen",
+      "title": "The screen rendered nothing; give a slow core time to answer",
+      "detect": {
+        "kind": "not",
+        "of": {
+          "kind": "text_present",
+          "text": {
+            "op": "regex",
+            "value": ".",
+            "flags": "i"
+          }
+        }
+      },
+      "remedy": {
+        "kind": "wait",
+        "ms": 2000
+      },
+      "maxAttempts": 2,
+      "atSteps": [],
+      "resume": "retry_step"
+    }
+  ],
+  "failureSignatures": [
+    {
+      "code": "CORE_SYSTEM_ERROR",
+      "title": "The core returned an unexpected system error",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "CT-500"
+        }
+      },
+      "failureClass": "app_error",
+      "data": [
+        {
+          "name": "coreErrorDetail",
+          "type": "string",
+          "description": "The core's own error detail, needed to raise a vendor ticket.",
+          "required": false,
+          "sensitivity": "public",
+          "extract": {
+            "target": {
+              "role": "cell",
+              "container": [
+                "content"
+              ],
+              "strategies": [
+                {
+                  "kind": "relative",
+                  "anchor": {
+                    "role": "cell",
+                    "name": {
+                      "op": "equals",
+                      "value": "Detail"
+                    },
+                    "container": [
+                      "content"
+                    ],
+                    "strategies": [
+                      {
+                        "kind": "role_name"
+                      }
+                    ]
+                  },
+                  "direction": "right_of",
+                  "maxDistancePx": 600
+                }
+              ]
+            },
+            "property": "text",
+            "transforms": [
+              {
+                "op": "trim"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "policy": {
+    "allowedOrigins": [
+      "http://127.0.0.1:8731"
+    ],
+    "allowedActions": [
+      "click",
+      "fill",
+      "navigate"
+    ],
+    "riskTier": "safe",
+    "requiresHumanApproval": false,
+    "maxDurationMs": 120000,
+    "portabilityFloor": "any_surface",
+    "idempotent": true
+  },
+  "provenance": {
+    "recordedAt": "2026-09-04T23:50:02.284Z",
+    "recordedBy": "lakshdhamija",
+    "discoveryRunId": "01-discover-sign-on",
+    "goal": "Sign on to the teller desktop as the supplied operator",
+    "planner": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    },
+    "transcriptDigest": "sha256:92ba4f487e7862f9862f61e47ca7ff14",
+    "fixtureNote": "Recorded against the CORETELLER fixture in fixtures/legacy-bank. All data is synthetic."
+  },
+  "approval": {
+    "state": "draft"
+  },
+  "stability": {
+    "replays": 0,
+    "successes": 0,
+    "businessOutcomes": 0,
+    "failures": 0,
+    "degradedResolutions": 0
+  }
+}

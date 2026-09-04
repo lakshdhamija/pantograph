@@ -1,0 +1,741 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "cap_98981d41-83c4-4072-828e-3c412f1dec82",
+  "key": "store.add-to-cart-and-review",
+  "version": "1.0.0",
+  "title": "Add a product and reach checkout review",
+  "description": "Sign in to the Swag Labs storefront, add a named product to the cart, and drive checkout to the order review page, returning the order total.",
+  "app": {
+    "profile": "saucedemo",
+    "surface": "legacy_web",
+    "entrypointTemplate": "{{env.baseUrl}}/"
+  },
+  "tenant": {
+    "id": "sauce-labs-demo",
+    "overrides": []
+  },
+  "inputs": [
+    {
+      "name": "username",
+      "type": "string",
+      "description": "Run parameter \"username\".",
+      "required": true,
+      "sensitivity": "public",
+      "example": "standard_user"
+    },
+    {
+      "name": "productName",
+      "type": "string",
+      "description": "Run parameter \"productName\".",
+      "required": true,
+      "sensitivity": "public",
+      "example": "Sauce Labs Backpack"
+    },
+    {
+      "name": "firstName",
+      "type": "string",
+      "description": "Run parameter \"firstName\".",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^[A-Za-z0-9]{2,12}$",
+      "example": "Ada"
+    },
+    {
+      "name": "lastName",
+      "type": "string",
+      "description": "Run parameter \"lastName\".",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^[A-Za-z0-9]{2,12}$",
+      "example": "Lovelace"
+    },
+    {
+      "name": "postalCode",
+      "type": "string",
+      "description": "Run parameter \"postalCode\".",
+      "required": true,
+      "sensitivity": "public",
+      "pattern": "^\\d{3,7}$",
+      "example": "02115"
+    },
+    {
+      "name": "password",
+      "type": "string",
+      "description": "Run parameter \"password\".",
+      "required": true,
+      "sensitivity": "secret"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "orderTotal",
+      "type": "money",
+      "description": "Order total including tax, as shown on the review page.",
+      "required": true,
+      "sensitivity": "public",
+      "extract": {
+        "target": {
+          "role": "text",
+          "strategies": [
+            {
+              "kind": "test_id",
+              "value": "total-label"
+            }
+          ],
+          "observedAt": {
+            "name": "Total: $32.39",
+            "text": "Total: $32.39",
+            "tag": "div",
+            "nativePath": "div#checkout_summary_container > div > div:nth-of-type(2) > div:nth-of-type(8)",
+            "bbox": {
+              "x": 15,
+              "y": 594,
+              "width": 1250,
+              "height": 40
+            }
+          },
+          "rationale": "Order total including tax, as shown on the review page."
+        },
+        "property": "text",
+        "transforms": [
+          {
+            "op": "trim"
+          },
+          {
+            "op": "strip_currency"
+          },
+          {
+            "op": "regex_extract",
+            "pattern": "-?[\\d.,]+",
+            "group": 0
+          },
+          {
+            "op": "strip_grouping"
+          }
+        ]
+      }
+    }
+  ],
+  "preconditions": [],
+  "steps": [
+    {
+      "id": "fill-username",
+      "intent": "enter the storefront username",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Username"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Username",
+            "tag": "input",
+            "nativePath": "input#user-name",
+            "bbox": {
+              "x": 494,
+              "y": 154,
+              "width": 292,
+              "height": 39
+            }
+          },
+          "rationale": "enter the storefront username"
+        },
+        "valueTemplate": "{{inputs.username}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Password"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Password",
+            "tag": "input",
+            "nativePath": "input#password",
+            "bbox": {
+              "x": 494,
+              "y": 208,
+              "width": 292,
+              "height": 39
+            }
+          },
+          "rationale": "enter the storefront password"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-password",
+      "intent": "enter the storefront password",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Password"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Password",
+            "tag": "input",
+            "nativePath": "input#password",
+            "bbox": {
+              "x": 494,
+              "y": 208,
+              "width": 292,
+              "height": 39
+            }
+          },
+          "rationale": "enter the storefront password"
+        },
+        "valueTemplate": "{{inputs.password}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Login"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Login",
+            "tag": "input",
+            "nativePath": "input#login-button",
+            "bbox": {
+              "x": 494,
+              "y": 302,
+              "width": 292,
+              "height": 49
+            }
+          },
+          "rationale": "sign in to the storefront"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-login",
+      "intent": "sign in to the storefront",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Login"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Login",
+            "tag": "input",
+            "nativePath": "input#login-button",
+            "bbox": {
+              "x": 494,
+              "y": 302,
+              "width": 292,
+              "height": 49
+            }
+          },
+          "rationale": "sign in to the storefront"
+        }
+      },
+      "expect": {
+        "kind": "location_matches",
+        "pattern": "/inventory\\.html$"
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-add-to-cart",
+      "intent": "add Sauce Labs Backpack to the cart",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Add to cart"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            },
+            {
+              "kind": "relative",
+              "anchor": {
+                "role": "text",
+                "name": {
+                  "op": "equals",
+                  "value": "{{inputs.productName}}"
+                },
+                "strategies": [
+                  {
+                    "kind": "role_name"
+                  }
+                ]
+              },
+              "direction": "below",
+              "maxDistancePx": 333
+            }
+          ],
+          "observedAt": {
+            "name": "Add to cart",
+            "text": "Add to cart",
+            "tag": "button",
+            "nativePath": "button#add-to-cart-sauce-labs-backpack",
+            "bbox": {
+              "x": 420,
+              "y": 339,
+              "width": 160,
+              "height": 34
+            }
+          },
+          "rationale": "add Sauce Labs Backpack to the cart"
+        }
+      },
+      "expect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Remove"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-link",
+      "intent": "open the shopping cart",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "link",
+          "strategies": [
+            {
+              "kind": "test_id",
+              "value": "shopping-cart-link"
+            }
+          ],
+          "observedAt": {
+            "name": "1",
+            "tag": "a",
+            "nativePath": "div#shopping_cart_container > a",
+            "bbox": {
+              "x": 1220,
+              "y": 10,
+              "width": 40,
+              "height": 40
+            }
+          },
+          "rationale": "open the shopping cart"
+        }
+      },
+      "expect": {
+        "kind": "location_matches",
+        "pattern": "/cart\\.html$"
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-checkout",
+      "intent": "begin checkout",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Checkout"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Checkout",
+            "text": "Checkout",
+            "tag": "button",
+            "nativePath": "button#checkout",
+            "bbox": {
+              "x": 1045,
+              "y": 412,
+              "width": 220,
+              "height": 34
+            }
+          },
+          "rationale": "begin checkout"
+        }
+      },
+      "expect": {
+        "kind": "location_matches",
+        "pattern": "/checkout-step-one\\.html$"
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-first-name",
+      "intent": "enter the first name",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "First Name"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "First Name",
+            "tag": "input",
+            "nativePath": "input#first-name",
+            "bbox": {
+              "x": 450,
+              "y": 255,
+              "width": 380,
+              "height": 39
+            }
+          },
+          "rationale": "enter the first name"
+        },
+        "valueTemplate": "{{inputs.firstName}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Last Name"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Last Name",
+            "tag": "input",
+            "nativePath": "input#last-name",
+            "bbox": {
+              "x": 450,
+              "y": 309,
+              "width": 380,
+              "height": 39
+            }
+          },
+          "rationale": "enter the last name"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-last-name",
+      "intent": "enter the last name",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Last Name"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Last Name",
+            "tag": "input",
+            "nativePath": "input#last-name",
+            "bbox": {
+              "x": 450,
+              "y": 309,
+              "width": 380,
+              "height": 39
+            }
+          },
+          "rationale": "enter the last name"
+        },
+        "valueTemplate": "{{inputs.lastName}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Zip/Postal Code"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Zip/Postal Code",
+            "tag": "input",
+            "nativePath": "input#postal-code",
+            "bbox": {
+              "x": 450,
+              "y": 363,
+              "width": 380,
+              "height": 39
+            }
+          },
+          "rationale": "enter the postal code"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "fill-zip-postal-code",
+      "intent": "enter the postal code",
+      "action": {
+        "kind": "fill",
+        "target": {
+          "role": "textbox",
+          "name": {
+            "op": "equals",
+            "value": "Zip/Postal Code"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Zip/Postal Code",
+            "tag": "input",
+            "nativePath": "input#postal-code",
+            "bbox": {
+              "x": 450,
+              "y": 363,
+              "width": 380,
+              "height": 39
+            }
+          },
+          "rationale": "enter the postal code"
+        },
+        "valueTemplate": "{{inputs.postalCode}}"
+      },
+      "expect": {
+        "kind": "element_present",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Continue"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Continue",
+            "tag": "input",
+            "nativePath": "input#continue",
+            "bbox": {
+              "x": 1045,
+              "y": 599,
+              "width": 220,
+              "height": 41
+            }
+          },
+          "rationale": "continue to the order review"
+        }
+      },
+      "timeoutMs": 12000,
+      "risk": "safe",
+      "optional": false
+    },
+    {
+      "id": "click-continue",
+      "intent": "continue to the order review",
+      "action": {
+        "kind": "click",
+        "target": {
+          "role": "button",
+          "name": {
+            "op": "equals",
+            "value": "Continue"
+          },
+          "strategies": [
+            {
+              "kind": "role_name"
+            }
+          ],
+          "observedAt": {
+            "name": "Continue",
+            "tag": "input",
+            "nativePath": "input#continue",
+            "bbox": {
+              "x": 1045,
+              "y": 599,
+              "width": 220,
+              "height": 41
+            }
+          },
+          "rationale": "continue to the order review"
+        }
+      },
+      "expect": {
+        "kind": "location_matches",
+        "pattern": "/checkout-step-two\\.html$"
+      },
+      "timeoutMs": 12000,
+      "risk": "elevated",
+      "optional": false
+    }
+  ],
+  "successCondition": {
+    "kind": "all",
+    "of": [
+      {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Payment Information"
+        }
+      }
+    ]
+  },
+  "outcomes": [
+    {
+      "code": "USER_LOCKED_OUT",
+      "title": "The account is locked and cannot sign in",
+      "description": "A legitimate answer, not an error: the credentials are correct and the account is administratively locked. Retrying will not help; the caller needs to route to whoever can unlock it.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "this user has been locked out"
+        }
+      },
+      "afterSteps": [],
+      "data": [],
+      "severity": "warning"
+    },
+    {
+      "code": "CREDENTIALS_REJECTED",
+      "title": "The storefront rejected the supplied credentials",
+      "description": "Sign-in failed on the credentials themselves. The caller should not retry with the same pair.",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "do not match any user in this service"
+        }
+      },
+      "afterSteps": [],
+      "data": [],
+      "severity": "warning"
+    }
+  ],
+  "recoveries": [],
+  "failureSignatures": [
+    {
+      "code": "STOREFRONT_ERROR",
+      "title": "The storefront reported an error it could not recover from",
+      "detect": {
+        "kind": "text_present",
+        "text": {
+          "op": "contains",
+          "value": "Sorry, this page could not be found"
+        }
+      },
+      "failureClass": "app_error",
+      "data": []
+    }
+  ],
+  "policy": {
+    "allowedOrigins": [
+      "https://www.saucedemo.com"
+    ],
+    "allowedActions": [
+      "click",
+      "fill",
+      "navigate"
+    ],
+    "riskTier": "elevated",
+    "requiresHumanApproval": false,
+    "maxDurationMs": 120000,
+    "portabilityFloor": "any_web",
+    "idempotent": true
+  },
+  "provenance": {
+    "recordedAt": "2026-09-05T00:56:25.655Z",
+    "recordedBy": "lakshdhamija",
+    "discoveryRunId": "01-discover",
+    "goal": "Add the Sauce Labs Backpack to the cart and reach the checkout review page",
+    "planner": {
+      "provider": "scripted",
+      "model": "scripted:saucedemo-checkout"
+    },
+    "transcriptDigest": "sha256:149645c8b391cd12b2e5da221cf7b59e",
+    "fixtureNote": "Recorded against Sauce Labs' public demo storefront -- an application this project did not write and cannot change. The credentials are the ones printed on its own login page."
+  },
+  "approval": {
+    "state": "approved",
+    "approvedBy": "demo-reviewer",
+    "approvedAt": "2026-09-05T00:56:26.293Z",
+    "note": "Reviewed against the public storefront."
+  },
+  "stability": {
+    "replays": 0,
+    "successes": 0,
+    "businessOutcomes": 0,
+    "failures": 0,
+    "degradedResolutions": 0
+  }
+}
