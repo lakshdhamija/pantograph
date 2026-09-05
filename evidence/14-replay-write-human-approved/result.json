@@ -10,7 +10,7 @@
       "intent": "Enter operator ID",
       "index": 0,
       "status": "ok",
-      "durationMs": 862,
+      "durationMs": 870,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -20,77 +20,77 @@
       "intent": "Enter operator password",
       "index": 1,
       "status": "ok",
-      "durationMs": 866,
+      "durationMs": 864,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     },
     {
       "stepId": "click-sign-on",
-      "intent": "click Sign On button",
+      "intent": "click Sign On to log in",
       "index": 2,
       "status": "ok",
-      "durationMs": 937,
+      "durationMs": 911,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     },
     {
       "stepId": "click-member-inquiry",
-      "intent": "Open Member Inquiry screen",
+      "intent": "Navigate to Member Inquiry",
       "index": 3,
       "status": "ok",
-      "durationMs": 918,
+      "durationMs": 951,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     },
     {
       "stepId": "fill-member-number",
-      "intent": "Enter member number",
+      "intent": "Enter member number to look up",
       "index": 4,
       "status": "ok",
-      "durationMs": 841,
+      "durationMs": 856,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
     },
     {
       "stepId": "click-go",
-      "intent": "Submit member number to retrieve member record",
+      "intent": "Lookup member",
       "index": 5,
       "status": "ok",
-      "durationMs": 807,
+      "durationMs": 845,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     },
     {
       "stepId": "click-member",
-      "intent": "Open member details",
+      "intent": "Open member details for member 100234",
       "index": 6,
       "status": "ok",
-      "durationMs": 844,
+      "durationMs": 824,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
     },
     {
       "stepId": "click-open-sub-account",
-      "intent": "Open sub-account screen",
+      "intent": "Open sub-account dialog",
       "index": 7,
       "status": "ok",
-      "durationMs": 835,
+      "durationMs": 892,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     },
     {
       "stepId": "select-product-code",
-      "intent": "Select Vacation Club product",
+      "intent": "Select product code for new sub-account",
       "index": 8,
       "status": "ok",
-      "durationMs": 828,
+      "durationMs": 836,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -100,35 +100,38 @@
       "intent": "Enter opening deposit amount",
       "index": 9,
       "status": "ok",
-      "durationMs": 840,
+      "durationMs": 850,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
     },
     {
       "stepId": "click-submit-request",
-      "intent": "Submit sub-account request",
+      "intent": "Submit sub-account creation request",
       "index": 10,
       "status": "ok",
-      "durationMs": 1178,
+      "durationMs": 1201,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     },
     {
       "stepId": "confirm",
-      "intent": "Confirm creation of new vacation club sub-account",
+      "intent": "confirm sub-account creation",
       "index": 11,
       "status": "ok",
-      "durationMs": 526
+      "durationMs": 546
     }
   ],
-  "durationMs": 10872,
+  "durationMs": 11038,
   "evidence": {
     "runId": "14-replay-write-human-approved",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs/14-replay-write-human-approved",
     "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/14-replay-write-human-approved/events.jsonl",
-    "blobs": []
+    "blobs": [
+      "blobs/001-iv_e8d35e8f-escalation.png",
+      "blobs/002-iv_e8d35e8f-escalation.html"
+    ]
   },
   "degradedResolutions": 0,
   "plannerCalls": 0

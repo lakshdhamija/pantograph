@@ -60,7 +60,7 @@ npm install
 npx playwright install chromium
 ```
 
-The first installs three dependencies: `playwright`, `zod` and `@anthropic-ai/sdk`. The second downloads Chromium, about 180 MB, once. It is a separate step because `playwright` ships no install hook, and npm 11 does not run package install scripts by default in any case.
+The first installs three dependencies: `playwright`, `zod` and `@anthropic-ai/sdk`. The second downloads Chromium, about 180 MB, once. There is a `postinstall` that runs it for you, but npm 11 does not execute package install scripts unless you allow them, so run it explicitly and it is a no-op if the browser is already there.
 
 **No API key is needed for anything below except `ask`.** Discovery has **four planner implementations behind one interface**. The loop, the compiler and the evidence pipeline cannot tell them apart:
 
@@ -105,7 +105,7 @@ Start the target application in one terminal and leave it running:
 npm run app
 ```
 
-That is **CORETELLER**, a fixture standing in for a legacy core banking system: a real `<frameset>`, table-based layout, no test IDs, form controls named `f_mbr` with no accessible name, a `confirm()` dialog on submit, and faults you can arm on demand. See [Why a fixture](#why-a-fixture-and-not-a-public-site) below.
+That is **CORETELLER**, a fixture standing in for a legacy core banking system: a real `<frameset>`, table-based layout, no test IDs, form controls named `f_mbr` with no accessible name, a `confirm()` dialog on submit, and faults you can arm on demand. See [Why a fixture as well](#why-a-fixture-as-well) below.
 
 **Record a capability.** The model gets a goal and some parameters, drives the app, and the successful run is compiled into an artifact:
 
@@ -128,7 +128,7 @@ outputs:
   regularShareBalance = 611.07  [number]
 ```
 
-A different member than the one recorded, and a `money` output that arrives as a number rather than the string `"611.07"` the screen actually contains. That block is copied from [evidence/06-replay-different-member.console.txt](evidence/06-replay-different-member.console.txt), which is the same command.
+A different member than the one recorded, and a `money` output that arrives as a number rather than the string `"611.07"` the screen actually contains. The same run is recorded in [evidence/06-replay-different-member.console.txt](evidence/06-replay-different-member.console.txt), where the demo adds `--record-stability` and the timing differs by a few milliseconds.
 
 ### Make it go wrong
 
@@ -253,7 +253,7 @@ The committed discovery evidence is a **live** run: `evidence/0[123]-discover-*/
 
 Worth knowing if you re-record: the free tiers meter by *day*, not by minute. Groq allows 200k tokens a day and one discovery run is ~25k, so the full `--live` demo fits about seven times over, but a day of iterating will exhaust it, and the planner then refuses to retry rather than spending the remaining allowance on attempts that cannot succeed.
 
-Every replay result carries `plannerCalls`, the number of provider requests made while it ran. It is 0 in all 17, and `tests/architecture.test.ts` asserts that nothing under `src/replay/` or `src/surface/` can reach a provider at all, so the central claim is checkable per run and enforced in CI, not merely stated here.
+Every replay result carries `plannerCalls`, the number of provider requests made while it ran. It is 0 in every replay result committed here, and `tests/architecture.test.ts` asserts that nothing under `src/replay/` or `src/surface/` can reach a provider at all, so the central claim is checkable per run and enforced in CI, not merely stated here.
 
 `tests/planner-wire.test.ts` is the interesting one. It asserts the request is well-formed, that all five tool schemas are valid JSON Schema with their `required` fields defined, that a `tool_use` response parses into the planner's own types, that the screen the model is shown is the same one the resolver sees, and that a sensitive parameter's value never reaches the wire even when the caller hands it one.
 
@@ -311,7 +311,7 @@ Sauce Labs' Swag Labs storefront, published for automation practice. Not in CI: 
 | declared `portabilityFloor` | `any_surface` | `any_web` |
 | why | no test IDs, so the ladder derives relational locators | test IDs present, and it uses one where nothing portable is unique |
 | framesets | yes | no |
-| error taxonomy | fully exercised, faults armed on demand | two real business outcomes, no injection possible |
+| error taxonomy | fully exercised, faults armed on demand | two business outcomes declared, one exercised; no injection possible |
 
 Same recorder, same engine, neither told which it was looking at. One artifact, three products, three correct totals. The product-grid locator is `relative(anchor: text "{{inputs.productName}}")`, parameterised rather than pinned.
 

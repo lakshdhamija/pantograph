@@ -41,7 +41,7 @@ export type FailureClass =
   | 'app_error'
   /** A modal appeared that nothing declared and nothing could clear. */
   | 'dialog_unhandled'
-  /** A declared recovery matched but ran out of attempts. */
+  /** A recovery ran, did not clear the condition, and had no attempts left. */
   | 'recovery_exhausted'
   /** The browser/OS layer failed. Infrastructure, not the app. */
   | 'surface_error'

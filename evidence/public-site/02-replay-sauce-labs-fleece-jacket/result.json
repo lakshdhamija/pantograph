@@ -10,7 +10,7 @@
       "intent": "enter the storefront username",
       "index": 0,
       "status": "ok",
-      "durationMs": 831,
+      "durationMs": 839,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -20,7 +20,7 @@
       "intent": "enter the storefront password",
       "index": 1,
       "status": "ok",
-      "durationMs": 854,
+      "durationMs": 857,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -30,7 +30,7 @@
       "intent": "sign in to the storefront",
       "index": 2,
       "status": "ok",
-      "durationMs": 886,
+      "durationMs": 846,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -40,7 +40,7 @@
       "intent": "add Sauce Labs Backpack to the cart",
       "index": 3,
       "status": "ok",
-      "durationMs": 839,
+      "durationMs": 838,
       "strategyIndex": 1,
       "strategyKind": "relative",
       "degraded": true
@@ -50,7 +50,7 @@
       "intent": "open the shopping cart",
       "index": 4,
       "status": "ok",
-      "durationMs": 886,
+      "durationMs": 897,
       "strategyIndex": 0,
       "strategyKind": "test_id",
       "degraded": false
@@ -60,7 +60,7 @@
       "intent": "begin checkout",
       "index": 5,
       "status": "ok",
-      "durationMs": 859,
+      "durationMs": 844,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -70,7 +70,7 @@
       "intent": "enter the first name",
       "index": 6,
       "status": "ok",
-      "durationMs": 816,
+      "durationMs": 825,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -80,7 +80,7 @@
       "intent": "enter the last name",
       "index": 7,
       "status": "ok",
-      "durationMs": 809,
+      "durationMs": 832,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -90,7 +90,7 @@
       "intent": "enter the postal code",
       "index": 8,
       "status": "ok",
-      "durationMs": 826,
+      "durationMs": 840,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -100,13 +100,13 @@
       "intent": "continue to the order review",
       "index": 9,
       "status": "ok",
-      "durationMs": 889,
+      "durationMs": 894,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     }
   ],
-  "durationMs": 9144,
+  "durationMs": 9163,
   "evidence": {
     "runId": "02-replay-sauce-labs-fleece-jacket",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs-public/02-replay-sauce-labs-fleece-jacket",

@@ -1,9 +1,9 @@
 {
   "runId": "08-replay-business-outcome-restricted",
   "status": "business_outcome",
-  "startedAt": "2026-09-05T00:57:56.418Z",
-  "finishedAt": "2026-09-05T00:58:02.354Z",
-  "durationMs": 5936,
+  "startedAt": "2026-09-05T01:46:04.815Z",
+  "finishedAt": "2026-09-05T01:46:10.706Z",
+  "durationMs": 5891,
   "events": 36,
   "blobs": 0,
   "redactions": {

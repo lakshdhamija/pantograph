@@ -1,12 +1,10 @@
 {
   "runId": "01-discover",
   "status": "success",
-  "startedAt": "2026-09-05T00:56:13.799Z",
-  "finishedAt": "2026-09-05T00:56:25.663Z",
-  "durationMs": 11864,
+  "startedAt": "2026-09-05T01:35:35.424Z",
+  "finishedAt": "2026-09-05T01:35:46.768Z",
+  "durationMs": 11344,
   "events": 56,
   "blobs": 1,
-  "redactions": {
-    "email": 1
-  }
+  "redactions": {}
 }

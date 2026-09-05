@@ -87,7 +87,7 @@ async function runReplay(opts: ReplayOptions): Promise<ReplayOutcome> {
     runId: recorder.runId,
     dir: recorder.dir,
     eventsFile: join(recorder.dir, 'events.jsonl'),
-    blobs: [],
+    blobs: recorder.blobs(),
   });
 
   const fail = (
@@ -285,6 +285,22 @@ async function runReplay(opts: ReplayOptions): Promise<ReplayOutcome> {
         evidence: evidence(),
       };
     }
+    // A declared failure signature outranks a bare checkpoint failure here for
+    // the same reason it does mid-flow: a CT-500 reported as "expected text not
+    // found" is true, useless, and throws away the core's own reference number.
+    const signature = cap.failureSignatures.find(
+      (f) => evaluateAssertion(success.observation, f.detect, { portabilityFloor: cap.policy.portabilityFloor }).passed,
+    );
+    if (signature) {
+      const detail = Object.entries(collectOutcomeData(success.observation, signature))
+        .map(([k, v]) => `${k}=${JSON.stringify(v)}`)
+        .join(' ');
+      recorder.emit({ type: 'detector_fired', kind: 'failure_signature', id: signature.code, detail: signature.title });
+      await captureFailureEvidence(surface, recorder, `success-condition-${signature.code.toLowerCase()}`);
+      return fail(signature.failureClass, describeAssertion(cap.successCondition), `${signature.title} (${signature.code})${detail ? ` ${detail}` : ''}`, {
+        detail: `matched declared failure signature "${signature.code}"`,
+      });
+    }
     await captureFailureEvidence(surface, recorder, 'success-condition');
     return fail('checkpoint_failed', describeAssertion(cap.successCondition), success.detail, { detail: `waited ${success.waitedMs}ms over ${success.polls} polls` });
   }
@@ -479,6 +495,11 @@ async function runReplay(opts: ReplayOptions): Promise<ReplayOutcome> {
           result: fail('dialog_unhandled', expected, `an undeclared ${obs.blockingDialog.kind} dialog is blocking the surface: "${obs.blockingDialog.message}"`, { step, index: i }),
         };
       }
+      // Nothing below this rung can read a screen the modal is covering, so the
+      // declared recovery runs here rather than after four more detectors have
+      // matched on whatever is visible around the dialog.
+      recorder.emit({ type: 'detector_fired', kind: 'recovery', id: declared.id, detail: `dialog: ${declared.title}` });
+      return applyRecovery(declared, step, i, expected, observed);
     }
 
     // (2) Session/auth first: a login page does not contain your member.
@@ -500,7 +521,7 @@ async function runReplay(opts: ReplayOptions): Promise<ReplayOutcome> {
       const detail = Object.entries(collectOutcomeData(obs, signature))
         .map(([k, v]) => `${k}=${JSON.stringify(v)}`)
         .join(' ');
-      recorder.emit({ type: 'detector_fired', kind: 'recovery', id: signature.code, detail: `failure signature: ${signature.title}` });
+      recorder.emit({ type: 'detector_fired', kind: 'failure_signature', id: signature.code, detail: signature.title });
       await captureFailureEvidence(surface, recorder, `${step.id}-${signature.code.toLowerCase()}`);
       return {
         kind: 'fail',
@@ -580,7 +601,7 @@ async function runReplay(opts: ReplayOptions): Promise<ReplayOutcome> {
   async function applyRecovery(r: Recovery, step: Step, i: number, expected: string, observed: string): Promise<StepOutcome> {
     const used = recoveryBudget.get(r.id) ?? 0;
     if (used >= r.maxAttempts) {
-      recorder.emit({ type: 'recovery_attempt', recoveryId: r.id, attempt: used + 1, maxAttempts: r.maxAttempts, result: 'unresolved', detail: 'budget exhausted' });
+      recorder.emit({ type: 'recovery_attempt', recoveryId: r.id, attempt: used, maxAttempts: r.maxAttempts, result: 'unresolved', detail: 'budget exhausted' });
       // A recovery that keeps firing is a condition we understand but cannot
       // fix. That is exactly when a human is worth interrupting.
       const obs = await surface.observe().catch(() => undefined);

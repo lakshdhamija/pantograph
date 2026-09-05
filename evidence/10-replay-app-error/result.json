@@ -18,7 +18,7 @@
       "intent": "Enter operator ID",
       "index": 0,
       "status": "ok",
-      "durationMs": 867,
+      "durationMs": 878,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -38,7 +38,7 @@
       "intent": "sign on",
       "index": 2,
       "status": "ok",
-      "durationMs": 948,
+      "durationMs": 917,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -48,7 +48,7 @@
       "intent": "Open Member Inquiry",
       "index": 3,
       "status": "ok",
-      "durationMs": 936,
+      "durationMs": 921,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -58,18 +58,21 @@
       "intent": "Enter member number to look up",
       "index": 4,
       "status": "ok",
-      "durationMs": 817,
+      "durationMs": 853,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
     }
   ],
-  "durationMs": 5843,
+  "durationMs": 5881,
   "evidence": {
     "runId": "10-replay-app-error",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs/10-replay-app-error",
     "eventsFile": "/Users/lakshdhamija/Documents/interface ai/runs/10-replay-app-error/events.jsonl",
-    "blobs": []
+    "blobs": [
+      "blobs/001-click-go-core_system_error.png",
+      "blobs/002-click-go-core_system_error.html"
+    ]
   },
   "plannerCalls": 0
 }

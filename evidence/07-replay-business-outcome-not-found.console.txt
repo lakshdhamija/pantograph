@@ -6,46 +6,46 @@ run evidence: /Users/lakshdhamija/Documents/interface ai/runs/07-replay-business
   [001] automation run_started
   [002] automation policy allow (default)
   [003] automation act navigate
-  [004] automation   -> ok 303ms
+  [004] automation   -> ok 304ms
   [005] automation step 1/7 fill-operator-id: Enter operator ID
   [006] automation policy allow (default)
   [007] automation act fill textbox
-  [008] automation   -> ok 580ms
+  [008] automation   -> ok 564ms
   [009] automation assert fill-operator-id.expect: pass (textbox equals("Password") present via role_name)
   [010] automation step 2/7 fill-password: Enter operator password
   [011] automation policy allow (default)
   [012] automation act fill textbox
-  [013] automation   -> ok 591ms
+  [013] automation   -> ok 583ms
   [014] automation assert fill-password.expect: pass (button equals("Sign On") present via role_name)
   [015] automation step 3/7 click-sign-on: sign on
   [016] automation policy allow (default)
   [017] automation act click button
-  [018] automation   -> ok 653ms
+  [018] automation   -> ok 634ms
   [019] automation assert click-sign-on.expect: pass (location "http://127.0.0.1:8731/desk" matches //desk$/)
   [020] automation step 4/7 click-member-inquiry: Open Member Inquiry
   [021] automation policy allow (default)
   [022] automation act click link
-  [023] automation   -> ok 660ms
+  [023] automation   -> ok 667ms
   [024] automation assert click-member-inquiry.expect: pass (text contains("Member Number Surname") found)
   [025] automation step 5/7 fill-member-number: Enter member number to look up
   [026] automation policy allow (default)
   [027] automation act fill textbox
-  [028] automation   -> ok 570ms
+  [028] automation   -> ok 561ms
   [029] automation assert fill-member-number.expect: pass ([content] button equals("Go") present via role_name)
   [030] automation step 6/7 click-go: Submit member lookup
   [031] automation policy allow (default)
   [032] automation act click button
-  [033] automation   -> ok 545ms
+  [033] automation   -> ok 548ms
   [034] automation assert click-go.expect: pass (text contains("Inquiry Results") found)
   [035] automation step 7/7 click-member: Open member details
   [036] automation policy allow (default)
   [037] automation act click link
-  [038] automation   -> FAILED 279ms
+  [038] automation   -> FAILED 275ms
   [039] automation detector business_outcome MEMBER_NOT_FOUND
   [040] automation run_finished
 
 ------------------------------------------------------------------------
-BUSINESS OUTCOME  member.read-savings-balance@1.0.0  (6171ms)
+BUSINESS OUTCOME  member.read-savings-balance@1.0.0  (6108ms)
 
   MEMBER_NOT_FOUND [info]  No member exists for the supplied member number
   detected at step: click-member
@@ -62,6 +62,6 @@ step trace:
    5. ok        fill-member-number via relative  
    6. ok        click-go via role_name  
 
-stability updated: 4/6 successful, 0 degraded resolution(s)
+stability updated: 2/3 successful, 0 degraded resolution(s)
 
 evidence: /Users/lakshdhamija/Documents/interface ai/runs/07-replay-business-outcome-not-found

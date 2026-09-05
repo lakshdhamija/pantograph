@@ -16,7 +16,7 @@
     ],
     "usage": {
       "inputTokens": 1519,
-      "outputTokens": 287
+      "outputTokens": 600
     }
   },
   {
@@ -29,13 +29,14 @@
           "intent": "Enter operator password",
           "kind": "fill",
           "parameter": "operatorPassword",
-          "ref": "#n14"
+          "ref": "#n14",
+          "value": ""
         }
       }
     ],
     "usage": {
       "inputTokens": 1542,
-      "outputTokens": 113
+      "outputTokens": 118
     }
   },
   {
@@ -45,7 +46,7 @@
       {
         "name": "act",
         "input": {
-          "intent": "click Sign On button",
+          "intent": "click Sign On button to submit credentials",
           "kind": "click",
           "ref": "#n17"
         }
@@ -53,7 +54,7 @@
     ],
     "usage": {
       "inputTokens": 1561,
-      "outputTokens": 133
+      "outputTokens": 125
     }
   },
   {
@@ -69,8 +70,8 @@
       }
     ],
     "usage": {
-      "inputTokens": 1664,
-      "outputTokens": 179
+      "inputTokens": 1667,
+      "outputTokens": 166
     }
   }
 ]

@@ -16,7 +16,7 @@
     ],
     "usage": {
       "inputTokens": 1600,
-      "outputTokens": 122
+      "outputTokens": 126
     }
   },
   {
@@ -29,13 +29,14 @@
           "intent": "Enter operator password",
           "kind": "fill",
           "parameter": "operatorPassword",
-          "ref": "#n14"
+          "ref": "#n14",
+          "value": ""
         }
       }
     ],
     "usage": {
       "inputTokens": 1623,
-      "outputTokens": 201
+      "outputTokens": 175
     }
   },
   {
@@ -45,7 +46,7 @@
       {
         "name": "act",
         "input": {
-          "intent": "click Sign On button",
+          "intent": "click Sign On to log in",
           "kind": "click",
           "ref": "#n17"
         }
@@ -53,7 +54,7 @@
     ],
     "usage": {
       "inputTokens": 1642,
-      "outputTokens": 87
+      "outputTokens": 86
     }
   },
   {
@@ -63,15 +64,15 @@
       {
         "name": "act",
         "input": {
-          "intent": "Open Member Inquiry screen",
+          "intent": "Navigate to Member Inquiry",
           "kind": "click",
           "ref": "nav#n10"
         }
       }
     ],
     "usage": {
-      "inputTokens": 1745,
-      "outputTokens": 175
+      "inputTokens": 1747,
+      "outputTokens": 149
     }
   },
   {
@@ -81,17 +82,17 @@
       {
         "name": "act",
         "input": {
-          "intent": "Enter member number",
+          "intent": "Enter member number to look up",
           "kind": "fill",
           "parameter": "memberId",
           "ref": "content#n8",
-          "value": ""
+          "value": "100234"
         }
       }
     ],
     "usage": {
-      "inputTokens": 1804,
-      "outputTokens": 151
+      "inputTokens": 1806,
+      "outputTokens": 146
     }
   },
   {
@@ -101,15 +102,15 @@
       {
         "name": "act",
         "input": {
-          "intent": "Submit member number to retrieve member record",
+          "intent": "Lookup member",
           "kind": "click",
           "ref": "content#n15"
         }
       }
     ],
     "usage": {
-      "inputTokens": 1819,
-      "outputTokens": 140
+      "inputTokens": 1824,
+      "outputTokens": 139
     }
   },
   {
@@ -119,7 +120,7 @@
       {
         "name": "act",
         "input": {
-          "intent": "Open member details",
+          "intent": "Open member details for member 100234",
           "kind": "click",
           "ref": "content#n11"
         }
@@ -127,7 +128,7 @@
     ],
     "usage": {
       "inputTokens": 1885,
-      "outputTokens": 189
+      "outputTokens": 159
     }
   },
   {
@@ -137,15 +138,15 @@
       {
         "name": "act",
         "input": {
-          "intent": "Open sub-account screen",
+          "intent": "Open sub-account dialog",
           "kind": "click",
           "ref": "content#n46"
         }
       }
     ],
     "usage": {
-      "inputTokens": 2397,
-      "outputTokens": 139
+      "inputTokens": 2402,
+      "outputTokens": 127
     }
   },
   {
@@ -155,7 +156,7 @@
       {
         "name": "act",
         "input": {
-          "intent": "Select Vacation Club product",
+          "intent": "Select product code for new sub-account",
           "kind": "select",
           "parameter": "productCode",
           "ref": "content#n15",
@@ -164,8 +165,8 @@
       }
     ],
     "usage": {
-      "inputTokens": 2058,
-      "outputTokens": 268
+      "inputTokens": 2063,
+      "outputTokens": 222
     }
   },
   {
@@ -184,8 +185,8 @@
       }
     ],
     "usage": {
-      "inputTokens": 2074,
-      "outputTokens": 247
+      "inputTokens": 2082,
+      "outputTokens": 181
     }
   },
   {
@@ -195,15 +196,15 @@
       {
         "name": "act",
         "input": {
-          "intent": "Submit sub-account request",
+          "intent": "Submit sub-account creation request",
           "kind": "click",
           "ref": "content#n31"
         }
       }
     ],
     "usage": {
-      "inputTokens": 2091,
-      "outputTokens": 107
+      "inputTokens": 2099,
+      "outputTokens": 112
     }
   },
   {
@@ -214,14 +215,14 @@
         "name": "act",
         "input": {
           "accept": true,
-          "intent": "Confirm creation of new vacation club sub-account",
+          "intent": "confirm sub-account creation",
           "kind": "answer_dialog"
         }
       }
     ],
     "usage": {
-      "inputTokens": 1569,
-      "outputTokens": 147
+      "inputTokens": 1578,
+      "outputTokens": 119
     }
   },
   {
@@ -241,8 +242,8 @@
       }
     ],
     "usage": {
-      "inputTokens": 2060,
-      "outputTokens": 287
+      "inputTokens": 2065,
+      "outputTokens": 195
     }
   },
   {
@@ -258,8 +259,8 @@
       }
     ],
     "usage": {
-      "inputTokens": 2061,
-      "outputTokens": 123
+      "inputTokens": 2066,
+      "outputTokens": 162
     }
   }
 ]

@@ -47,7 +47,15 @@ export const DEFAULT_RULES: readonly RedactionRule[] = [
     pattern: /\b(pass(?:word|wd)?|pwd|secret|token)\s*[=:]\s*("?)([^\s"&,;]{3,})\2/gi,
     replace: (m) => m.replace(/([=:]\s*"?)([^\s"&,;]{3,})/, '$1[REDACTED]'),
   },
-  { id: 'email', pattern: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g, replace: (m) => `[REDACTED:EMAIL:${m.slice(0, 1)}***@${m.split('@')[1] ?? ''}]` },
+  // The domain must not be all-numeric, or this eats the project's own version
+  // strings: `member.open-sub-account@1.0.0.json` is an `@`, a dotted "domain"
+  // and a letters-only "TLD", and redacting it corrupts every log line naming an
+  // artifact. A false positive on a scanner is worse than a miss.
+  {
+    id: 'email',
+    pattern: /\b[A-Za-z0-9._%+-]+@(?![\d.]+\b)[A-Za-z0-9.-]*[A-Za-z][A-Za-z0-9.-]*\.[A-Za-z]{2,}\b/g,
+    replace: (m) => `[REDACTED:EMAIL:${m.slice(0, 1)}***@${m.split('@')[1] ?? ''}]`,
+  },
 ];
 
 /** ABA checksum: 3,7,1 weighting over the nine digits, sum divisible by ten. */

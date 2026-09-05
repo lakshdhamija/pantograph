@@ -6,7 +6,7 @@
  * documented interface and not of a private path that only the demo takes.
  *
  *   node scripts/demo.ts            scripted planner, no API key needed
- *   node scripts/demo.ts --live     live Anthropic discovery (needs ANTHROPIC_API_KEY)
+ *   node scripts/demo.ts --live     discovery driven by a real model (needs a key)
  *
  * Roughly two minutes. Every step prints the command it is about to run.
  */
@@ -55,14 +55,13 @@ function banner(title: string, note: string): void {
 }
 
 async function main(): Promise<void> {
-  // `--live` uses whichever provider has a key. Gemini is checked first because
-  // its free tier is the one that costs nothing to reproduce this with.
+  // `--live` uses whichever provider has a key; the preference order is below.
   const live = process.argv.includes('--live');
-// Discovery is the only part that needs a model. `--replays-only` reuses the
-// committed artifacts and re-runs every deterministic step, so a reviewer with
-// no key can reproduce runs 04-17 in seconds, and re-recording those runs never
-// disturbs the discovery evidence a live model produced.
-const replaysOnly = process.argv.includes('--replays-only');
+  // Discovery is the only part that needs a model. `--replays-only` reuses the
+  // committed artifacts and re-runs every deterministic step, so a reviewer with
+  // no key can reproduce runs 04-17 in seconds without disturbing the discovery
+  // evidence a live model produced.
+  const replaysOnly = process.argv.includes('--replays-only');
   const explicit = process.argv.find((a) => a.startsWith('--planner='))?.split('=')[1];
   // Preference order is by free-tier headroom, not by model quality: the whole
   // demo needs ~35 requests, and running out mid-way wastes every step before it.
@@ -362,7 +361,7 @@ ${summary.join('\n')}
 
 **13 vs 14, the guardrail.** Same capability, same inputs. Without an operator it stops before writing; with one it completes. Grep for \`policy_decision\` and \`control_transferred\`.
 
-**16, cross-tenant reuse.** \`artifacts/granite.member.read-savings-balance@1.0.0.json\` contributes no steps of its own: five overrides, plus a placeholder step the schema currently forces on it.
+**16, cross-tenant reuse.** \`artifacts/granite.member.read-savings-balance@1.0.0.json\` contributes no steps of its own: five overrides and an empty step list, which the schema permits exactly when \`tenant.extends\` is set.
 
 **17, the drift signal.** Five runs, \`rungs [0,0,0,0,0,0,0]\` every time: every locator on its preferred strategy, nothing degraded. A step that starts winning on a later rung shows up here long before any assertion fails.
 

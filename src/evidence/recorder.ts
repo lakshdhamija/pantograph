@@ -30,7 +30,7 @@ export type EvidenceEvent =
   | { type: 'action_attempt'; action: Action; intent?: string }
   | { type: 'action_result'; ok: boolean; durationMs: number; resolved?: ResolvedTarget; failure?: ResolveFailure | { reason: string; message: string } }
   | { type: 'assertion'; label: string; assertion: unknown; passed: boolean; detail?: string }
-  | { type: 'detector_fired'; kind: 'business_outcome' | 'recovery' | 'session_invalid'; id: string; detail?: string }
+  | { type: 'detector_fired'; kind: 'business_outcome' | 'recovery' | 'session_invalid' | 'failure_signature'; id: string; detail?: string }
   | { type: 'recovery_attempt'; recoveryId: string; attempt: number; maxAttempts: number; result: 'resolved' | 'unresolved' | 'error'; detail?: string }
   | { type: 'extraction'; output: string; rawLength: number; value: unknown; sensitivity: string }
   | { type: 'escalation_raised'; interventionId: string; reason: string; stepId?: string }
@@ -66,6 +66,7 @@ export class Recorder {
   private seq = 0;
   private actor: Actor = 'automation';
   private blobCount = 0;
+  private readonly blobPaths: string[] = [];
   private readonly tail: RecordedEvent[] = [];
 
   constructor(opts: RecorderOptions) {
@@ -112,6 +113,11 @@ export class Recorder {
   }
 
   /** Compact tail for handing context to a human operator or to a report. */
+  /** Every blob written so far, relative to the run directory. */
+  blobs(): readonly string[] {
+    return [...this.blobPaths];
+  }
+
   recentEvents(n = 12): readonly RecordedEvent[] {
     return this.tail.slice(-n);
   }
@@ -123,6 +129,7 @@ export class Recorder {
     const full = join(this.blobDir, file);
     const payload = typeof data === 'string' ? Buffer.from(this.redactor.text(data), 'utf8') : data;
     writeFileSync(full, payload);
+    this.blobPaths.push(join('blobs', file));
     this.emit({ type: 'blob', name: file, kind, path: join('blobs', file), bytes: payload.byteLength });
     return full;
   }

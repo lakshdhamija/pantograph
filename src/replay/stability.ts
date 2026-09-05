@@ -32,6 +32,8 @@ export type StabilityRunSummary = {
   readonly durationMs: number;
   /** Which rung each step resolved on. `0` throughout is a healthy screen. */
   readonly rungs: readonly number[];
+  /** The same, carrying the step id, so runs are compared step for step. */
+  readonly perStep: ReadonlyArray<{ readonly stepId: string; readonly rung: number }>;
   readonly degraded: number;
   readonly detail?: string;
   readonly runId: string;
@@ -111,6 +113,7 @@ function toSummary(run: number, r: ReplayResult, runId: string): StabilityRunSum
     status: r.status,
     durationMs: r.durationMs,
     rungs: steps.map((s) => s.strategyIndex ?? -1).filter((x) => x >= 0),
+    perStep: steps.filter((s) => (s.strategyIndex ?? -1) >= 0).map((s) => ({ stepId: s.stepId, rung: s.strategyIndex! })),
     degraded: steps.filter((s) => s.degraded).length,
     detail:
       r.status === 'business_outcome'
@@ -138,8 +141,8 @@ function report(opts: StabilityOptions, perRun: readonly StabilityRunSummary[]):
   // ended early) simply do not contribute, which is correct -- a step that never
   // ran tells us nothing about its stability.
   for (const r of perRun) {
-    r.rungs.forEach((rung, i) => {
-      const key = `step-${i + 1}`;
+    r.perStep.forEach(({ stepId, rung }) => {
+      const key = stepId;
       const e = byStep.get(key) ?? { rungs: new Set<number>(), strategies: new Set<string>(), degraded: 0 };
       e.rungs.add(rung);
       if (rung > 0) e.degraded += 1;

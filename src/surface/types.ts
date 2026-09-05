@@ -243,7 +243,6 @@ export interface Surface {
   readonly sessionId: string;
 
   observe(): Promise<Observation>;
-  resolve(target: TargetDescriptor, floor?: Portability): Promise<ResolvedTarget | ResolveFailure>;
   act(action: Action): Promise<ActionResult>;
 
   /**

@@ -3,8 +3,9 @@
  *
  * Every actor -- the LLM planner during discovery, the deterministic replay
  * engine, and the human operator during a handoff -- reaches the browser
- * through one of these. There is no other reference to the raw Surface outside
- * the process that constructs it.
+ * through one of these. The escalation broker holds the raw Surface, because it
+ * mints one of these per operator, so anything that must hold for every actor is
+ * installed on the surface itself rather than here.
  *
  * Three things happen here and only here:
  *   1. control lease check   (is this actor allowed to act at all?)
@@ -141,11 +142,6 @@ export class GuardedSurface implements Surface {
   async observe(): Promise<Observation> {
     this.lease.assert(this.as);
     return this.inner.observe();
-  }
-
-  async resolve(target: TargetDescriptor, floor?: Portability): Promise<ResolvedTarget | ResolveFailure> {
-    this.lease.assert(this.as);
-    return this.inner.resolve(target, floor);
   }
 
   async act(action: Action): Promise<ActionResult> {

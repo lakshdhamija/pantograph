@@ -1,8 +1,8 @@
 # Evidence
 
-Produced by `node scripts/demo.ts` on 2026-09-05.
+Produced by `node scripts/demo.ts` --live on 2026-09-05.
 
-Planner: **scripted planner (`--mock-llm`)**. The scripted planner is a real implementation of the `Planner` interface, so every other component in these runs is exercised for real: the same guarded surface, the same perception, the same descriptor synthesis, the same compiler, the same replay engine, the same evidence pipeline. Only the "which control next" decision is scripted. See `src/agent/llm/mock.ts`, and run with `--live` for model-driven discovery.
+Planner: **live model via groq**.
 
 Each directory contains:
 
@@ -16,9 +16,9 @@ Alongside each directory, `<name>.console.txt` is the terminal output.
 
 ## Runs
 
-- **01-discover-sign-on** (kept from the last live-model run), Discover a sign-on capability. It exists so the session-expiry recovery has something to invoke.
-- **02-discover-read-balance** (kept from the last live-model run), The main read capability. The planner drives a frameset, types into a control with no accessible name, and declares its typed output.
-- **03-discover-open-sub-account** (kept from the last live-model run), A capability that WRITES. The submit step is classified irreversible, so discovery itself escalates for approval before the write; the scripted operator authorises it.
+- **01-discover-sign-on** (exit 0, as expected), Discover a sign-on capability. It exists so the session-expiry recovery has something to invoke.
+- **02-discover-read-balance** (exit 0, as expected), The main read capability. The planner drives a frameset, types into a control with no accessible name, and declares its typed output.
+- **03-discover-open-sub-account** (exit 0, as expected), A capability that WRITES. The submit step is classified irreversible, so discovery itself escalates for approval before the write; the scripted operator authorises it.
 - **04-catalog**, the catalog and the Anthropic tool definitions projected from the artifacts.
 - **05-replay-success** (exit 0, as expected), Deterministic replay, no model in the loop. Same member as the recording.
 - **06-replay-different-member** (exit 0, as expected), A DIFFERENT member. Proves the recording was parameterised and that the balance locator is structural rather than keyed on the value it read.
@@ -44,7 +44,7 @@ Alongside each directory, `<name>.console.txt` is the terminal output.
 
 **13 vs 14, the guardrail.** Same capability, same inputs. Without an operator it stops before writing; with one it completes. Grep for `policy_decision` and `control_transferred`.
 
-**16, cross-tenant reuse.** `artifacts/granite.member.read-savings-balance@1.0.0.json` contributes no steps of its own: five overrides, plus a placeholder step the schema currently forces on it.
+**16, cross-tenant reuse.** `artifacts/granite.member.read-savings-balance@1.0.0.json` contributes no steps of its own: five overrides and an empty step list, which the schema permits exactly when `tenant.extends` is set.
 
 **17, the drift signal.** Five runs, `rungs [0,0,0,0,0,0,0]` every time: every locator on its preferred strategy, nothing degraded. A step that starts winning on a later rung shows up here long before any assertion fails.
 

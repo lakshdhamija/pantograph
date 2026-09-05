@@ -10,7 +10,7 @@
       "intent": "Enter operator ID",
       "index": 0,
       "status": "ok",
-      "durationMs": 842,
+      "durationMs": 844,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -20,7 +20,7 @@
       "intent": "Enter operator password",
       "index": 1,
       "status": "ok",
-      "durationMs": 844,
+      "durationMs": 852,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -30,7 +30,7 @@
       "intent": "sign on",
       "index": 2,
       "status": "ok",
-      "durationMs": 909,
+      "durationMs": 922,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -40,7 +40,7 @@
       "intent": "Open Member Inquiry",
       "index": 3,
       "status": "ok",
-      "durationMs": 925,
+      "durationMs": 934,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -50,7 +50,7 @@
       "intent": "Enter member number to look up",
       "index": 4,
       "status": "ok",
-      "durationMs": 852,
+      "durationMs": 845,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
@@ -60,7 +60,7 @@
       "intent": "Submit member lookup",
       "index": 5,
       "status": "ok",
-      "durationMs": 821,
+      "durationMs": 803,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -70,14 +70,14 @@
       "intent": "Open member details",
       "index": 6,
       "status": "ok",
-      "durationMs": 14058,
+      "durationMs": 14026,
       "recoveriesApplied": [
         "dismiss-maintenance-notice"
       ],
       "detail": "applied 1 remedy step(s); the step's checkpoint held afterwards, so it did not need re-running"
     }
   ],
-  "durationMs": 19836,
+  "durationMs": 19814,
   "evidence": {
     "runId": "11-replay-recovered-interstitial",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs/11-replay-recovered-interstitial",

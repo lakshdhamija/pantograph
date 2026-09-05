@@ -451,10 +451,6 @@ export function parseCapability(raw: unknown): Capability {
   return zCapability.parse(raw);
 }
 
-export function safeParseCapability(raw: unknown): z.SafeParseReturnType<unknown, Capability> {
-  return zCapability.safeParse(raw);
-}
-
 /** Filename convention: one file per (key, version). */
 export function capabilityFileName(c: Pick<Capability, 'key' | 'version'>): string {
   return `${c.key}@${c.version}.json`;

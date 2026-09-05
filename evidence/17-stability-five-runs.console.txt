@@ -14,14 +14,14 @@ STABILITY  member.read-savings-balance@1.0.0  5 runs  -> STABLE
 
   statuses:      success=5
   success rate:  100%
-  duration:      6661-6798ms (median 6714ms)
+  duration:      6718-6837ms (median 6751ms)
 
   per run:
-     1. success             6798ms  rungs [0,0,0,0,0,0,0]
-     2. success             6770ms  rungs [0,0,0,0,0,0,0]
-     3. success             6714ms  rungs [0,0,0,0,0,0,0]
-     4. success             6661ms  rungs [0,0,0,0,0,0,0]
-     5. success             6700ms  rungs [0,0,0,0,0,0,0]
+     1. success             6837ms  rungs [0,0,0,0,0,0,0]
+     2. success             6833ms  rungs [0,0,0,0,0,0,0]
+     3. success             6723ms  rungs [0,0,0,0,0,0,0]
+     4. success             6718ms  rungs [0,0,0,0,0,0,0]
+     5. success             6751ms  rungs [0,0,0,0,0,0,0]
 
   Every locator resolved on its preferred strategy in every run. No drift signal.
 ------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 
-coreteller.sign-on@1.0.0   [approved]  risk=safe
+coreteller.sign-on@1.0.0   [approved]  risk=elevated
   Sign on to CORETELLER
   tenant first-riverside-cu / product coreteller
   inputs:   operatorId: string, operatorPassword: string [secret]
@@ -30,7 +30,6 @@ member.read-savings-balance@1.0.0   [approved]  risk=elevated
   outputs:  regularShareBalance: money
   outcomes: MEMBER_NOT_FOUND, REQUEST_REJECTED, MEMBER_RESTRICTED
   steps:    7, recoveries: 3, failure signatures: 1
-  stability: 2/3 successful, 0 degraded resolution(s)
 
 store.add-to-cart-and-review@1.0.0   [approved]  risk=elevated
   Add a product and reach checkout review

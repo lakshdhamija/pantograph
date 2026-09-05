@@ -6,72 +6,72 @@ run evidence: /Users/lakshdhamija/Documents/interface ai/runs/13-replay-write-un
   [001] automation run_started
   [002] automation policy allow (default)
   [003] automation act navigate
-  [004] automation   -> ok 301ms
+  [004] automation   -> ok 304ms
   [005] automation step 1/12 fill-operator-id: Enter operator ID
   [006] automation policy allow (default)
   [007] automation act fill textbox
-  [008] automation   -> ok 575ms
+  [008] automation   -> ok 587ms
   [009] automation assert fill-operator-id.expect: pass (textbox equals("Password") present via role_name)
   [010] automation step 2/12 fill-password: Enter operator password
   [011] automation policy allow (default)
   [012] automation act fill textbox
-  [013] automation   -> ok 573ms
+  [013] automation   -> ok 586ms
   [014] automation assert fill-password.expect: pass (button equals("Sign On") present via role_name)
-  [015] automation step 3/12 click-sign-on: click Sign On button
+  [015] automation step 3/12 click-sign-on: click Sign On to log in
   [016] automation policy allow (default)
   [017] automation act click button
-  [018] automation   -> ok 626ms
+  [018] automation   -> ok 645ms
   [019] automation assert click-sign-on.expect: pass (location "http://127.0.0.1:8731/desk" matches //desk$/)
-  [020] automation step 4/12 click-member-inquiry: Open Member Inquiry screen
+  [020] automation step 4/12 click-member-inquiry: Navigate to Member Inquiry
   [021] automation policy allow (default)
   [022] automation act click link
-  [023] automation   -> ok 652ms
+  [023] automation   -> ok 665ms
   [024] automation assert click-member-inquiry.expect: pass (text contains("Member Number Surname") found)
-  [025] automation step 5/12 fill-member-number: Enter member number
+  [025] automation step 5/12 fill-member-number: Enter member number to look up
   [026] automation policy allow (default)
   [027] automation act fill textbox
-  [028] automation   -> ok 568ms
+  [028] automation   -> ok 560ms
   [029] automation assert fill-member-number.expect: pass ([content] button equals("Go") present via role_name)
-  [030] automation step 6/12 click-go: Submit member number to retrieve member record
+  [030] automation step 6/12 click-go: Lookup member
   [031] automation policy allow (default)
   [032] automation act click button
-  [033] automation   -> ok 542ms
+  [033] automation   -> ok 550ms
   [034] automation assert click-go.expect: pass (text contains("Inquiry Results") found)
-  [035] automation step 7/12 click-member: Open member details
+  [035] automation step 7/12 click-member: Open member details for member 100234
   [036] automation policy allow (default)
   [037] automation act click link
-  [038] automation   -> ok 566ms
+  [038] automation   -> ok 635ms
   [039] automation assert click-member.expect: pass (text contains("Member Detail") found)
-  [040] automation step 8/12 click-open-sub-account: Open sub-account screen
+  [040] automation step 8/12 click-open-sub-account: Open sub-account dialog
   [041] automation policy allow (default)
   [042] automation act click link
-  [043] automation   -> ok 557ms
+  [043] automation   -> ok 551ms
   [044] automation assert click-open-sub-account.expect: pass (text contains("Product Code") found)
-  [045] automation step 9/12 select-product-code: Select Vacation Club product
+  [045] automation step 9/12 select-product-code: Select product code for new sub-account
   [046] automation policy allow (default)
   [047] automation act select combobox
-  [048] automation   -> ok 544ms
+  [048] automation   -> ok 560ms
   [049] automation assert select-product-code.expect: pass ([content] textbox * present via relative)
   [050] automation step 10/12 fill-opening-deposit: Enter opening deposit amount
   [051] automation policy allow (default)
   [052] automation act fill textbox
-  [053] automation   -> ok 561ms
+  [053] automation   -> ok 545ms
   [054] automation assert fill-opening-deposit.expect: pass ([content] button equals("Submit Request") present via role_name)
-  [055] automation step 11/12 click-submit-request: Submit sub-account request
+  [055] automation step 11/12 click-submit-request: Submit sub-account creation request
   [056] automation policy require_approval (risk.irreversible)
   [057] automation note
   [058] automation blob
   [059] automation blob
-  [060] automation ESCALATE iv_e15c6719: approval_required: writes to a system of record via [content] button equals("Submit Request"); policy stance is "require_approval"
+  [060] automation ESCALATE iv_1d6631a8: approval_required: writes to a system of record via [content] button equals("Submit Request"); policy stance is "require_approval"
   [061] system control automation -> system
   [062] system control system -> automation
   [063] automation escalation_resolved
   [064] automation run_finished
 
 ------------------------------------------------------------------------
-ESCALATED  member.open-sub-account@1.0.0  (9537ms)
+ESCALATED  member.open-sub-account@1.0.0  (9629ms)
 
-  intervention:   iv_e15c6719
+  intervention:   iv_1d6631a8
   reason:         approval_required
   human decision: abort
   note:           operator mode is "abort": no human is available for this run

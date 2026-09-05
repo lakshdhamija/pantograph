@@ -99,11 +99,18 @@ export async function createSession(opts: SessionOptions): Promise<Session> {
 
   let consoleHandle: { url: string; close: () => Promise<void> } | undefined;
   if ((opts.operatorMode ?? 'abort') === 'console') {
-    consoleHandle = await startOperatorConsole({
-      broker,
-      port: opts.operatorPort ?? 8732,
-      operatorId: opts.operatorId ?? process.env['USER'] ?? 'unknown-operator',
-    });
+    try {
+      consoleHandle = await startOperatorConsole({
+        broker,
+        port: opts.operatorPort ?? 8732,
+        operatorId: opts.operatorId ?? process.env['USER'] ?? 'unknown-operator',
+      });
+    } catch (e) {
+      // The browser is already up by this point. Failing to start the console
+      // must not leave it running with nothing holding a reference to it.
+      await raw.close().catch(() => undefined);
+      throw e;
+    }
   }
 
   return {

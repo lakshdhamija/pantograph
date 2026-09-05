@@ -12,61 +12,61 @@ run evidence:  /Users/lakshdhamija/Documents/interface ai/runs/03-discover-open-
   [007] automation planner_response
   [008] automation policy allow (default)
   [009] automation act fill textbox
-  [010] automation   -> ok 572ms
+  [010] automation   -> ok 576ms
   [011] automation see CORETELLER Sign On [20 nodes] 07c931c8
   [012] automation planner_request
   [013] automation planner_response
   [014] automation policy allow (default)
   [015] automation act fill textbox
-  [016] automation   -> ok 587ms
+  [016] automation   -> ok 583ms
   [017] automation see CORETELLER Sign On [20 nodes] 07c931c8
   [018] automation planner_request
   [019] automation planner_response
   [020] automation policy allow (default)
   [021] automation act click button
-  [022] automation   -> ok 662ms
+  [022] automation   -> ok 649ms
   [023] automation see CORETELLER Desktop [23 nodes] c2e9fdcb
   [024] automation planner_request
   [025] automation planner_response
   [026] automation policy allow (default)
   [027] automation act click link
-  [028] automation   -> ok 662ms
+  [028] automation   -> ok 659ms
   [029] automation see CORETELLER Desktop [32 nodes] cf89b999
   [030] automation planner_request
   [031] automation planner_response
   [032] automation policy allow (default)
   [033] automation act fill textbox
-  [034] automation   -> ok 560ms
+  [034] automation   -> ok 573ms
   [035] automation see CORETELLER Desktop [32 nodes] cf89b999
   [036] automation planner_request
   [037] automation planner_response
   [038] automation policy allow (default)
   [039] automation act click button
-  [040] automation   -> ok 597ms
+  [040] automation   -> ok 594ms
   [041] automation see CORETELLER Desktop [30 nodes] e040b70c
   [042] automation planner_request
   [043] automation planner_response
   [044] automation policy allow (default)
   [045] automation act click link
-  [046] automation   -> ok 641ms
+  [046] automation   -> ok 638ms
   [047] automation see CORETELLER Desktop [63 nodes] efd43cbc
   [048] automation planner_request
   [049] automation planner_response
   [050] automation policy allow (default)
   [051] automation act click link
-  [052] automation   -> ok 642ms
+  [052] automation   -> ok 612ms
   [053] automation see CORETELLER Desktop [48 nodes] 0f89c789
   [054] automation planner_request
   [055] automation planner_response
   [056] automation policy allow (default)
   [057] automation act select combobox
-  [058] automation   -> ok 562ms
+  [058] automation   -> ok 560ms
   [059] automation see CORETELLER Desktop [48 nodes] 0f89c789
   [060] automation planner_request
   [061] automation planner_response
   [062] automation policy allow (default)
   [063] automation act fill textbox
-  [064] automation   -> ok 563ms
+  [064] automation   -> ok 557ms
   [065] automation see CORETELLER Desktop [48 nodes] 0f89c789
   [066] automation planner_request
   [067] automation planner_response
@@ -74,7 +74,7 @@ run evidence:  /Users/lakshdhamija/Documents/interface ai/runs/03-discover-open-
   [069] automation note
   [070] automation blob
   [071] automation blob
-  [072] automation ESCALATE iv_689511ed: approval_required: writes to a system of record via [content] button equals("Submit Request"); policy stance is "require_approval"
+  [072] automation ESCALATE iv_40c28702: approval_required: writes to a system of record via [content] button equals("Submit Request"); policy stance is "require_approval"
   [073] system control automation -> system
   [074] system control system -> operator:auto
   [075] system control operator:auto -> automation
@@ -82,13 +82,13 @@ run evidence:  /Users/lakshdhamija/Documents/interface ai/runs/03-discover-open-
   [077] automation policy require_approval (risk.irreversible)
   [078] automation note
   [079] automation act click button
-  [080] automation   -> ok 579ms
+  [080] automation   -> ok 559ms
   [081] automation see CORETELLER Desktop [0 nodes] 00001505
   [082] automation planner_request
   [083] automation planner_response
   [084] automation policy allow (default)
   [085] automation act answer_dialog
-  [086] automation   -> ok 247ms
+  [086] automation   -> ok 288ms
   [087] automation see CORETELLER Desktop [40 nodes] 830720d7
   [088] automation planner_request
   [089] automation planner_response
@@ -98,7 +98,7 @@ run evidence:  /Users/lakshdhamija/Documents/interface ai/runs/03-discover-open-
   [093] automation planner_response
   [094] automation note
 
-discovery: succeeded in 157.5s over 12 step(s)
+discovery: succeeded in 169.5s over 12 step(s)
   [095] automation blob
   [096] automation run_finished
 

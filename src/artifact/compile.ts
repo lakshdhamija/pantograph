@@ -451,7 +451,7 @@ function locationPattern(url: string, literalToParam: Map<string, string>): stri
   try {
     const u = new URL(url);
     let path = u.pathname + u.search;
-    const SENTINEL = ' ';
+    const SENTINEL = '\u0000';
     for (const literal of [...literalToParam.keys()].sort((a, b) => b.length - a.length)) {
       if (path.includes(literal)) path = path.split(literal).join(SENTINEL);
     }

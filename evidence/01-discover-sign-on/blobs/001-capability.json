@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "id": "cap_80e0c906-395d-4ecf-98bc-01ca6ab99e4f",
+  "id": "cap_8ddeb1d0-2e22-4a5f-aaae-8a6e6ecfa674",
   "key": "coreteller.sign-on",
   "version": "1.0.0",
   "title": "Sign on to CORETELLER",
@@ -152,7 +152,7 @@
               "height": 17
             }
           },
-          "rationale": "click Sign On button"
+          "rationale": "click Sign On button to submit credentials"
         }
       },
       "timeoutMs": 12000,
@@ -161,7 +161,7 @@
     },
     {
       "id": "click-sign-on",
-      "intent": "click Sign On button",
+      "intent": "click Sign On button to submit credentials",
       "action": {
         "kind": "click",
         "target": {
@@ -186,7 +186,7 @@
               "height": 17
             }
           },
-          "rationale": "click Sign On button"
+          "rationale": "click Sign On button to submit credentials"
         }
       },
       "expect": {
@@ -194,7 +194,7 @@
         "pattern": "/desk$"
       },
       "timeoutMs": 12000,
-      "risk": "safe",
+      "risk": "elevated",
       "optional": false
     }
   ],
@@ -456,14 +456,14 @@
       "fill",
       "navigate"
     ],
-    "riskTier": "safe",
+    "riskTier": "elevated",
     "requiresHumanApproval": false,
     "maxDurationMs": 120000,
     "portabilityFloor": "any_surface",
     "idempotent": true
   },
   "provenance": {
-    "recordedAt": "2026-09-04T23:50:02.284Z",
+    "recordedAt": "2026-09-05T01:40:58.930Z",
     "recordedBy": "lakshdhamija",
     "discoveryRunId": "01-discover-sign-on",
     "goal": "Sign on to the teller desktop as the supplied operator",
@@ -471,7 +471,7 @@
       "provider": "groq",
       "model": "openai/gpt-oss-120b"
     },
-    "transcriptDigest": "sha256:92ba4f487e7862f9862f61e47ca7ff14",
+    "transcriptDigest": "sha256:386555db8cbbde8364b0c4429f78dd9f",
     "fixtureNote": "Recorded against the CORETELLER fixture in fixtures/legacy-bank. All data is synthetic."
   },
   "approval": {

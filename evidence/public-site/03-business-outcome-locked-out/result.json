@@ -14,7 +14,7 @@
       "intent": "enter the storefront username",
       "index": 0,
       "status": "ok",
-      "durationMs": 849,
+      "durationMs": 837,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -30,7 +30,7 @@
       "degraded": false
     }
   ],
-  "durationMs": 2939,
+  "durationMs": 2883,
   "evidence": {
     "runId": "03-business-outcome-locked-out",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs-public/03-business-outcome-locked-out",

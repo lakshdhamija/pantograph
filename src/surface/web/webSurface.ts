@@ -111,7 +111,8 @@ export class WebSurface implements Surface {
     const viewport = opts.viewport ?? { width: 1280, height: 800 };
     const context = await browser.newContext({
       viewport,
-      // No real credentials, no real PII: the fixture is synthetic by design.
+      // Certificate errors are not ignored: a surface that silently accepts a
+      // bad certificate is one that can be pointed at an impostor.
       ignoreHTTPSErrors: false,
       ...(opts.recordVideoDir ? { recordVideo: { dir: opts.recordVideoDir, size: viewport } } : {}),
     });
@@ -124,10 +125,7 @@ export class WebSurface implements Surface {
     this.portabilityFloor = floor;
   }
 
-  /** Escape hatch for the operator console, which needs to stream the page. */
-  get livePage(): Page {
-    return this.page;
-  }
+  
 
   /** Path of the recorded video, available only once the context has closed. */
   async videoPath(): Promise<string | undefined> {
@@ -159,11 +157,6 @@ export class WebSurface implements Surface {
     const obs = await perceive(this.page, undefined);
     this.lastSeen = { location: obs.location, title: obs.title };
     return obs;
-  }
-
-  async resolve(target: TargetDescriptor, floor: Portability = 'pixel'): Promise<ResolvedTarget | ResolveFailure> {
-    const obs = await this.observe();
-    return resolveTarget(obs, target, { portabilityFloor: floor });
   }
 
   async act(action: Action): Promise<ActionResult> {

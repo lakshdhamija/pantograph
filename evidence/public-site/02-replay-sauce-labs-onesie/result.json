@@ -10,7 +10,7 @@
       "intent": "enter the storefront username",
       "index": 0,
       "status": "ok",
-      "durationMs": 845,
+      "durationMs": 859,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -20,7 +20,7 @@
       "intent": "enter the storefront password",
       "index": 1,
       "status": "ok",
-      "durationMs": 845,
+      "durationMs": 850,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -30,7 +30,7 @@
       "intent": "sign in to the storefront",
       "index": 2,
       "status": "ok",
-      "durationMs": 866,
+      "durationMs": 885,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -40,7 +40,7 @@
       "intent": "add Sauce Labs Backpack to the cart",
       "index": 3,
       "status": "ok",
-      "durationMs": 827,
+      "durationMs": 838,
       "strategyIndex": 1,
       "strategyKind": "relative",
       "degraded": true
@@ -50,7 +50,7 @@
       "intent": "open the shopping cart",
       "index": 4,
       "status": "ok",
-      "durationMs": 866,
+      "durationMs": 902,
       "strategyIndex": 0,
       "strategyKind": "test_id",
       "degraded": false
@@ -60,7 +60,7 @@
       "intent": "begin checkout",
       "index": 5,
       "status": "ok",
-      "durationMs": 871,
+      "durationMs": 872,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -70,7 +70,7 @@
       "intent": "enter the first name",
       "index": 6,
       "status": "ok",
-      "durationMs": 832,
+      "durationMs": 803,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -80,7 +80,7 @@
       "intent": "enter the last name",
       "index": 7,
       "status": "ok",
-      "durationMs": 837,
+      "durationMs": 812,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -90,7 +90,7 @@
       "intent": "enter the postal code",
       "index": 8,
       "status": "ok",
-      "durationMs": 837,
+      "durationMs": 821,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -100,13 +100,13 @@
       "intent": "continue to the order review",
       "index": 9,
       "status": "ok",
-      "durationMs": 894,
+      "durationMs": 872,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     }
   ],
-  "durationMs": 9202,
+  "durationMs": 9162,
   "evidence": {
     "runId": "02-replay-sauce-labs-onesie",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs-public/02-replay-sauce-labs-onesie",

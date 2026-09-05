@@ -6,63 +6,63 @@ run evidence: /Users/lakshdhamija/Documents/interface ai/runs-public/02-replay-s
   [001] automation run_started
   [002] automation policy allow (default)
   [003] automation act navigate
-  [004] automation   -> ok 375ms
+  [004] automation   -> ok 355ms
   [005] automation step 1/10 fill-username: enter the storefront username
   [006] automation policy allow (default)
   [007] automation act fill textbox
-  [008] automation   -> ok 551ms
+  [008] automation   -> ok 577ms
   [009] automation assert fill-username.expect: pass (textbox equals("Password") present via role_name)
   [010] automation step 2/10 fill-password: enter the storefront password
   [011] automation policy allow (default)
   [012] automation act fill textbox
-  [013] automation   -> ok 569ms
+  [013] automation   -> ok 597ms
   [014] automation assert fill-password.expect: pass (button equals("Login") present via role_name)
   [015] automation step 3/10 click-login: sign in to the storefront
   [016] automation policy allow (default)
   [017] automation act click button
-  [018] automation   -> ok 599ms
+  [018] automation   -> ok 628ms
   [019] automation assert click-login.expect: pass (location "https://www.saucedemo.com/inventory.html" matches //inventory\.html$/)
   [020] automation step 4/10 click-add-to-cart: add Sauce Labs Backpack to the cart
   [021] automation policy allow (default)
   [022] automation act click button
-  [023] automation   -> ok 547ms (degraded locator)
+  [023] automation   -> ok 558ms (degraded locator)
   [024] automation assert click-add-to-cart.expect: pass (text contains("Remove") found)
   [025] automation step 5/10 click-link: open the shopping cart
   [026] automation policy allow (default)
   [027] automation act click link
-  [028] automation   -> ok 612ms
+  [028] automation   -> ok 621ms
   [029] automation assert click-link.expect: pass (location "https://www.saucedemo.com/cart.html" matches //cart\.html$/)
   [030] automation step 6/10 click-checkout: begin checkout
   [031] automation policy allow (default)
   [032] automation act click button
-  [033] automation   -> ok 611ms
+  [033] automation   -> ok 603ms
   [034] automation assert click-checkout.expect: pass (location "https://www.saucedemo.com/checkout-step-one.html" matches //checkout-step-one\.html$/)
   [035] automation step 7/10 fill-first-name: enter the first name
   [036] automation policy allow (default)
   [037] automation act fill textbox
-  [038] automation   -> ok 532ms
+  [038] automation   -> ok 550ms
   [039] automation assert fill-first-name.expect: pass (textbox equals("Last Name") present via role_name)
   [040] automation step 8/10 fill-last-name: enter the last name
   [041] automation policy allow (default)
   [042] automation act fill textbox
-  [043] automation   -> ok 531ms
+  [043] automation   -> ok 556ms
   [044] automation assert fill-last-name.expect: pass (textbox equals("Zip/Postal Code") present via role_name)
   [045] automation step 9/10 fill-zip-postal-code: enter the postal code
   [046] automation policy allow (default)
   [047] automation act fill textbox
-  [048] automation   -> ok 539ms
+  [048] automation   -> ok 555ms
   [049] automation assert fill-zip-postal-code.expect: pass (button equals("Continue") present via role_name)
   [050] automation step 10/10 click-continue: continue to the order review
   [051] automation policy allow (default)
   [052] automation act click button
-  [053] automation   -> ok 585ms
+  [053] automation   -> ok 615ms
   [054] automation assert click-continue.expect: pass (location "https://www.saucedemo.com/checkout-step-two.html" matches //checkout-step-two\.html$/)
   [055] automation assert successCondition: pass (all 1 held)
   [056] automation extract orderTotal = 32.39
   [057] automation run_finished
 
 ------------------------------------------------------------------------
-SUCCESS  store.add-to-cart-and-review@1.0.0  (9052ms)
+SUCCESS  store.add-to-cart-and-review@1.0.0  (9313ms)
 
 outputs:
   orderTotal = 32.39  [number]

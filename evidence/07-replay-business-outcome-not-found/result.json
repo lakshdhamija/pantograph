@@ -14,7 +14,7 @@
       "intent": "Enter operator ID",
       "index": 0,
       "status": "ok",
-      "durationMs": 874,
+      "durationMs": 847,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -24,7 +24,7 @@
       "intent": "Enter operator password",
       "index": 1,
       "status": "ok",
-      "durationMs": 874,
+      "durationMs": 861,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -34,7 +34,7 @@
       "intent": "sign on",
       "index": 2,
       "status": "ok",
-      "durationMs": 942,
+      "durationMs": 918,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -44,7 +44,7 @@
       "intent": "Open Member Inquiry",
       "index": 3,
       "status": "ok",
-      "durationMs": 942,
+      "durationMs": 948,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -54,7 +54,7 @@
       "intent": "Enter member number to look up",
       "index": 4,
       "status": "ok",
-      "durationMs": 853,
+      "durationMs": 848,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
@@ -64,13 +64,13 @@
       "intent": "Submit member lookup",
       "index": 5,
       "status": "ok",
-      "durationMs": 827,
+      "durationMs": 819,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
     }
   ],
-  "durationMs": 6171,
+  "durationMs": 6108,
   "evidence": {
     "runId": "07-replay-business-outcome-not-found",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs/07-replay-business-outcome-not-found",

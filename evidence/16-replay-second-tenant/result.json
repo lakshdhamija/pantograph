@@ -10,7 +10,7 @@
       "intent": "Enter operator ID",
       "index": 0,
       "status": "ok",
-      "durationMs": 838,
+      "durationMs": 867,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -20,7 +20,7 @@
       "intent": "Enter operator password",
       "index": 1,
       "status": "ok",
-      "durationMs": 839,
+      "durationMs": 871,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -30,7 +30,7 @@
       "intent": "sign on",
       "index": 2,
       "status": "ok",
-      "durationMs": 927,
+      "durationMs": 935,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -40,7 +40,7 @@
       "intent": "Open Member Inquiry",
       "index": 3,
       "status": "ok",
-      "durationMs": 945,
+      "durationMs": 947,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -50,7 +50,7 @@
       "intent": "Enter member number to look up",
       "index": 4,
       "status": "ok",
-      "durationMs": 850,
+      "durationMs": 833,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
@@ -60,7 +60,7 @@
       "intent": "Submit member lookup",
       "index": 5,
       "status": "ok",
-      "durationMs": 831,
+      "durationMs": 835,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -70,13 +70,13 @@
       "intent": "Open member details",
       "index": 6,
       "status": "ok",
-      "durationMs": 857,
+      "durationMs": 847,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
     }
   ],
-  "durationMs": 6677,
+  "durationMs": 6723,
   "evidence": {
     "runId": "16-replay-second-tenant",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs/16-replay-second-tenant",

@@ -37,6 +37,6 @@ solution. This surface answers it. It also exercises four things the fixture can
 | declared `portabilityFloor` | `any_surface` | `any_web` |
 | why | no test IDs anywhere, so the ladder derives relational locators | test IDs present, and the ladder uses one where nothing portable is unique |
 | framesets | yes | no |
-| error taxonomy | fully exercised, faults injected on demand | two real business outcomes, no injection possible |
+| error taxonomy | fully exercised, faults injected on demand | two business outcomes declared, one exercised; no injection possible |
 
 Same recorder, same engine, neither told which app it was looking at.

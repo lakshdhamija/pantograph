@@ -1,9 +1,9 @@
 {
   "runId": "04-stability-three-runs-03",
   "status": "success",
-  "startedAt": "2026-09-05T00:57:21.434Z",
-  "finishedAt": "2026-09-05T00:57:30.897Z",
-  "durationMs": 9463,
+  "startedAt": "2026-09-05T01:36:42.672Z",
+  "finishedAt": "2026-09-05T01:36:52.087Z",
+  "durationMs": 9415,
   "events": 57,
   "blobs": 0,
   "redactions": {

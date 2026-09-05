@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "id": "cap_0f678382-1ffb-4e8e-b936-255708097a99",
+  "id": "cap_73a12159-588a-4f18-bf08-a2b805e6a616",
   "key": "member.open-sub-account",
   "version": "1.0.0",
   "title": "Open a sub-account for a member",
@@ -234,7 +234,7 @@
               "height": 17
             }
           },
-          "rationale": "click Sign On button"
+          "rationale": "click Sign On to log in"
         }
       },
       "timeoutMs": 12000,
@@ -243,7 +243,7 @@
     },
     {
       "id": "click-sign-on",
-      "intent": "click Sign On button",
+      "intent": "click Sign On to log in",
       "action": {
         "kind": "click",
         "target": {
@@ -268,7 +268,7 @@
               "height": 17
             }
           },
-          "rationale": "click Sign On button"
+          "rationale": "click Sign On to log in"
         }
       },
       "expect": {
@@ -281,7 +281,7 @@
     },
     {
       "id": "click-member-inquiry",
-      "intent": "Open Member Inquiry screen",
+      "intent": "Navigate to Member Inquiry",
       "action": {
         "kind": "click",
         "target": {
@@ -310,7 +310,7 @@
               "height": 13
             }
           },
-          "rationale": "Open Member Inquiry screen"
+          "rationale": "Navigate to Member Inquiry"
         }
       },
       "expect": {
@@ -326,7 +326,7 @@
     },
     {
       "id": "fill-member-number",
-      "intent": "Enter member number",
+      "intent": "Enter member number to look up",
       "action": {
         "kind": "fill",
         "target": {
@@ -366,7 +366,7 @@
               "height": 17
             }
           },
-          "rationale": "Enter member number"
+          "rationale": "Enter member number to look up"
         },
         "valueTemplate": "{{inputs.memberId}}"
       },
@@ -397,7 +397,7 @@
               "height": 17
             }
           },
-          "rationale": "Submit member number to retrieve member record"
+          "rationale": "Lookup member"
         }
       },
       "timeoutMs": 12000,
@@ -406,7 +406,7 @@
     },
     {
       "id": "click-go",
-      "intent": "Submit member number to retrieve member record",
+      "intent": "Lookup member",
       "action": {
         "kind": "click",
         "target": {
@@ -434,7 +434,7 @@
               "height": 17
             }
           },
-          "rationale": "Submit member number to retrieve member record"
+          "rationale": "Lookup member"
         }
       },
       "expect": {
@@ -445,12 +445,12 @@
         }
       },
       "timeoutMs": 12000,
-      "risk": "elevated",
+      "risk": "safe",
       "optional": false
     },
     {
       "id": "click-member",
-      "intent": "Open member details",
+      "intent": "Open member details for member 100234",
       "action": {
         "kind": "click",
         "target": {
@@ -492,7 +492,7 @@
               "height": 13
             }
           },
-          "rationale": "Open member details"
+          "rationale": "Open member details for member 100234"
         }
       },
       "expect": {
@@ -508,7 +508,7 @@
     },
     {
       "id": "click-open-sub-account",
-      "intent": "Open sub-account screen",
+      "intent": "Open sub-account dialog",
       "action": {
         "kind": "click",
         "target": {
@@ -537,7 +537,7 @@
               "height": 13
             }
           },
-          "rationale": "Open sub-account screen"
+          "rationale": "Open sub-account dialog"
         }
       },
       "expect": {
@@ -553,7 +553,7 @@
     },
     {
       "id": "select-product-code",
-      "intent": "Select Vacation Club product",
+      "intent": "Select product code for new sub-account",
       "action": {
         "kind": "select",
         "target": {
@@ -581,7 +581,7 @@
               "height": 17
             }
           },
-          "rationale": "Select Vacation Club product"
+          "rationale": "Select product code for new sub-account"
         },
         "valueTemplate": "{{inputs.productCode}}"
       },
@@ -628,7 +628,7 @@
         }
       },
       "timeoutMs": 12000,
-      "risk": "safe",
+      "risk": "elevated",
       "optional": false
     },
     {
@@ -704,7 +704,7 @@
               "height": 17
             }
           },
-          "rationale": "Submit sub-account request"
+          "rationale": "Submit sub-account creation request"
         }
       },
       "timeoutMs": 12000,
@@ -713,7 +713,7 @@
     },
     {
       "id": "click-submit-request",
-      "intent": "Submit sub-account request",
+      "intent": "Submit sub-account creation request",
       "action": {
         "kind": "click",
         "target": {
@@ -741,7 +741,7 @@
               "height": 17
             }
           },
-          "rationale": "Submit sub-account request"
+          "rationale": "Submit sub-account creation request"
         }
       },
       "expect": {
@@ -757,7 +757,7 @@
     },
     {
       "id": "confirm",
-      "intent": "Confirm creation of new vacation club sub-account",
+      "intent": "confirm sub-account creation",
       "action": {
         "kind": "answer_dialog",
         "accept": true
@@ -1079,7 +1079,7 @@
     "idempotent": false
   },
   "provenance": {
-    "recordedAt": "2026-09-04T23:54:31.141Z",
+    "recordedAt": "2026-09-05T01:45:39.706Z",
     "recordedBy": "lakshdhamija",
     "discoveryRunId": "03-discover-open-sub-account",
     "goal": "Open a new vacation club sub-account for member 100234 with a 250.00 opening deposit and reach the confirmation screen",
@@ -1087,7 +1087,7 @@
       "provider": "groq",
       "model": "openai/gpt-oss-120b"
     },
-    "transcriptDigest": "sha256:979b7635de8524f539a55fce1fa7a1ea",
+    "transcriptDigest": "sha256:c8f9222b9d7184254536737be657e159",
     "fixtureNote": "Recorded against the CORETELLER fixture in fixtures/legacy-bank. All data is synthetic."
   },
   "approval": {

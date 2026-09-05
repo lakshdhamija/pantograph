@@ -7,105 +7,105 @@ run evidence: /Users/lakshdhamija/Documents/interface ai/runs/12-replay-recovere
   [001] automation run_started
   [002] automation policy allow (default)
   [003] automation act navigate
-  [004] automation   -> ok 303ms
+  [004] automation   -> ok 307ms
   [005] automation step 1/7 fill-operator-id: Enter operator ID
   [006] automation policy allow (default)
   [007] automation act fill textbox
-  [008] automation   -> ok 559ms
+  [008] automation   -> ok 580ms
   [009] automation assert fill-operator-id.expect: pass (textbox equals("Password") present via role_name)
   [010] automation step 2/7 fill-password: Enter operator password
   [011] automation policy allow (default)
   [012] automation act fill textbox
-  [013] automation   -> ok 564ms
+  [013] automation   -> ok 588ms
   [014] automation assert fill-password.expect: pass (button equals("Sign On") present via role_name)
   [015] automation step 3/7 click-sign-on: sign on
   [016] automation policy allow (default)
   [017] automation act click button
-  [018] automation   -> ok 640ms
+  [018] automation   -> ok 651ms
   [019] automation assert click-sign-on.expect: pass (location "http://127.0.0.1:8731/desk" matches //desk$/)
   [020] automation step 4/7 click-member-inquiry: Open Member Inquiry
   [021] automation policy allow (default)
   [022] automation act click link
-  [023] automation   -> ok 647ms
+  [023] automation   -> ok 654ms
   [024] automation assert click-member-inquiry.expect: pass (text contains("Member Number Surname") found)
   [025] automation step 5/7 fill-member-number: Enter member number to look up
   [026] automation policy allow (default)
   [027] automation act fill textbox
-  [028] automation   -> ok 565ms
+  [028] automation   -> ok 564ms
   [029] automation assert fill-member-number.expect: pass ([content] button equals("Go") present via role_name)
   [030] automation step 6/7 click-go: Submit member lookup
   [031] automation policy allow (default)
   [032] automation act click button
-  [033] automation   -> ok 546ms
+  [033] automation   -> ok 529ms
   [034] automation assert click-go.expect: FAIL (text contains("Inquiry Results") not found)
   [035] automation detector session_invalid reauthenticate
   [036] automation note
   [037] automation run_started
   [038] automation policy allow (default)
   [039] automation act navigate
-  [040] automation   -> ok 313ms
+  [040] automation   -> ok 327ms
   [041] automation step 1/3 fill-operator-id: Enter operator ID
   [042] automation policy allow (default)
   [043] automation act fill textbox
-  [044] automation   -> ok 571ms
+  [044] automation   -> ok 562ms
   [045] automation assert fill-operator-id.expect: pass (textbox equals("Password") present via role_name)
   [046] automation step 2/3 fill-password: Enter operator password
   [047] automation policy allow (default)
   [048] automation act fill textbox
-  [049] automation   -> ok 552ms
+  [049] automation   -> ok 556ms
   [050] automation assert fill-password.expect: pass (button equals("Sign On") present via role_name)
-  [051] automation step 3/3 click-sign-on: click Sign On button
+  [051] automation step 3/3 click-sign-on: click Sign On button to submit credentials
   [052] automation policy allow (default)
   [053] automation act click button
-  [054] automation   -> ok 604ms
+  [054] automation   -> ok 695ms
   [055] automation assert click-sign-on.expect: pass (location "http://127.0.0.1:8731/desk" matches //desk$/)
   [056] automation assert successCondition: pass (all 2 held)
   [057] automation recovery reauthenticate #1 -> resolved
   [058] automation note
   [059] automation policy allow (default)
   [060] automation act navigate
-  [061] automation   -> ok 308ms
+  [061] automation   -> ok 318ms
   [062] automation step 1/7 fill-operator-id: Enter operator ID
   [063] automation policy allow (default)
   [064] automation act fill textbox
-  [065] automation   -> ok 562ms
+  [065] automation   -> ok 567ms
   [066] automation assert fill-operator-id.expect: pass (textbox equals("Password") present via role_name)
   [067] automation step 2/7 fill-password: Enter operator password
   [068] automation policy allow (default)
   [069] automation act fill textbox
-  [070] automation   -> ok 533ms
+  [070] automation   -> ok 557ms
   [071] automation assert fill-password.expect: pass (button equals("Sign On") present via role_name)
   [072] automation step 3/7 click-sign-on: sign on
   [073] automation policy allow (default)
   [074] automation act click button
-  [075] automation   -> ok 624ms
+  [075] automation   -> ok 641ms
   [076] automation assert click-sign-on.expect: pass (location "http://127.0.0.1:8731/desk" matches //desk$/)
   [077] automation step 4/7 click-member-inquiry: Open Member Inquiry
   [078] automation policy allow (default)
   [079] automation act click link
-  [080] automation   -> ok 618ms
+  [080] automation   -> ok 628ms
   [081] automation assert click-member-inquiry.expect: pass (text contains("Member Number Surname") found)
   [082] automation step 5/7 fill-member-number: Enter member number to look up
   [083] automation policy allow (default)
   [084] automation act fill textbox
-  [085] automation   -> ok 551ms
+  [085] automation   -> ok 557ms
   [086] automation assert fill-member-number.expect: pass ([content] button equals("Go") present via role_name)
   [087] automation step 6/7 click-go: Submit member lookup
   [088] automation policy allow (default)
   [089] automation act click button
-  [090] automation   -> ok 542ms
+  [090] automation   -> ok 543ms
   [091] automation assert click-go.expect: pass (text contains("Inquiry Results") found)
   [092] automation step 7/7 click-member: Open member details
   [093] automation policy allow (default)
   [094] automation act click link
-  [095] automation   -> ok 627ms
+  [095] automation   -> ok 636ms
   [096] automation assert click-member.expect: pass (text contains("Member Detail") found)
   [097] automation assert successCondition: pass (all 2 held)
   [098] automation extract regularShareBalance = 18234.55
   [099] automation run_finished
 
 ------------------------------------------------------------------------
-SUCCESS  member.read-savings-balance@1.0.0  (29895ms)
+SUCCESS  member.read-savings-balance@1.0.0  (30630ms)
 
 outputs:
   regularShareBalance = 18234.55  [number]

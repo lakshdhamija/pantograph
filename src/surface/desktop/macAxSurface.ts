@@ -217,13 +217,6 @@ export class MacAxSurface implements Surface {
     return axTreeToObservation(tree, { appName: this.appName });
   }
 
-  async resolve(target: TargetDescriptor, floor?: Portability): Promise<ResolvedTarget | ResolveFailure> {
-    // Note what is NOT here: any desktop-specific resolution logic. The same
-    // pure resolver serves both surfaces, which is the claim this file exists
-    // to make checkable.
-    return resolveTarget(await this.observe(), target, { portabilityFloor: floor ?? this.floor });
-  }
-
   async act(_action: Action): Promise<ActionResult> {
     throw new DesktopSurfaceUnavailableError(
       'MacAxSurface can perceive but not act. Injecting synthetic events needs CGEvent through a native ' +

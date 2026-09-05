@@ -154,7 +154,7 @@
   "approval": {
     "state": "approved",
     "approvedBy": "demo-reviewer",
-    "approvedAt": "2026-09-05T00:57:32.697Z",
+    "approvedAt": "2026-09-05T01:45:40.737Z",
     "note": "Reviewed the recorded flow and its locators against the fixture."
   },
   "stability": {

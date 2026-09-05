@@ -14,7 +14,7 @@
       "intent": "Enter operator ID",
       "index": 0,
       "status": "ok",
-      "durationMs": 873,
+      "durationMs": 859,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -24,7 +24,7 @@
       "intent": "Enter operator password",
       "index": 1,
       "status": "ok",
-      "durationMs": 870,
+      "durationMs": 874,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -34,7 +34,7 @@
       "intent": "sign on",
       "index": 2,
       "status": "ok",
-      "durationMs": 945,
+      "durationMs": 926,
       "strategyIndex": 0,
       "strategyKind": "role_name",
       "degraded": false
@@ -54,13 +54,13 @@
       "intent": "Enter member number to look up",
       "index": 4,
       "status": "ok",
-      "durationMs": 855,
+      "durationMs": 850,
       "strategyIndex": 0,
       "strategyKind": "relative",
       "degraded": false
     }
   ],
-  "durationMs": 5627,
+  "durationMs": 5590,
   "evidence": {
     "runId": "08-replay-business-outcome-restricted",
     "dir": "/Users/lakshdhamija/Documents/interface ai/runs/08-replay-business-outcome-restricted",

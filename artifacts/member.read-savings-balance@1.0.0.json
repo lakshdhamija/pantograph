@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "id": "cap_e949fc9d-e02d-475c-89c3-cf6421ee84dc",
+  "id": "cap_67fb1656-b9a5-4c8e-91dc-68948aaa6d16",
   "key": "member.read-savings-balance",
   "version": "1.0.0",
   "title": "Read a member's savings balance",
@@ -800,7 +800,7 @@
     "idempotent": true
   },
   "provenance": {
-    "recordedAt": "2026-09-04T23:51:52.882Z",
+    "recordedAt": "2026-09-05T01:42:49.356Z",
     "recordedBy": "lakshdhamija",
     "discoveryRunId": "02-discover-read-balance",
     "goal": "Look up member 100234 and read their current regular share (savings) balance",
@@ -808,21 +808,21 @@
       "provider": "groq",
       "model": "openai/gpt-oss-120b"
     },
-    "transcriptDigest": "sha256:eff9a1fafccc77c28a3d767849194300",
+    "transcriptDigest": "sha256:3c5940cdc2edd79445ae1860b8f1eacc",
     "fixtureNote": "Recorded against the CORETELLER fixture in fixtures/legacy-bank. All data is synthetic."
   },
   "approval": {
     "state": "approved",
     "approvedBy": "demo-reviewer",
-    "approvedAt": "2026-09-05T00:57:32.240Z",
+    "approvedAt": "2026-09-05T01:45:40.283Z",
     "note": "Reviewed the recorded flow and its locators against the fixture."
   },
   "stability": {
-    "replays": 6,
-    "successes": 4,
-    "businessOutcomes": 2,
+    "replays": 3,
+    "successes": 2,
+    "businessOutcomes": 1,
     "failures": 0,
-    "lastReplayAt": "2026-09-05T00:57:55.726Z",
+    "lastReplayAt": "2026-09-05T01:46:04.125Z",
     "degradedResolutions": 0
   }
 }

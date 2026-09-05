@@ -89,7 +89,9 @@ export async function startOperatorConsole(
       if (!iv) return notFound(res, `no intervention ${id}`);
       const action = parts[2];
 
-      if (!action && req.method === 'GET') return html(res, detailPage(iv, operatorId, token));
+      if (!action && req.method === 'GET') {
+        return html(res, detailPage(iv, operatorId, token, url.searchParams.get('msg'), url.searchParams.get('err')));
+      }
 
       if (action === 'screen.png') {
         const surface = broker.surfaceFor(id, operatorId);
@@ -127,7 +129,16 @@ export async function startOperatorConsole(
     return notFound(res, 'not found');
   }
 
-  await new Promise<void>((resolve) => server.listen(port, '127.0.0.1', resolve));
+  await new Promise<void>((resolve, reject) => {
+    server.once('error', (e: NodeJS.ErrnoException) => {
+      reject(
+        e.code === 'EADDRINUSE'
+          ? new Error(`the operator console cannot bind port ${port}: something is already listening. Pass --operator-port to choose another.`)
+          : e,
+      );
+    });
+    server.listen(port, '127.0.0.1', resolve);
+  });
   return {
     // The token rides in the URL because copying the printed line is how a
     // person gets in. It lives for one run, in one process, and is never
@@ -212,6 +223,7 @@ button.primary{background:#3b4a5a;border-color:#5e81ac}
 button.danger{border-color:#bf616a;color:#bf616a}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .msg{background:#2e3440;border-left:3px solid #ebcb8b;padding:7px 10px;margin-bottom:12px}
+.msg.err{border-left-color:#bf616a}
 img.screen{max-width:100%;border:1px solid #2a2f3d;border-radius:4px;background:#fff}
 .dim{color:#6c7689}
 `;
@@ -244,7 +256,7 @@ ${done.length ? `<h2>Resolved</h2><div class="card"><table><tr><th>id</th><th>st
   );
 }
 
-function detailPage(i: Intervention, operatorId: string, t: string): string {
+function detailPage(i: Intervention, operatorId: string, t: string, msg?: string | null, err?: string | null): string {
   const q = `?t=${encodeURIComponent(t)}`;
   const claimed = i.claimedBy === operatorId && i.status === 'claimed';
   const resolved = i.status === 'resolved';
@@ -293,6 +305,7 @@ evidence stream as <code>human_action</code>. Actions so far: <b>${i.humanAction
   return shell(
     `Intervention ${i.id}`,
     `<h1><a href="/${q}">&larr;</a> ${esc(i.id)} <span class="badge ${i.status}">${esc(i.status)}</span></h1>
+${err ? `<div class="msg err">${esc(err)}</div>` : ''}${msg ? `<div class="msg">${esc(msg)}</div>` : ''}
 <div class="card">
 <table>
 <tr><th>reason</th><td>${esc(i.reason)}</td></tr>

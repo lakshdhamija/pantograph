@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "id": "cap_98981d41-83c4-4072-828e-3c412f1dec82",
+  "id": "cap_9c3311dd-9ea9-4e62-869f-017cb26e7985",
   "key": "store.add-to-cart-and-review",
   "version": "1.0.0",
   "title": "Add a product and reach checkout review",
@@ -714,7 +714,7 @@
     "idempotent": true
   },
   "provenance": {
-    "recordedAt": "2026-09-05T00:56:25.655Z",
+    "recordedAt": "2026-09-05T01:35:46.758Z",
     "recordedBy": "lakshdhamija",
     "discoveryRunId": "01-discover",
     "goal": "Add the Sauce Labs Backpack to the cart and reach the checkout review page",
@@ -728,7 +728,7 @@
   "approval": {
     "state": "approved",
     "approvedBy": "demo-reviewer",
-    "approvedAt": "2026-09-05T00:56:26.293Z",
+    "approvedAt": "2026-09-05T01:35:47.394Z",
     "note": "Reviewed against the public storefront."
   },
   "stability": {

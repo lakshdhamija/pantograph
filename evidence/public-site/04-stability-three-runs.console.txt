@@ -12,15 +12,15 @@ STABILITY  store.add-to-cart-and-review@1.0.0  3 runs  -> DEGRADING
 
   statuses:      success=3
   success rate:  100%
-  duration:      9160-9371ms (median 9289ms)
+  duration:      9105-9301ms (median 9246ms)
 
   per run:
-     1. success             9371ms  rungs [0,0,0,1,0,0,0,0,0,0]
-     2. success             9289ms  rungs [0,0,0,1,0,0,0,0,0,0]
-     3. success             9160ms  rungs [0,0,0,1,0,0,0,0,0,0]
+     1. success             9246ms  rungs [0,0,0,1,0,0,0,0,0,0]
+     2. success             9301ms  rungs [0,0,0,1,0,0,0,0,0,0]
+     3. success             9105ms  rungs [0,0,0,1,0,0,0,0,0,0]
 
   LOCATOR DEGRADATION
   These steps did not resolve on their preferred strategy in every run.
   Nothing has failed yet; this is the early warning.
-    step-4: rungs 1 across runs, degraded in 3
+    click-add-to-cart: rungs 1 across runs, degraded in 3
 ------------------------------------------------------------------------

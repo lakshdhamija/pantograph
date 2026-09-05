@@ -6,31 +6,31 @@ run evidence:  /Users/lakshdhamija/Documents/interface ai/runs/01-discover-sign-
   [001] automation run_started
   [002] automation policy allow (default)
   [003] automation act navigate
-  [004] automation   -> ok 305ms
+  [004] automation   -> ok 302ms
   [005] automation see CORETELLER Sign On [20 nodes] 07c931c8
   [006] automation planner_request
   [007] automation planner_response
   [008] automation policy allow (default)
   [009] automation act fill textbox
-  [010] automation   -> ok 561ms
+  [010] automation   -> ok 576ms
   [011] automation see CORETELLER Sign On [20 nodes] 07c931c8
   [012] automation planner_request
   [013] automation planner_response
   [014] automation policy allow (default)
   [015] automation act fill textbox
-  [016] automation   -> ok 568ms
+  [016] automation   -> ok 586ms
   [017] automation see CORETELLER Sign On [20 nodes] 07c931c8
   [018] automation planner_request
   [019] automation planner_response
   [020] automation policy allow (default)
   [021] automation act click button
-  [022] automation   -> ok 649ms
+  [022] automation   -> ok 676ms
   [023] automation see CORETELLER Desktop [23 nodes] c2e9fdcb
   [024] automation planner_request
   [025] automation planner_response
   [026] automation note
 
-discovery: succeeded in 37.8s over 3 step(s)
+discovery: succeeded in 37.5s over 3 step(s)
   [027] automation blob
   [028] automation run_finished
 
@@ -39,7 +39,7 @@ wrote /Users/lakshdhamija/Documents/interface ai/artifacts/coreteller.sign-on@1.
   coreteller.sign-on@1.0.0  "Sign on to CORETELLER"
   inputs:   operatorId: string, operatorPassword: string [secret]
   outputs:  (none)
-  steps:    3 (risk tier safe, portability floor any_surface)
+  steps:    3 (risk tier elevated, portability floor any_surface)
   outcomes: MEMBER_NOT_FOUND, REQUEST_REJECTED, MEMBER_RESTRICTED
   recoveries: dismiss-maintenance-notice, wait-out-blank-screen
 

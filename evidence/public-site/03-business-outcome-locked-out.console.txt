@@ -6,27 +6,27 @@ run evidence: /Users/lakshdhamija/Documents/interface ai/runs-public/03-business
   [001] automation run_started
   [002] automation policy allow (default)
   [003] automation act navigate
-  [004] automation   -> ok 428ms
+  [004] automation   -> ok 378ms
   [005] automation step 1/10 fill-username: enter the storefront username
   [006] automation policy allow (default)
   [007] automation act fill textbox
-  [008] automation   -> ok 565ms
+  [008] automation   -> ok 564ms
   [009] automation assert fill-username.expect: pass (textbox equals("Password") present via role_name)
   [010] automation step 2/10 fill-password: enter the storefront password
   [011] automation policy allow (default)
   [012] automation act fill textbox
-  [013] automation   -> ok 577ms
+  [013] automation   -> ok 571ms
   [014] automation assert fill-password.expect: pass (button equals("Login") present via role_name)
   [015] automation step 3/10 click-login: sign in to the storefront
   [016] automation policy allow (default)
   [017] automation act click button
-  [018] automation   -> ok 544ms
+  [018] automation   -> ok 550ms
   [019] automation assert click-login.expect: FAIL (location "https://www.saucedemo.com/" does not match //inventory\.html$/; stopped waiting: the screen matches business outcome USER_LOCKED_OUT)
   [020] automation detector business_outcome USER_LOCKED_OUT
   [021] automation run_finished
 
 ------------------------------------------------------------------------
-BUSINESS OUTCOME  store.add-to-cart-and-review@1.0.0  (2939ms)
+BUSINESS OUTCOME  store.add-to-cart-and-review@1.0.0  (2883ms)
 
   USER_LOCKED_OUT [warning]  The account is locked and cannot sign in
   detected at step: click-login
