@@ -178,3 +178,31 @@ test('the System Events dump parses into windows and controls', () => {
   assert.equal(win.AXTitle, 'Member Inquiry');
   assert.deepEqual(win.children?.map((c) => c.AXRole), ['AXStaticText', 'AXTextField', 'AXButton']);
 });
+
+test('the System Events dump round-trips geometry, which the relational rungs need', () => {
+  // Without position and size, "the field to the right of this label" cannot
+  // resolve on a desktop, and the portability argument this surface exists to
+  // make would be false.
+  const dump = [
+    'WINDOW\tMember Inquiry',
+    'static text\tMember Number\t\t20,100,130,20',
+    'text field\t\t100234\t160,100,180,22',
+    'button\tSearch\t\t360,100,80,24',
+  ].join('\n');
+
+  const tree = parseSystemEventsDump(dump, 'CoreTeller');
+  const obs = axTreeToObservation(tree, { appName: 'CoreTeller' });
+
+  const field = obs.nodes.find((n) => n.role === 'textbox');
+  assert.ok(field, 'the text field should be perceived');
+  assert.deepEqual(field.bbox, { x: 160, y: 100, width: 180, height: 22 });
+  assert.equal(field.value, '100234');
+
+  // And the descriptor recorded against the web fixture resolves against it.
+  const resolved = resolveTarget(obs, {
+    role: 'textbox',
+    strategies: [{ kind: 'relative', anchor: { role: 'text', name: eq('Member Number'), strategies: [{ kind: 'role_name' }] }, direction: 'right_of', maxDistancePx: 220 }],
+  });
+  assert.ok(!isResolveFailure(resolved), `expected a resolution, got ${JSON.stringify(resolved)}`);
+  assert.equal(resolved.node.handle, field.handle);
+});

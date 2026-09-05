@@ -6,8 +6,9 @@
  * the argument are real, tested code:
  *
  *   - `axNodeToUiNode` / `axTreeToObservation` are pure functions from a macOS
- *     AX tree to the exact `Observation` the existing resolver consumes,
- *     unit-tested against a captured AX dump in tests/desktop.test.ts -- so the
+ *     AX tree to the exact `Observation` the existing resolver consumes. They
+ *     are unit-tested in tests/desktop.test.ts against a hand-written AX tree
+ *     and against the tab-separated dump `captureAxTree` actually emits, so the
  *     mapping is verifiable without a Mac, without permissions, and in CI.
  *   - `MacAxSurface` implements `Surface` in full. If the interface were secretly
  *     web-shaped, this file would not compile.
@@ -296,7 +297,20 @@ export async function captureAxTree(appName: string): Promise<AxNode> {
               try
                 set t to (title of e as text)
               end try
-              set out to out & r & "\t" & t & "\n"
+              set v to ""
+              try
+                set v to (value of e as text)
+              end try
+              -- Geometry, because the relational rungs are geometric: without
+              -- position and size, "the field right of this label" cannot
+              -- resolve on a desktop at all.
+              set g to ""
+              try
+                set p to position of e
+                set z to size of e
+                set g to ((item 1 of p) as text) & "," & ((item 2 of p) as text) & "," & ((item 1 of z) as text) & "," & ((item 2 of z) as text)
+              end try
+              set out to out & r & "\t" & t & "\t" & v & "\t" & g & "\n"
             end try
           end repeat
         end repeat
@@ -326,14 +340,21 @@ export function parseSystemEventsDump(stdout: string, appName: string): AxNode {
 
   for (const line of stdout.split('\n')) {
     if (!line.trim()) continue;
-    const [a, b] = line.split('\t');
+    const [a, b, v, g] = line.split('\t');
     if (a === 'WINDOW') {
       if (current) windows.push({ AXRole: 'AXWindow', AXTitle: current.name, children: current.children });
       current = { name: b ?? '', children: [] };
       continue;
     }
     if (!current || !a) continue;
-    current.children.push({ AXRole: normaliseAxRoleName(a), AXTitle: b ?? '' });
+    const geometry = (g ?? '').split(',').map(Number);
+    const hasGeometry = geometry.length === 4 && geometry.every((n) => Number.isFinite(n));
+    current.children.push({
+      AXRole: normaliseAxRoleName(a),
+      AXTitle: b ?? '',
+      ...(v ? { AXValue: v } : {}),
+      ...(hasGeometry ? { AXPosition: { x: geometry[0]!, y: geometry[1]! }, AXSize: { width: geometry[2]!, height: geometry[3]! } } : {}),
+    });
   }
   if (current) windows.push({ AXRole: 'AXWindow', AXTitle: current.name, children: current.children });
 

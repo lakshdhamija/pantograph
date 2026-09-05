@@ -80,7 +80,7 @@ export async function startOperatorConsole(
       return void res.end('401: this console requires the token printed by the process that started it.\n');
     }
 
-    if (url.pathname === '/') return html(res, indexPage(broker.list(), token, operatorId));
+    if (url.pathname === '/') return html(res, indexPage(broker.list(), token));
     if (url.pathname === '/api/interventions') return json(res, broker.list());
 
     if (parts[0] === 'i' && parts[1]) {
@@ -235,7 +235,7 @@ ${refresh ? `<meta http-equiv="refresh" content="${refresh}">` : ''}
 }
 
 /** `t` is threaded through every link and form so a page stays usable once open. */
-function indexPage(list: readonly Intervention[], t: string, operatorId: string): string {
+function indexPage(list: readonly Intervention[], t: string): string {
   const q = `?t=${encodeURIComponent(t)}`;
   const open = list.filter((i) => i.status !== 'resolved');
   const done = list.filter((i) => i.status === 'resolved');
