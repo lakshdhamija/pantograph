@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # Fast gate: the whole targeting, contract, policy and redaction suite is pure
+  # functions over an Observation, so it needs no browser and finishes in seconds.
+  check:
+    name: typecheck + unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Install (skip browser download)
+        run: npm ci --ignore-scripts
+      - run: npx tsc --noEmit
+      - run: node --test "tests/*.test.ts"
+
+  # Slow gate: the real thing. Records three capabilities against the fixture app
+  # with the scripted planner, then runs twelve replays and a five-run stability
+  # sweep covering success, two business outcomes, a rejected input, an injected
+  # core error, two recoveries, the approval gate in both stances, and a second
+  # tenant. No API key needed, which is the point of the planner boundary.
+  demo:
+    name: end-to-end demo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+          cache: npm
+      - run: npm ci
+      - name: Every Mermaid diagram in the docs actually renders
+        run: node scripts/check-diagrams.ts
+
+      - name: Run the full discovery + replay demo
+        run: node scripts/demo.ts
+      - name: Fail if any run behaved unexpectedly
+        run: |
+          if grep -q 'UNEXPECTED' evidence/README.md; then
+            echo "::error::a demo run did not behave as expected"
+            grep 'UNEXPECTED' evidence/README.md
+            exit 1
+          fi
+          echo "all runs as expected"
+      - name: Fail if a secret reached the evidence
+        run: |
+          if grep -rl 'demo-only-not-a-secret' evidence artifacts 2>/dev/null; then
+            echo "::error::a credential leaked into committed output"
+            exit 1
+          fi
+          echo "no credentials in evidence"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: evidence
+          path: evidence/
