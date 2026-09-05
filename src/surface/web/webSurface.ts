@@ -87,15 +87,27 @@ export class WebSurface implements Surface {
   }
 
   static async launch(opts: WebSurfaceOptions = {}): Promise<WebSurface> {
-    const browser = await chromium.launch({
-      // `channel: 'chromium'` runs the full Chromium build in new-headless mode
-      // rather than the separate chrome-headless-shell download. One browser
-      // binary covers both headless runs and the headed operator handoff, which
-      // halves what a reviewer has to download.
-      channel: 'chromium',
-      headless: opts.headless ?? true,
-      slowMo: opts.slowMoMs,
-    });
+    let browser: Browser;
+    try {
+      browser = await chromium.launch({
+        // `channel: 'chromium'` runs the full Chromium build in new-headless
+        // mode rather than the separate chrome-headless-shell download. One
+        // binary covers both headless runs and the headed operator handoff,
+        // which halves what a reviewer has to download.
+        channel: 'chromium',
+        headless: opts.headless ?? true,
+        slowMo: opts.slowMoMs,
+      });
+    } catch (e) {
+      // `npm install` does not fetch browsers: playwright ships no install
+      // hook, and npm 11 would not run one anyway. Say so, rather than letting
+      // a first-run reviewer read a path that does not exist and guess.
+      const msg = e instanceof Error ? e.message : String(e);
+      if (/Executable doesn't exist|please run the following command/i.test(msg)) {
+        throw new Error(`No Chromium build was found. Run:\n\n  npx playwright install chromium\n\nOriginal error: ${msg.split('\n')[0]}`);
+      }
+      throw e;
+    }
     const viewport = opts.viewport ?? { width: 1280, height: 800 };
     const context = await browser.newContext({
       viewport,

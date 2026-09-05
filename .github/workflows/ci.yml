@@ -38,6 +38,10 @@ jobs:
           node-version: '26'
           cache: npm
       - run: npm ci
+      # Explicitly, rather than relying on the runner image happening to cache a
+      # browser: this is the command the README tells a reviewer to run, so CI
+      # should be running it too.
+      - run: npx playwright install chromium
       - name: Every Mermaid diagram in the docs actually renders
         run: node scripts/check-diagrams.ts
 

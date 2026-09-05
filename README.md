@@ -57,9 +57,10 @@ Requires **Node ≥ 22.18** (or ≥ 23.6): those are the versions where Node run
 
 ```bash
 npm install
+npx playwright install chromium
 ```
 
-That installs three dependencies (`playwright`, `zod`, `@anthropic-ai/sdk`) and downloads Chromium (~180 MB, one time).
+The first installs three dependencies: `playwright`, `zod` and `@anthropic-ai/sdk`. The second downloads Chromium, about 180 MB, once. It is a separate step because `playwright` ships no install hook, and npm 11 does not run package install scripts by default in any case.
 
 **No API key is needed for anything below except `ask`.** Discovery has **four planner implementations behind one interface**. The loop, the compiler and the evidence pipeline cannot tell them apart:
 
@@ -92,7 +93,7 @@ npm run demo
 
 About two minutes. It starts the fixture app, records three capabilities, approves them, prints the catalog, then runs twelve replays and a five-run stability sweep: success, two business outcomes, a rejected input, an injected core error, two recoveries, the approval gate with and without a human, and a second tenant. That is the 17 entries in `evidence/`, and it prints each command as it runs it.
 
-`npm run demo -- --replays-only` skips discovery, reuses the committed artifacts and reproduces everything downstream of them. Discovery is the only part that needs a model.
+It rewrites `evidence/` and `artifacts/` as it goes, so expect a dirty tree afterwards; `git checkout -- evidence artifacts` puts the committed run back. `npm run demo -- --replays-only` skips discovery, keeps the committed discovery evidence and reproduces everything downstream of it. Discovery is the only part that needs a model.
 
 With a key, `node scripts/demo.ts --live` records with a real model instead of the scripted planner. It uses whichever provider has a key, preferring the one with the most free-tier headroom: Groq, then Anthropic, then Gemini.
 
